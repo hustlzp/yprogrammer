@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <title>{% block page_title %}西窗烛{% endblock %}</title>
+      <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   </head>
+
+   <body id="{% block page_id %}{% endblock %}">
+      <div class="navbar">
+         <div class="navbar-inner">
+            <div class="container">
+               <a class="brand" href="#">YProgrammer</a>
+
+               <ul class="nav">
+                  <li class='active'><a href="#">首页</a></li>
+               </ul>
+
+               <form class="navbar-search">
+                  <input type="text" class="search-query" placeholder="Search">
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <div id="main-wap" class="container">
+      {% block body %}{% endblock %}
+      </div>
+
+      <div id="footer">
+         <div class='container'>
+            <div id='copyright'>YProgrammer ©2013 by <a href="http://hustlzp.com" target="_blank">hustlzp</a></div>
+            
+            <ul id='links'>
+               <li><a href="#">关于</a></li>
+               <li><a target="_blank" href="https://github.com/hustlzp/yprogrammer">GitHub</a></li>
+            </ul>
+         </div>
+      </div>
+   </body>
+</html>
