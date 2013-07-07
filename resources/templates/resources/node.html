@@ -21,13 +21,19 @@
 
          <div class="res-content">{{ r.content }}</div>
 
+         <div class='res-extra-info'>
+            By <a href='#'>hustlzp</a>
+            <span class='divider'></span>
+            <span class='res-time'>{{ r.create_time }}</span>
+         </div>
+
          <span class="label label-info res-collect-count">2</span>
       </div>
       {% endfor %}
    </div>
 
    <div class="span4">
-      <div class="btn-toolbar pull-right">
+      <div class="btn-toolbar">
          <div class='btn-group'>
             <a class="btn btn-primary" href="#"><i class='icon-heart icon-white'></i> 关注</a>
             <a class='btn'>4</a>

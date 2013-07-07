@@ -4,6 +4,7 @@ body #footer{position:absolute;left:0;bottom:0;height:2.2em;z-index:10;text-alig
 body #footer .container #links{float:right;margin:0;list-style-type:none;}body #footer .container #links li{display:inline-block;margin-right:5px;}
 .page-header{position:relative;}
 .page-header .corner{position:absolute;top:0;right:0;}
+.span4{width:280px;margin-left:40px;}
 .span8 h4{margin:20px 0 15px 0;}
 .span4 h4:not(:first-child){margin:20px 0 15px 0;}
 .divider{display:inline-block;width:5px;}
