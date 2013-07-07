@@ -6,6 +6,7 @@
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
       <title>{% block page_title %}西窗烛{% endblock %}</title>
       <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link type="text/css" rel="stylesheet" href="{% static 'resources/css/page.css' %}">
       <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
    </head>
@@ -14,10 +15,13 @@
       <div class="navbar">
          <div class="navbar-inner">
             <div class="container">
-               <a class="brand" href="#">YProgrammer</a>
+               <a class="brand" href="{% url 'resources' %}">YProgrammer</a>
 
                <ul class="nav">
-                  <li class='active'><a href="#">首页</a></li>
+                  <li class='active'><a href="{% url 'resources' %}">首页</a></li>
+                  <li><a href="{% url 'nodes' %}">节点</a></li>
+                  <li><a href="#">我的收藏</a></li>
+                  <li><a href="#">反馈</a></li>
                </ul>
 
                <form class="navbar-search">

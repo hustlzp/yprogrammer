@@ -1,0 +1,149 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin: 0 0 6em 0;
+
+    #main-wap{
+        padding-top: 10px;
+    }
+
+    #footer{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2.2em;
+        z-index: 10;
+        text-align: center;
+        font-size: 12px;
+        font-family: '微软雅黑';
+        width: 100%;
+        color: #666;
+
+        .container{
+            #copyright{
+                float: left;
+            }
+
+            #links{
+                float: right;
+                margin: 0;
+                list-style-type: none;
+
+                li{
+                    display: inline-block;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+.page-header{
+    position: relative;
+}
+
+.page-header .corner{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.sidebar-header{
+}
+
+.span8 h4{
+    margin: 20px 0 15px 0;
+}
+
+.span4 h4{
+    &:not(:first-child){
+        margin: 20px 0 15px 0;
+    }
+}
+
+.divider{
+    display: inline-block;
+    width: 5px;
+}
+
+.res-item{
+    margin-bottom: 18px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+
+    .res-header{
+        margin-bottom: 8px;
+
+        .res-type{
+            border-radius: 0;
+            margin-right: 6px;
+            vertical-align: 2px;
+        }
+
+        .res-title{
+            font-size: 20px;
+            line-height: 20px;
+            
+        }
+    }
+
+    .res-content{
+        margin-right: 60px;
+        margin-bottom: 6px;
+    }
+
+    .res-extra-info{
+        color: gray;
+        a{
+            color: gray;
+        }
+    }
+
+    .res-collect-count{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        border-radius: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+.node-item{
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+
+    .node-title{
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+
+    .node-desc{
+        margin-right: 200px;
+    }
+
+    .node-image{
+        position: absolute;
+        top: 0;
+        right: 0;
+        max-height: 45px;
+    }
+}
+
+#page-node{
+    .page-header{
+        .node-image{
+            max-height: 45px;
+        }
+    }
+}
+
+#page-resource{
+}

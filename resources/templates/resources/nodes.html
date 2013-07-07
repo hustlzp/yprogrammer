@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-nodes{% endblock %}
+{% block page_title %}Nodes{% endblock %}
+{% block body %}
+
+<div class="row">
+   <div class="span8">
+      <div class="page-header">
+         <h2>热门节点</h2>
+
+         <a href="#" class="btn btn-primary corner">节点网络</a>
+      </div>
+
+      {% for n in nodes %}
+      <div class='node-item'>
+         <div class='node-title'>
+            <a href="{% url 'node' n.id %}">{{ n.title }}</a>
+         </div>
+
+         <div class='node-desc'>{{ n.desc }}</div>
+         
+         <a href="{% url 'node' n.id %}"><img class='node-image' src="{{ n.image_url }}"></a>
+      </div>
+      {% endfor %}
+   </div>
+
+   <div class="span4">
+      <!-- <a href="#" class="btn btn-primary pull-right">节点网络</a> -->
+      <div class="sidebar-header">
+         <h4>近期新增</h4>
+
+      </div>
+
+      <h4>近期新增</h4>
+   </div>
+</div>
+
+{% endblock %}

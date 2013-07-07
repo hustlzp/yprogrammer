@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-resources{% endblock %}
+{% block page_title %}Resources{% endblock %}
+{% block body %}
+
+<div class="row">
+   <div class="span8">
+      <div class="page-header">
+         <h2>最新资源 <small>新鲜不断出炉哦！</small></h2>
+      </div>
+
+      {% for r in resources %}
+      <div class='res-item'>
+         <div class="res-header">
+            <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a>
+            <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
+         </div>
+
+         <div class="res-content">{{ r.content }}</div>
+
+         <div class='res-extra-info'>          
+            节点：<a href="/node/{{ r.node.id }}">{{ r.node.title }}</a>
+            <span class='divider'></span>
+            <span class='res-time'>{{ r.create_time }}</span>
+         </div>
+
+         <span class="label label-info res-collect-count">2</span>
+      </div>
+      {% endfor %}
+   </div>
+
+   <div class="span4">
+      <div class="sidebar-header">
+         <h4>近期热门</h4>
+      </div>
+   </div>
+</div>
+
+{% endblock %}

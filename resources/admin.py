@@ -7,7 +7,7 @@ class ResourceInline(admin.StackedInline):
     extra = 3
 
 class NodeAdmin(admin.ModelAdmin):
-    fields = ['parent_node', 'title', 'desc', 'create_time']
+    fields = ['parent_node', 'title', 'image_url', 'desc', 'create_time']
     inlines = [ResourceInline]
 
 admin.site.register(Node, NodeAdmin)

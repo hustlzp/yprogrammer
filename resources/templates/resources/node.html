@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-node{% endblock %}
+{% block page_title %}{{ node.Title }}{% endblock %}
+{% block body %}
+
+<div class="row">
+   <div class="span8">
+      <div class="page-header">
+         <h2>{{ node.title }}</h2>
+         <p>{{ node.desc }}</p>
+         <img class='node-image corner' src="{{ node.image_url }}">
+      </div>
+
+      {% for r in resources %}
+      <div class='res-item'>
+         <div class="res-header">
+            <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a>
+            <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
+         </div>
+
+         <div class="res-content">{{ r.content }}</div>
+
+         <span class="label label-info res-collect-count">2</span>
+      </div>
+      {% endfor %}
+   </div>
+
+   <div class="span4">
+      <div class="btn-toolbar pull-right">
+         <div class='btn-group'>
+            <a class="btn btn-primary" href="#"><i class='icon-heart icon-white'></i> 关注</a>
+            <a class='btn'>4</a>
+         </div>
+
+         <a class="btn btn-primary" href="#"><i class='icon-plus icon-white'></i> 添加资源</a>
+      </div>
+      
+      <div class="sidebar-header">
+         <h4></h4>
+      </div>
+   </div>
+</div>
+
+{% endblock %}

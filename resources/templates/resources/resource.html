@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-resource{% endblock %}
+{% block page_title %}{{ resource.title }}{% endblock %}
+{% block body %}
+
+<div class="row">
+   <div class="span8">
+      <div class="page-header">
+         <h2>{{ resource.title }} <sup><span class='label label-warning'>{{ resource.type }}</span></sup></h2>
+         <div>
+            节点：<a href="{% url 'node' resource.node.id %}">{{ resource.node.title }}</a>
+            <span class='divider'></span>
+            地址：<a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
+            <span class='divider'></span>
+         </div>
+
+         <div class='btn-group corner'>
+            <a class='btn btn-primary' href="#"><i class='icon-heart icon-white'></i> 收藏</a>
+            <a class='btn'>4</a>
+         </div>
+      </div>
+
+      <h4>简介</h4>
+      <p>{{ resource.content }}</p>
+
+      <h4>使用说明</h4>
+      <p>{{ resource.content }}</p>
+
+      <h4>评论</h4>
+   </div>
+
+   <div class="span4">
+
+      <div class="sidebar-header">
+         <h4></h4>
+      </div>
+   </div>
+</div>
+
+{% endblock %}
