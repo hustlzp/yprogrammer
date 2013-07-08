@@ -12,23 +12,25 @@
          <a href="#" class="btn btn-primary corner">节点网络</a>
       </div>
 
+      <div class='node-list'>
       {% for n in nodes %}
-      <div class='node-item media'>
-         <a href="{% url 'node' n.id %}" class='pull-left'>
-            <img class='node-image media-object' src="{{ n.image_url }}">
-         </a>
+         <div class='node-item media'>
+            <a href="{% url 'node' n.id %}" class='pull-left'>
+               <img class='node-image media-object' src="{{ n.image_url }}">
+            </a>
 
-         <div class='media-body'>
-            <h4 class='media-heading'><a href="{% url 'node' n.id %}" >{{ n.title }}</a></h4>
-            {{ n.desc }}
+            <div class='media-body'>
+               <h4 class='media-heading'><a href="{% url 'node' n.id %}" >{{ n.title }}</a></h4>
+               <div class='node-desc'>{{ n.desc }}</div>
+               <!-- <div><small>资源 23</small></div> -->
+               <div class='btn-group'>
+                  <a class="btn btn-mini" href="#">关注</a>
+                  <a class='btn btn-mini'>4</a>
+               </div>
+            </div>
          </div>
-
-         <div class='btn-group'>
-            <a class="btn btn-mini btn-primary" href="#">关注</a>
-            <a class='btn btn-mini'>4</a>
-         </div>
-      </div>
       {% endfor %}
+      </div>
    </div>
 
    <div class="span4">

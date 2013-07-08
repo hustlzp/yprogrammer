@@ -8,9 +8,12 @@ urlpatterns = patterns('',
     # resources
     url(r'^', include('resources.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
+    # users
+    url(r'^', include('users.urls')),
+
+    # admin doc
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
+    # admin
     url(r'^admin/', include(admin.site.urls)),
 )

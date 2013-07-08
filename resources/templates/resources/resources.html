@@ -21,7 +21,7 @@
          <div class="res-content">{{ r.content }}</div>
 
          <div class='res-extra-info'>
-            By <a href="#">hustlzp</a>
+            By <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
             <span class='divider'></span>
             节点：<a href="{% url 'node' r.node.id %}">{{ r.node.title }}</a>
             <span class='divider'></span>

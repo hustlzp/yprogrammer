@@ -24,7 +24,7 @@ $(function(){
       </div>
       
       <div class='sub-header'>
-         <h4>3 个资源 <small id='what-is-re'>什么是资源？</small></h4>
+         <h4>{{ resources|length }} 个资源 <small id='what-is-re'>什么是资源？</small></h4>
          <div class="btn-toolbar corner">
             <div class='btn-group' data-toggle="buttons-radio">
                <a class='btn btn-mini active' href="#">最新</a>
@@ -45,7 +45,7 @@ $(function(){
          <div class="res-content">{{ r.content }}</div>
 
          <div class='res-extra-info'>
-            By <a href='#'>hustlzp</a>
+            By <a href='{% url 'user' r.creator.name %}'>{{ r.creator.name }}</a>
             <span class='divider'></span>
             <span class='res-time'>{{ r.create_time }}</span>
          </div>
