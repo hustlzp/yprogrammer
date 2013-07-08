@@ -4,12 +4,34 @@
 {% block page_title %}{{ node.Title }}{% endblock %}
 {% block body %}
 
+<script type="text/javascript">
+$(function(){
+   $('#what-is-re').popover({
+      trigger: 'hover',
+      title: '什么是资源？',
+      content: '资源是与某一节点相关的、有用的资料，可以是<b>网站</b>、<b>图书</b>、<b>文章</b>等。',
+      html: true
+   });
+});
+</script>
+
 <div class="row">
    <div class="span8">
       <div class="page-header">
          <h2>{{ node.title }}</h2>
-         <p>{{ node.desc }}</p>
+         <div>{{ node.desc }}</div>
          <img class='node-image corner' src="{{ node.image_url }}">
+      </div>
+      
+      <div class='sub-header'>
+         <h4>3 个资源 <small id='what-is-re'>什么是资源？</small></h4>
+         <div class="btn-toolbar corner">
+            <div class='btn-group' data-toggle="buttons-radio">
+               <a class='btn btn-mini active' href="#">最新</a>
+               <a class='btn btn-mini' href="#">最热</a>
+            </div>
+            <a class="btn btn-mini" href="#"><i class='icon-plus'></i> 添加资源</a>
+         </div>
       </div>
 
       {% for r in resources %}
@@ -17,6 +39,7 @@
          <div class="res-header">
             <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a>
             <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
+            <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
          </div>
 
          <div class="res-content">{{ r.content }}</div>
@@ -27,7 +50,10 @@
             <span class='res-time'>{{ r.create_time }}</span>
          </div>
 
-         <span class="label label-info res-collect-count">2</span>
+         <div class='btn-group'>
+            <a class="btn btn-mini btn-primary" href="#">收藏</a>
+            <a class='btn btn-mini'>2</a>
+         </div>
       </div>
       {% endfor %}
    </div>
@@ -39,7 +65,7 @@
             <a class='btn'>4</a>
          </div>
 
-         <a class="btn btn-primary" href="#"><i class='icon-plus icon-white'></i> 添加资源</a>
+         <!-- <a class="btn btn-primary" href="#"><i class='icon-plus icon-white'></i> 添加资源</a> -->
       </div>
       
       <div class="sidebar-header">

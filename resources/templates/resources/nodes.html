@@ -7,20 +7,26 @@
 <div class="row">
    <div class="span8">
       <div class="page-header">
-         <h2>热门节点</h2>
+         <h2>发现节点</h2>
 
          <a href="#" class="btn btn-primary corner">节点网络</a>
       </div>
 
       {% for n in nodes %}
-      <div class='node-item'>
-         <div class='node-title'>
-            <a href="{% url 'node' n.id %}">{{ n.title }}</a>
+      <div class='node-item media'>
+         <a href="{% url 'node' n.id %}" class='pull-left'>
+            <img class='node-image media-object' src="{{ n.image_url }}">
+         </a>
+
+         <div class='media-body'>
+            <h4 class='media-heading'><a href="{% url 'node' n.id %}" >{{ n.title }}</a></h4>
+            {{ n.desc }}
          </div>
 
-         <div class='node-desc'>{{ n.desc }}</div>
-         
-         <a href="{% url 'node' n.id %}"><img class='node-image' src="{{ n.image_url }}"></a>
+         <div class='btn-group'>
+            <a class="btn btn-mini btn-primary" href="#">关注</a>
+            <a class='btn btn-mini'>4</a>
+         </div>
       </div>
       {% endfor %}
    </div>

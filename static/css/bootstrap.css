@@ -803,7 +803,8 @@ h3 small {
 }
 
 h4 small {
-  font-size: 14px;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .page-header {
@@ -3320,7 +3321,7 @@ button.close {
 
 .btn-mini [class^="icon-"],
 .btn-mini [class*=" icon-"] {
-  margin-top: -1px;
+  margin-top: 0px;
 }
 
 .btn-mini {
@@ -5445,6 +5446,10 @@ input[type="submit"].btn.btn-mini {
 
 .popover-content {
   padding: 9px 14px;
+  font-size: 14px;
+  color: #555;
+  line-height: 20px;
+  font-weight: normal;
 }
 
 .popover .arrow,

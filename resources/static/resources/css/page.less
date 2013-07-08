@@ -41,29 +41,38 @@ body{
     }
 }
 
-.page-header{
-    position: relative;
-}
-
-.page-header .corner{
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.sidebar-header{
-}
-
 .span4{
     width: 280px;
     margin-left: 40px;
 }
 
-.span8 h4{
-    margin: 20px 0 15px 0;
+.page-header{
+    position: relative;
+
+    .corner{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+    }
 }
 
-.span4 h4{
+.sub-header{
+    position: relative;
+
+    h4{
+        margin: 25px 0 20px 0;
+    }
+
+    .corner{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+    }
+}
+
+.sidebar-header h4{
     &:not(:first-child){
         margin: 20px 0 15px 0;
     }
@@ -84,15 +93,27 @@ body{
         margin-bottom: 8px;
 
         .res-type{
-            border-radius: 0;
-            margin-right: 6px;
+            margin-right: 5px;
             vertical-align: 2px;
         }
 
         .res-title{
-            font-size: 20px;
-            line-height: 20px;
-            
+            font-size: 17.5px;
+            line-height: 17.5px;
+        }
+
+        .res-url{
+            color: #555;
+            text-decoration: none;
+
+            &:hover{
+                color: #000;
+            }
+
+            .icon-external-link{
+                margin-left: 3px;
+                cursor: pointer;
+            }            
         }
     }
 
@@ -102,19 +123,19 @@ body{
     }
 
     .res-extra-info{
-        color: gray;
+        color: #aaa;
         a{
-            color: gray;
+            color: #aaa;
         }
     }
 
-    .res-collect-count{
+    .btn-group{
         position: absolute;
         right: 0px;
-        top: 0px;
-        border-radius: 0;
+        top: 5px;
         padding-left: 5px;
         padding-right: 5px;
+        padding: 0;
     }
 }
 
@@ -124,31 +145,29 @@ body{
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
 
-    .node-title{
-        font-size: 20px;
-        line-height: 20px;
-        margin-bottom: 10px;
-    }
-
-    .node-desc{
-        margin-right: 200px;
-    }
-
     .node-image{
+        width: 50px;
+    }
+
+    .btn-group{
         position: absolute;
         top: 0;
         right: 0;
-        max-height: 45px;
     }
 }
 
 #page-node{
-    .page-header{
-        .node-image{
-            max-height: 45px;
-        }
+    .node-image{
+        max-height: 45px;
+    }
+
+    #what-is-re{
+        cursor: pointer;
     }
 }
 
 #page-resource{
+    #what-is-ex{
+        cursor: pointer;
+    }
 }

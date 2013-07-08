@@ -7,7 +7,7 @@
 <div class="row">
    <div class="span8">
       <div class="page-header">
-         <h2>资源 <small>新鲜不断出炉！</small></h2>
+         <h2>最新资源 <small>新鲜不断出炉</small></h2>
       </div>
 
       {% for r in resources %}
@@ -15,17 +15,23 @@
          <div class="res-header">
             <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a>
             <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
+            <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
          </div>
 
          <div class="res-content">{{ r.content }}</div>
 
-         <div class='res-extra-info'>          
-            节点：<a href="/node/{{ r.node.id }}">{{ r.node.title }}</a>
+         <div class='res-extra-info'>
+            By <a href="#">hustlzp</a>
+            <span class='divider'></span>
+            节点：<a href="{% url 'node' r.node.id %}">{{ r.node.title }}</a>
             <span class='divider'></span>
             <span class='res-time'>{{ r.create_time }}</span>
          </div>
 
-         <span class="label label-info res-collect-count">2</span>
+         <div class='btn-group'>
+            <a class="btn btn-mini btn-primary" href="#">收藏</a>
+            <a class='btn btn-mini'>2</a>
+         </div>
       </div>
       {% endfor %}
    </div>
