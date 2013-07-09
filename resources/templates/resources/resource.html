@@ -23,7 +23,7 @@ $(function(){
          <p>{{ resource.desc }}</p>
          
          <div>
-            By <a href="#">hustlzp</a>
+            By <a href="{% url 'user' resource.creator.name %}">{{ resource.creator.name }}</a>
             <span class='divider'></span>
             节点：<a href="{% url 'node' resource.node.id %}">{{ resource.node.title }}</a>
             <span class='divider'></span>
@@ -39,7 +39,7 @@ $(function(){
                <a class='btn btn-mini active' href="#">最新</a>
                <a class='btn btn-mini' href="#">最热</a>
             </div>
-            <a class="btn btn-mini" href="#"><i class='icon-plus'></i> 分享经验</a>
+            <a class="btn btn-mini btn-primary" href="#"><i class='icon-plus'></i> 分享经验</a>
          </div>
       </div>      
    </div>
@@ -47,7 +47,7 @@ $(function(){
    <div class="span4">
       <div class='btn-toolbar'>         
          <div class='btn-group'>
-            <a class='btn btn-primary' href="#"><i class='icon-heart icon-white'></i> 收藏</a>
+            <a class='btn' href="#"><i class='icon-heart icon-white'></i> 收藏</a>
             <a class='btn'>4</a>
          </div>
 

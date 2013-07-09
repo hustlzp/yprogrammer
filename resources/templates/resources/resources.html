@@ -18,7 +18,7 @@
             <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
          </div>
 
-         <div class="res-content">{{ r.content }}</div>
+         <div class="res-content">{{ r.desc }}</div>
 
          <div class='res-extra-info'>
             By <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
@@ -29,7 +29,7 @@
          </div>
 
          <div class='btn-group'>
-            <a class="btn btn-mini btn-primary" href="#">收藏</a>
+            <a class="btn btn-mini" href="#">收藏</a>
             <a class='btn btn-mini'>2</a>
          </div>
       </div>

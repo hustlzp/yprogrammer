@@ -18,7 +18,7 @@ class Resource(models.Model):
     type = models.CharField(max_length=50)
     url = models.CharField(max_length=200)
     desc = models.CharField(max_length=200)
-    create_time = models.DateTimeField('date')
+    create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.title
