@@ -1,16 +1,17 @@
 #-*- coding: UTF-8 -*-
 import requests
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from users.models import User
 
-def login(request):
+# sign by github oauth2
+def signin(request):
     # get access token
     access_token_url = "https://github.com/login/oauth/access_token"
     code = request.GET['code']
     params = {
         'client_id': '7a68fc19935c680f8e2e',
-        'redirect_uri': 'http://localhost:8000/login/github',
+        'redirect_uri': 'http://localhost:8000/signin/github',
         'client_secret': 'cc806b6c5c30b4eff569e86c634cb778e23d273e',
         'code': code
     }
@@ -25,11 +26,21 @@ def login(request):
     # if new, save it
     name = user_info['login']
     if User.objects.filter(name=name).count() < 1:
-        u = User(name=name, email=user_info['email'], avatar_url=user_info['avatar_url'], blog=user_info['blog'], location=user_info['location'])
-        u.save()
-        return HttpResponse('new')
+        user_id = User.objects.create(name=name, email=user_info['email'], avatar_url=user_info['avatar_url'], blog=user_info['blog'], location=user_info['location']).id
     else:
-        return HttpResponse('old')
+        user_id = User.objects.get(name=name).id
+
+    # set session
+    request.session['user'] = name
+    request.session['user_id'] = user_id
+    request.session['user_avatar'] = user_info['avatar_url']
+    return redirect('resources')
+
+def signout(request):
+    del request.session['user']
+    del request.session['user_id']
+    del request.session['user_avatar']
+    return redirect('resources')
 
 def user(request, username):
     pass

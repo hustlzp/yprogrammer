@@ -22,3 +22,21 @@ class Resource(models.Model):
 
     def __unicode__(self):
         return self.title
+
+# a user follow a node
+class NodeFollow(models.Model):
+    user = models.ForeignKey(User)
+    node = models.ForeignKey(Node)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '%s follow %s' % (self.user, self.node)
+
+# a user collect a resource
+class ResourceCollect(models.Model):
+    user = models.ForeignKey(User)
+    resource = models.ForeignKey(Resource)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '%s Collect %s' % (self.user, self.resource)

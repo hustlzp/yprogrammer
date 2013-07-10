@@ -61,7 +61,11 @@ $(function(){
    <div class="span4">
       <div class="btn-toolbar">
          <div class='btn-group'>
-            <a class="btn" href="#"><i class='icon-heart icon-white'></i> 关注</a>
+            {% if is_followed %}
+            <a class="btn btn-primary" href="{% url 'disfollow_node' node.id %}"><i class='icon-heart icon-white'></i> 已关注</a>
+            {% else %}
+            <a class="btn" href="{% url 'follow_node' node.id %}"><i class='icon-heart icon-white'></i> 关注</a>
+            {% endif %}            
             <a class='btn'>4</a>
          </div>
       </div>
