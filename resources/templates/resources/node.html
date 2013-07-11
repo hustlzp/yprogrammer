@@ -24,13 +24,13 @@ $(function(){
       </div>
       
       <div class='sub-header'>
-         <h4>{{ resources|length }} 个资源 <small id='what-is-re'>什么是资源？</small></h4>
+         <h4>资源 / {{ resources|length }} <small id='what-is-re'>什么是资源？</small></h4>
          <div class="btn-toolbar corner">
             <div class='btn-group' data-toggle="buttons-radio">
                <a class='btn btn-mini active' href="#">最新</a>
                <a class='btn btn-mini' href="#">最热</a>
             </div>
-            <a class="btn btn-primary btn-mini" href="#"><i class='icon-plus'></i> 添加资源</a>
+            <!-- <a class="btn btn-primary btn-mini" href="#"><i class='icon-plus'></i> 添加资源</a> -->
          </div>
       </div>
 
@@ -51,8 +51,12 @@ $(function(){
          </div>
 
          <div class='btn-group'>
-            <a class="btn btn-mini" href="#">收藏</a>
-            <a class='btn btn-mini'>2</a>
+            {% if r.is_collected %}
+            <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}">已收藏</a>
+            {% else %}
+            <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}">收藏</a>
+            {% endif %}
+            <a class='btn btn-mini'>{{ r.collect_count }}</a>
          </div>
       </div>
       {% endfor %}
@@ -66,8 +70,10 @@ $(function(){
             {% else %}
             <a class="btn" href="{% url 'follow_node' node.id %}"><i class='icon-heart icon-white'></i> 关注</a>
             {% endif %}            
-            <a class='btn'>4</a>
+            <a class='btn'>{{ follow_count }}</a>
          </div>
+
+         <a class="btn btn-primary" href="#"><i class='icon-plus'></i> 添加资源</a>
       </div>
       
       <div class="sidebar-header">

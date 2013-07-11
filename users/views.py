@@ -3,6 +3,7 @@ import requests
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from users.models import User
+from resources.models import Node, NodeFollow, Resource, ResourceCollect
 
 # sign by github oauth2
 def signin(request):
@@ -45,4 +46,10 @@ def signout(request):
 def user(request, username):
     pass
 
+def user_nav(request):
+    user_id = request.session['user_id']
+    nodes = NodeFollow.objects.filter(user=user_id)
+    for n in nodes:
+        n.resources = ResourceCollect.objects.filter(user=user_id, resource__node__id=n.node.id)
+    return render(request, 'users/nav.html', {'nodes': nodes})
 

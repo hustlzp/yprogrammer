@@ -33,13 +33,13 @@ $(function(){
       </div>
 
       <div class='sub-header'>
-         <h4>3 条经验 <small id='what-is-ex'>什么是经验？</small></h4>
+         <h4>经验 / 3 <small id='what-is-ex'>什么是经验？</small></h4>
          <div class="btn-toolbar corner">
             <div class='btn-group' data-toggle="buttons-radio">
                <a class='btn btn-mini active' href="#">最新</a>
                <a class='btn btn-mini' href="#">最热</a>
             </div>
-            <a class="btn btn-mini btn-primary" href="#"><i class='icon-plus'></i> 分享经验</a>
+            <!-- <a class="btn btn-mini btn-primary" href="#"><i class='icon-plus'></i> 分享经验</a> -->
          </div>
       </div>      
    </div>
@@ -47,11 +47,15 @@ $(function(){
    <div class="span4">
       <div class='btn-toolbar'>         
          <div class='btn-group'>
-            <a class='btn' href="#"><i class='icon-heart icon-white'></i> 收藏</a>
-            <a class='btn'>4</a>
+            {% if is_collected %}
+            <a class='btn btn-primary' href="{% url 'discollect_resource' resource.id %}"><i class='icon-heart icon-white'></i> 已收藏</a>
+            {% else %}
+            <a class='btn' href="{% url 'collect_resource' resource.id %}"><i class='icon-heart icon-white'></i> 收藏</a>
+            {% endif %}
+            <a class='btn'>{{ collect_count }}</a>
          </div>
 
-         <!-- <a class="btn btn-primary" href="#"><i class='icon-plus icon-white'></i> 分享经验</a> -->
+         <a class="btn btn-primary" href="#"><i class='icon-plus icon-white'></i> 分享经验</a>
       </div>
 
       <div class="sidebar-header">

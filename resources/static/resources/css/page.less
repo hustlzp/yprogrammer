@@ -189,7 +189,7 @@ body{
 
 #page-node{
     .node-image{
-        max-height: 45px;
+        max-height: 60px;
     }
 
     #what-is-re{
@@ -200,5 +200,69 @@ body{
 #page-resource{
     #what-is-ex{
         cursor: pointer;
+    }
+}
+
+#page-nav{
+    #form-search{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        text-align: center;
+
+        input{
+            border-radius: 0;
+        }
+
+        input[type='submit']{
+            font-style: italic;
+        }
+    }
+
+    .nav-node-list{
+        margin-left: 60px;
+        .n-item{
+            margin-bottom: 10px;
+
+            .n-title{
+                // font-size: 16px;
+                float: left;
+                box-sizing: border-box;
+                width: 120px;
+                border-top: 1px solid #D6DDDD;
+                padding-top: 15px;
+                padding-left: 15px;
+
+                a{
+                    color: #555;
+                }
+            }
+
+            ul{
+                float: left;
+                box-sizing: border-box;
+                width: 700px;
+                padding-top: 15px;
+                padding-left: 15px;
+                border-top: 1px solid #F5F5F5;
+                list-style-type: none;
+                margin: 0;
+
+                li{
+                    display: inline-block;
+                    margin-bottom: 7px;
+                    width: 150px;
+                    overflow: hidden;
+
+                    a{
+                        color: #0360AF;
+                        .r-favicon{
+                            max-width: 16px;
+                            vertical-align: text-top;
+                            margin-right: 1px;
+                        }
+                    }
+                }                
+            }
+        }
     }
 }

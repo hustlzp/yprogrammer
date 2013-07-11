@@ -24,8 +24,12 @@
                <div class='node-desc'>{{ n.desc }}</div>
                <!-- <div><small>资源 23</small></div> -->
                <div class='btn-group'>
-                  <a class="btn btn-mini" href="#">关注</a>
-                  <a class='btn btn-mini'>4</a>
+                  {% if n.is_followed %}
+                  <a class="btn btn-mini btn-primary" href="{% url 'disfollow_node' n.id %}">已关注</a>
+                  {% else %}
+                  <a class="btn btn-mini" href="{% url 'follow_node' n.id %}">关注</a>
+                  {% endif%}
+                  <a class='btn btn-mini'>{{ n.follow_count }}</a>
                </div>
             </div>
          </div>

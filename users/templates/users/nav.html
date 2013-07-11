@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-nav{% endblock %}
+{% block page_title %}Navigation{% endblock %}
+{% block body %}
+
+<form id='form-search' action='http://www.google.com.hk/search' target="_blank">
+   <div class="input-append">
+      <input type='text' name='q' class='input-xxlarge'>
+      <input type='submit' class='btn btn-inverse' value='Google'>
+   </div>
+</form>
+
+<div class='nav-node-list'>
+   {% for n in nodes %}
+   <div class='n-item clearfix'>
+      <div class='n-title'>
+         <!-- <img class='r-favicon' src="{{ n.node.image_url }}"> -->
+         <a href="{% url 'node' n.node.id %}">{{ n.node.title }}</a>
+      </div>
+      <ul>
+         {% for r in n.resources %}
+         <li>
+            <a href='{{ r.resource.url }}' title=' {{ r.resource.type }} / {{ r.resource.title }}' target='_blank'><img class='r-favicon' src="http://g.etfv.co/{{ r.resource.url }}"></a>
+            <a href='{{ r.resource.url }}' title='{{ r.resource.type }} / {{ r.resource.title }}' target='_blank'>{{ r.resource.title|truncatechars:12 }}</a>
+         </li>
+         {% endfor %}
+      </ul>
+   </div>
+   {% endfor %}
+</div>
+
+{% endblock %}

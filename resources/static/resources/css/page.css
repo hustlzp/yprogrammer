@@ -22,6 +22,10 @@ body #footer .container #links{float:right;margin:0;list-style-type:none;}body #
 .node-item .node-image{width:50px;height:50px;margin-right:2px;}
 .node-item .node-desc{margin-bottom:10px;}
 #page-nodes .page-header{border-bottom:0;margin:0;}
-#page-node .node-image{max-height:45px;}
+#page-node .node-image{max-height:60px;}
 #page-node #what-is-re{cursor:pointer;}
 #page-resource #what-is-ex{cursor:pointer;}
+#page-nav #form-search{margin-top:50px;margin-bottom:50px;text-align:center;}#page-nav #form-search input{border-radius:0;}
+#page-nav #form-search input[type='submit']{font-style:italic;}
+#page-nav .nav-node-list{margin-left:60px;}#page-nav .nav-node-list .n-item{margin-bottom:10px;}#page-nav .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:120px;border-top:1px solid #D6DDDD;padding-top:15px;padding-left:15px;}#page-nav .nav-node-list .n-item .n-title a{color:#555;}
+#page-nav .nav-node-list .n-item ul{float:left;box-sizing:border-box;width:700px;padding-top:15px;padding-left:15px;border-top:1px solid #F5F5F5;list-style-type:none;margin:0;}#page-nav .nav-node-list .n-item ul li{display:inline-block;margin-bottom:7px;width:150px;overflow:hidden;}#page-nav .nav-node-list .n-item ul li a{color:#0360AF;}#page-nav .nav-node-list .n-item ul li a .r-favicon{max-width:16px;vertical-align:text-top;margin-right:1px;}
