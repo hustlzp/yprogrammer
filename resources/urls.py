@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^nodes/$', views.nodes, name='nodes'),
     url(r'^node/(?P<n_id>\d+)/$', views.node, name='node'),
     url(r'^node/(?P<n_id>\d+)/follow/$', views.follow_node, name='follow_node'),
-    url(r'^node/(?P<n_id>\d+)/disfollow/$', views.disfollow_node, name='disfollow_node')   
+    url(r'^node/(?P<n_id>\d+)/disfollow/$', views.disfollow_node, name='disfollow_node'), 
+    url(r'^nodes/all/$', views.all_nodes, name='all_nodes')
 )

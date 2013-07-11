@@ -1,7 +1,7 @@
 #-*- coding: UTF-8 -*-
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from resources.models import Resource, Node, NodeFollow, ResourceCollect
+from resources.models import Resource, Node, NodeType, NodeFollow, ResourceCollect
 from users.models import User
 
 def resources(request):
@@ -48,6 +48,12 @@ def nodes(request):
         else:
             n.is_followed = False
     return render(request, 'resources/nodes.html', {'nodes': nodes})
+
+def all_nodes(request):
+    node_types = NodeType.objects.all()
+    for n in node_types:
+        n.nodes = Node.objects.filter(type=n.id)
+    return render(request, 'resources/all_nodes.html', {'node_types': node_types})
 
 def node(request, n_id):
     node = Node.objects.get(id=n_id)

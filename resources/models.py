@@ -1,8 +1,15 @@
 from django.db import models
 from users.models import User
 
+class NodeType(models.Model):
+    type = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.type
+
 class Node(models.Model):
     parent_node = models.ForeignKey('self', null=True, blank=True)
+    type = models.ForeignKey(NodeType, null=True, blank=True)
     title = models.CharField(max_length=200)
     desc = models.TextField()
     image_url = models.CharField(max_length=200)

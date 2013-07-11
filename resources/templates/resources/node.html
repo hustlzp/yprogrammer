@@ -44,11 +44,11 @@ $(function(){
 
          <div class="res-content">{{ r.desc }}</div>
 
-         <div class='res-extra-info'>
+         <!-- <div class='res-extra-info'>
             By <a href='{% url 'user' r.creator.name %}'>{{ r.creator.name }}</a>
             <span class='divider'></span>
             <span class='res-time'>{{ r.create_time }}</span>
-         </div>
+         </div> -->
 
          <div class='btn-group'>
             {% if r.is_collected %}

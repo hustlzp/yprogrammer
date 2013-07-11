@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-all-nodes{% endblock %}
+{% block page_title %}All Nodes{% endblock %}
+{% block body %}
+
+<div class="row">
+
+      <div class="page-header">
+         <h2>节点</h2>
+      </div>
+
+      <div id='all-nodes'>
+         {% for nt in node_types %}
+            <div class='node-type-item clearfix'>
+               <div class='node-type'>{{ nt.type }}</div>
+               <ul class='nodes'>
+                  {% for n in nt.nodes %}
+                  <li class='media'>
+                     <a href="{% url 'node' n.id %}" class='pull-left'>
+                        <img class='node-image media-object' src="{{ n.image_url }}">
+                     </a>
+
+                     <div class='media-body'>
+                        <h4 class='media-heading'><a href="{% url 'node' n.id %}" >{{ n.title }}</a></h4>
+                        <div class='node-desc'>{{ n.desc }}</div>
+                        <!-- <div class='btn-group'>
+                           {% if n.is_followed %}
+                           <a class="btn btn-mini btn-primary" href="{% url 'disfollow_node' n.id %}">已关注</a>
+                           {% else %}
+                           <a class="btn btn-mini" href="{% url 'follow_node' n.id %}">关注</a>
+                           {% endif%}
+                           <a class='btn btn-mini'>{{ n.follow_count }}</a>
+                        </div> -->
+                     </div>
+                  </li>
+                  {% endfor %}
+               </ul>
+            </div>
+         {% endfor %}
+      </div>
+ 
+
+<!--    <div class="span4">
+      <div class="sidebar-header">
+         <h4>近期新增</h4>
+      </div>
+   </div> -->
+</div>
+
+{% endblock %}

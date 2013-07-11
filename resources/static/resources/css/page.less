@@ -147,43 +147,86 @@ body{
     }
 }
 
-.node-list{
-    font-size: 0px;
-}
-
-.node-item{
-    margin: 0 0 5px 0;
-    padding: 20px 4% 15px 1%;
-    border-top: 1px solid #eee;
-    width: 45%;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 14px;
-
-    .media{
-        margin-top: 0;
-    }
-
-    h4{
-        font-weight: normal;
-        margin-bottom: 8px;
-    }
-
-    .node-image{
-        width: 50px;
-        height: 50px;
-        margin-right: 2px;
-    }
-
-    .node-desc{
-        margin-bottom: 10px;
-    }
-}
-
 #page-nodes{
     .page-header{
         border-bottom: 0;
         margin: 0;
+    }
+
+    .node-list{
+        font-size: 0px;
+    }
+
+    .node-item{
+        margin: 0 0 5px 0;
+        padding: 20px 4% 15px 1%;
+        border-top: 1px solid #eee;
+        width: 45%;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+
+        .media{
+            margin-top: 0;
+        }
+
+        h4{
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .node-image{
+            width: 50px;
+            height: 50px;
+            margin-right: 2px;
+        }
+
+        .node-desc{
+            margin-bottom: 10px;
+        }
+    }
+}
+
+#page-all-nodes{
+    #all-nodes{
+        .node-type-item{
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+
+            .node-type{
+                font-size: 20px;
+                margin-bottom: 15px;
+                width: 130px;
+                float: left;
+            }
+
+            ul{
+                width: 810px;
+                margin: 0;
+                float: left;
+                list-style-type: none;
+                font-size: 0px;
+
+                li{
+                    display: inline-block;
+                    vertical-align: top;
+                    padding: 0 15px 20px 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                    width: 270px;
+                    font-size: 14px;
+
+                    .media-body{
+                        margin-top: 2px;
+                    }
+
+                    img{
+                        width: 45px;
+                        height: 45px;
+                    }
+                }  
+            }
+        }
     }
 }
 
