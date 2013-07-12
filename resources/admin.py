@@ -10,4 +10,5 @@ class NodeAdmin(admin.ModelAdmin):
     inlines = [ResourceInline]
 
 admin.site.register(Node, NodeAdmin)
+admin.site.register(Resource)
 admin.site.register(NodeType)

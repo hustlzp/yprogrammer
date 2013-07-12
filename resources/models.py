@@ -8,7 +8,7 @@ class NodeType(models.Model):
         return self.type
 
 class Node(models.Model):
-    parent_node = models.ForeignKey('self', null=True, blank=True)
+    # parent_node = models.ForeignKey('self', null=True, blank=True)
     type = models.ForeignKey(NodeType, null=True, blank=True)
     title = models.CharField(max_length=200)
     desc = models.TextField()

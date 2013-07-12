@@ -10,6 +10,7 @@
       <link type="text/css" rel="stylesheet" href="{% static 'resources/css/page.css' %}">
       <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <link rel="Shortcut Icon" href="{% static 'img/yp.ico' %}" type="image/x-icon">
    </head>
 
    <body id="{% block page_id %}{% endblock %}">
@@ -22,7 +23,7 @@
                <ul class="nav">
                   <li class='active'><a href="{% url 'user_nav' %}">导航</a></li>
                   <li><a href="{% url 'resources' %}">资源</a></li>
-                  <li><a href="{% url 'nodes' %}">节点</a></li>
+                  <li><a href="{% url 'all_nodes' %}">节点</a></li>
                   <li><a href="#">反馈</a></li>
                </ul>
 

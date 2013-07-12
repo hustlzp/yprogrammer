@@ -13,7 +13,7 @@
       {% for r in resources %}
       <div class='res-item'>
          <div class="res-header">
-            <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a>
+            <img class='res-favicon' src="http://g.etfv.co/{{ r.url }}">
             <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
             <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
          </div>
@@ -21,9 +21,9 @@
          <div class="res-content">{{ r.desc }}</div>
 
          <div class='res-extra-info'>
-            By <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
+            <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
             <span class='divider'></span>
-            节点：<a href="{% url 'node' r.node.id %}">{{ r.node.title }}</a>
+            <a href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a> / <span title='类型：{{ r.type }}'>{{ r.type }}</span>
             <span class='divider'></span>
             <span class='res-time'>{{ r.create_time }}</span>
          </div>

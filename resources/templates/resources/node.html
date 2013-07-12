@@ -30,25 +30,27 @@ $(function(){
                <a class='btn btn-mini active' href="#">最新</a>
                <a class='btn btn-mini' href="#">最热</a>
             </div>
-            <!-- <a class="btn btn-primary btn-mini" href="#"><i class='icon-plus'></i> 添加资源</a> -->
          </div>
       </div>
 
       {% for r in resources %}
       <div class='res-item'>
          <div class="res-header">
-            <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a>
+            <!-- <a href="#"><span class="label label-warning res-type">{{ r.type }}</span></a> -->
+            <img class='res-favicon' src="http://g.etfv.co/{{ r.url }}">
             <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
             <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
          </div>
 
          <div class="res-content">{{ r.desc }}</div>
 
-         <!-- <div class='res-extra-info'>
-            By <a href='{% url 'user' r.creator.name %}'>{{ r.creator.name }}</a>
+         <div class='res-extra-info'>
+            <i class='icon-user'></i> <a href='{% url 'user' r.creator.name %}'>{{ r.creator.name }}</a>
+            <span class='divider'></span>
+            {{ r.type }}
             <span class='divider'></span>
             <span class='res-time'>{{ r.create_time }}</span>
-         </div> -->
+         </div>
 
          <div class='btn-group'>
             {% if r.is_collected %}

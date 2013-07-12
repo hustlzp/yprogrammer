@@ -22,16 +22,19 @@
                      </a>
 
                      <div class='media-body'>
-                        <h4 class='media-heading'><a href="{% url 'node' n.id %}" >{{ n.title }}</a></h4>
+                        <h4 class='media-heading'>
+                           <a href="{% url 'node' n.id %}" >{{ n.title }}</a>
+                        </h4>
                         <div class='node-desc'>{{ n.desc }}</div>
-                        <!-- <div class='btn-group'>
+                        
+                        <div class='btn-group'>
                            {% if n.is_followed %}
-                           <a class="btn btn-mini btn-primary" href="{% url 'disfollow_node' n.id %}">已关注</a>
+                           <a class="btn btn-mini btn-primary" title='取消关注' href="{% url 'disfollow_node' n.id %}"><i class='icon-ok'></i></a>
                            {% else %}
-                           <a class="btn btn-mini" href="{% url 'follow_node' n.id %}">关注</a>
-                           {% endif%}
+                           <a class="btn btn-mini" title='关注' href="{% url 'follow_node' n.id %}"><i class='icon-ok'></i></a>
+                           {% endif %}
                            <a class='btn btn-mini'>{{ n.follow_count }}</a>
-                        </div> -->
+                        </div>
                      </div>
                   </li>
                   {% endfor %}
@@ -39,13 +42,6 @@
             </div>
          {% endfor %}
       </div>
- 
-
-<!--    <div class="span4">
-      <div class="sidebar-header">
-         <h4>近期新增</h4>
-      </div>
-   </div> -->
 </div>
 
 {% endblock %}

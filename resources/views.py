@@ -51,8 +51,14 @@ def nodes(request):
 
 def all_nodes(request):
     node_types = NodeType.objects.all()
-    for n in node_types:
-        n.nodes = Node.objects.filter(type=n.id)
+    for nt in node_types:
+        nt.nodes = Node.objects.filter(type=nt.id)
+        for n in nt.nodes:
+            n.follow_count = NodeFollow.objects.filter(node=n.id).count()
+            if 'user_id' in request.session and NodeFollow.objects.filter(user=request.session['user_id'], node=n.id).count() > 0:
+                n.is_followed = True
+            else:
+                n.is_followed = False
     return render(request, 'resources/all_nodes.html', {'node_types': node_types})
 
 def node(request, n_id):

@@ -51,5 +51,8 @@ def user_nav(request):
     nodes = NodeFollow.objects.filter(user=user_id)
     for n in nodes:
         n.resources = ResourceCollect.objects.filter(user=user_id, resource__node__id=n.node.id)
+    # nodes = Node.objects.all()
+    # for n in nodes:
+    #     n.resources = Resource.objects.filter(node=n.node.id)
     return render(request, 'users/nav.html', {'nodes': nodes})
 
