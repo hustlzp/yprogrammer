@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 from django.db import models
 from users.models import User
 
@@ -8,7 +9,6 @@ class NodeType(models.Model):
         return self.type
 
 class Node(models.Model):
-    # parent_node = models.ForeignKey('self', null=True, blank=True)
     type = models.ForeignKey(NodeType, null=True, blank=True)
     title = models.CharField(max_length=200)
     desc = models.TextField()
@@ -18,11 +18,18 @@ class Node(models.Model):
     def __unicode__(self):
         return self.title
 
+class ResourceType(models.Model):
+    node = models.ForeignKey(Node)
+    type = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.type
+
 class Resource(models.Model):
     node = models.ForeignKey(Node)
     creator = models.ForeignKey(User)
     title = models.CharField(max_length=100)
-    type = models.CharField(max_length=50)
+    type = models.ForeignKey(ResourceType)
     url = models.CharField(max_length=200)
     desc = models.CharField(max_length=200)
     create_time = models.DateTimeField(auto_now_add=True)
@@ -46,4 +53,4 @@ class ResourceCollect(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return '%s Collect %s' % (self.user, self.resource)
+        return '%s collect %s' % (self.user, self.resource)
