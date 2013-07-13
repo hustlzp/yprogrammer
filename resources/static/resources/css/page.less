@@ -92,13 +92,13 @@ body{
 }
 
 .res-item{
-    margin-bottom: 18px;
-    padding-bottom: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #eee;
     position: relative;
 
     .res-header{
-        margin-bottom: 7px;
+        margin-bottom: 5px;
 
         .res-favicon{
             vertical-align: -2px;
@@ -107,14 +107,10 @@ body{
             margin-right: 2px;          
         }
 
-        .res-type{
-            margin-right: 5px;
-            vertical-align: 2px;
-        }
-
         .res-title{
-            font-size: 17.5px;
-            line-height: 17.5px;
+            color: #0360AF;
+            font-size: 16px;
+            line-height: 16px;
         }
 
         .res-url{
@@ -134,20 +130,46 @@ body{
 
     .res-desc{
         margin-right: 80px;
-        margin-bottom: 6px;
+        margin-bottom: 3px;
     }
 
-    .res-extra-info{
-        color: #aaa;
+    .res-meta{
+        font-size: 13px;
+        color: #999;
+
         a{
-            color: #aaa;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .meta-item{
+            margin-right: 10px;
+        }
+
+        .res-node{
+            margin-right: 3px;
+        }
+        .res-type{
+            margin-left: 3px;
+        }
+
+        .res-thank,
+        .res-share{
+            visibility: hidden;
+        }
+    }
+
+    &:hover{
+        .res-thank,
+        .res-share{
+            visibility: visible;            
         }
     }
 
     .btn-group{
         position: absolute;
-        right: 0px;
-        top: 0px;
+        right: 0;
+        top: 0;
         padding-left: 5px;
         padding-right: 5px;
         padding: 0;
@@ -292,31 +314,11 @@ body{
             background-color: #da532c;
             color: white;
         }
-
-        .res-item{
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-
-            .res-header{
-                margin-bottom: 5px;
-
-                .res-title{
-                    font-size: 16px;
-                }
-            }
-
-            .res-desc{
-                color: #999;
-            }
-        }        
     }   
 
 }
 
 #page-resource{
-    #what-is-ex{
-        cursor: pointer;
-    }
 }
 
 #page-nav{
@@ -372,11 +374,12 @@ body{
 
                     a{
                         color: #0360AF;
-                        .r-favicon{
-                            max-width: 16px;
-                            vertical-align: text-top;
-                            margin-right: 1px;
-                        }
+                    }
+
+                    .r-favicon{
+                        max-width: 16px;
+                        vertical-align: text-top;
+                        margin-right: 1px;
                     }
                 }                
             }

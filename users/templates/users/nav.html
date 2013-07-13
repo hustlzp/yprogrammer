@@ -60,7 +60,7 @@ $(function(){
       <ul class='res-list'>
          {% for r in n.resources %}
          <li class='r-item' data-order='{{ r.order }}'>
-            <a href="{% url 'resource' r.resource.id %}" title=' {{ r.resource.type.type }} / {{ r.resource.title }}'><img class='r-favicon' src="http://g.etfv.co/{{ r.resource.url }}"></a>
+            <img class='r-favicon' src="http://g.etfv.co/{{ r.resource.url }}">
             <a href='{{ r.resource.url }}' title='{{ r.resource.type.type }} / {{ r.resource.title }}' target='_blank'>{{ r.resource.title|truncatechars:12 }}</a>
          </li>
          {% endfor %}

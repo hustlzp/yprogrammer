@@ -14,25 +14,31 @@
       <div class='res-item'>
          <div class="res-header">
             <img class='res-favicon' src="http://g.etfv.co/{{ r.url }}">
-            <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
-            <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
+            <a href="{{ r.url }}" class='res-title' target='_blank'>{{ r.title }}</a>
          </div>
 
          <div class="res-desc">{{ r.desc }}</div>
 
-         <div class='res-extra-info'>
-            <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
-            <span class='divider'></span>
-            <a href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a> / <span title='类型：{{ r.type }}'>{{ r.type.type }}</span>
-            <span class='divider'></span>
-            <span class='res-time'>{{ r.create_time }}</span>
+         <div class='res-meta'>
+            <span class='meta-item'>
+               <a class='res-node' href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a>/<span class='res-type' title='类型：{{ r.type }}'>{{ r.type.type }}</span>
+            </span>
+            <span class='meta-item'>
+               <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
+            </span>
+            <span class='meta-item'>
+               <i class='icon-comment-alt'></i> <a href='#'>8评论</a>
+            </span>
+            <span class='meta-item'>36分钟前</span>
+            <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span>
+            <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
          </div>
 
          <div class='btn-group'>
             {% if r.is_collected %}
-            <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}">收藏</a>
+            <a class="btn btn-mini btn-primary" title='取消导航' href="{% url 'discollect_resource' r.id %}"><i class='icon-bookmark'></i></a>
             {% else %}
-            <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}">收藏</a>
+            <a class="btn btn-mini" title='添加到导航' href="{% url 'collect_resource' r.id %}"><i class='icon-bookmark-empty'></i></a>
             {% endif %}
             <a class='btn btn-mini'>{{ r.collect_count }}</a>
          </div>

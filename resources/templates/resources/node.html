@@ -37,11 +37,25 @@ $(function(){
          <div class='res-item'>
             <div class="res-header">
                <img class='res-favicon' src="http://g.etfv.co/{{ r.url }}">
-               <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
-               <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
+               <a href="{{ r.url }}" class='res-title'>{{ r.title }}</a>
             </div>
 
             <div class="res-desc">{{ r.desc }}</div>
+
+            <div class='res-meta'>
+               <!-- <span class='meta-item'>
+                  <span title='类型：{{ r.type }}'>{{ r.type.type }}</span>
+               </span> -->
+               <span class='meta-item'>
+                  <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
+               </span>
+               <span class='meta-item'>
+                  <i class='icon-comment-alt'></i> <a href='#'>8评论</a>
+               </span>
+               <!-- <span class='meta-item'>36分钟前</span> -->
+               <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span>
+               <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
+            </div>
 
             <div class='btn-group'>
                {% if r.is_collected %}
@@ -55,46 +69,11 @@ $(function(){
          {% endfor %}
       </div>
       {% endfor %}
-      
-      <!-- {% for r in resources %}
-      <div class='res-item'>
-         <div class="res-header">
-            <img class='res-favicon' src="http://g.etfv.co/{{ r.url }}">
-            <a href="{% url 'resource' r.id %}" class='res-title'>{{ r.title }}</a>
-            <a class='res-url' target="_blank" href='{{ r.url }}'><i class='icon-external-link'></i></a>
-         </div>
-
-         <div class="res-content">{{ r.desc }}</div>
-
-         <div class='res-extra-info'>
-            <i class='icon-user'></i> <a href='{% url 'user' r.creator.name %}'>{{ r.creator.name }}</a>
-            <span class='divider'></span>
-            {{ r.type }}
-            <span class='divider'></span>
-            <span class='res-time'>{{ r.create_time }}</span>
-         </div>
-
-         <div class='btn-group'>
-            {% if r.is_collected %}
-            <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}">已收藏</a>
-            {% else %}
-            <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}">收藏</a>
-            {% endif %}
-            <a class='btn btn-mini'>{{ r.collect_count }}</a>
-         </div>
-      </div>
-      {% endfor %} -->
    </div>
 
    <div class="span4">
       <div class="btn-toolbar">
          <div class='btn-group'>
-<!--             {% if is_followed %}
-            <a class="btn btn-primary" href="{% url 'disfollow_node' node.id %}"><i class='icon-heart icon-white'></i> 已关注</a>
-            {% else %}
-            <a class="btn" href="{% url 'follow_node' node.id %}"><i class='icon-heart icon-white'></i> 关注</a>
-            {% endif %}            
-            <a class='btn'>{{ follow_count }}</a> -->
             {% if is_followed %}
             <a class="btn btn-primary" href="{% url 'disfollow_node' node.id %}"><i class='icon-ok'></i> 已关注</a>
             {% else %}
