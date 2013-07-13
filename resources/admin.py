@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 from django import forms
 from django.contrib import admin
 from resources.models import Resource, ResourceType, Node, NodeType
@@ -16,7 +17,7 @@ class ResourceForm(forms.ModelForm):
             type_choices = []
             
             if types.count() == 0:
-                type_choices.append(('', '---------'))
+                type_choices.append(('31', '图书'))
 
             for t in types:
                 type_choices.append((t.id, t.type))

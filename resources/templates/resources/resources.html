@@ -30,7 +30,7 @@
 
          <div class='btn-group'>
             {% if r.is_collected %}
-            <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}">已收藏</a>
+            <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}">收藏</a>
             {% else %}
             <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}">收藏</a>
             {% endif %}

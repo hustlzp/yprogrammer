@@ -23,7 +23,7 @@ class ResourceType(models.Model):
     type = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return self.type
+        return '%s/%s' % (self.node.title, self.type)
 
 class Resource(models.Model):
     node = models.ForeignKey(Node)
@@ -41,6 +41,7 @@ class Resource(models.Model):
 class NodeFollow(models.Model):
     user = models.ForeignKey(User)
     node = models.ForeignKey(Node)
+    order = models.IntegerField(blank=True, default=0)
     create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
@@ -50,6 +51,7 @@ class NodeFollow(models.Model):
 class ResourceCollect(models.Model):
     user = models.ForeignKey(User)
     resource = models.ForeignKey(Resource)
+    order = models.IntegerField(blank=True, default=0)
     create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):

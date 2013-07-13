@@ -4,6 +4,45 @@
 {% block page_title %}Navigation{% endblock %}
 {% block body %}
 
+{% load staticfiles %}
+<style type="text/css">
+/* node sortable style */
+.n-item.ui-sortable-helper{
+   background-color: white;
+   padding-bottom: 10px;
+   border-bottom: 1px solid #eee;
+}
+.node-placeholder{
+   background-color: #F0F8FF;
+   padding-bottom: 10px;
+}
+/* res sortable style */
+.r-item.ui-sortable-helper{
+   background-color: white;
+   border: 1px dashed #ccc;
+}
+.res-placeholder{
+   background-color: #F0F8FF;
+}
+</style>
+<script type="text/javascript" src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+<script type="text/javascript">
+$(function(){
+   $(".nav-node-list").sortable({
+      placeholder: "node-placeholder",
+      forcePlaceholderSize: true,
+      scroll: false
+   });
+   $(".nav-node-list").disableSelection();
+
+   $(".res-list").sortable({
+      placeholder: "res-placeholder",
+      forcePlaceholderSize: true
+   });
+   $(".res-list").disableSelection();
+});
+</script>
+
 <form id='form-search' action='http://www.google.com.hk/search' target="_blank">
    <div class="input-append">
       <input type='text' name='q' class='input-xxlarge'>
@@ -13,14 +52,13 @@
 
 <div class='nav-node-list'>
    {% for n in nodes %}
-   <div class='n-item clearfix'>
+   <div class='n-item clearfix' data-order='{{ n.order }}'>
       <div class='n-title'>
-         <!-- <img class='r-favicon' src="{{ n.node.image_url }}"> -->
          <a href="{% url 'node' n.node.id %}">{{ n.node.title }}</a>
       </div>
-      <ul>
+      <ul class='res-list'>
          {% for r in n.resources %}
-         <li>
+         <li class='r-item' data-order='{{ r.order }}'>
             <a href='{{ r.resource.url }}' title=' {{ r.resource.type }} / {{ r.resource.title }}' target='_blank'><img class='r-favicon' src="http://g.etfv.co/{{ r.resource.url }}"></a>
             <a href='{{ r.resource.url }}' title='{{ r.resource.type }} / {{ r.resource.title }}' target='_blank'>{{ r.resource.title|truncatechars:12 }}</a>
          </li>
