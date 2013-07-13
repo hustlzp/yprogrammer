@@ -49,7 +49,7 @@ $(function(){
             {% if is_collected %}
             <a class='btn btn-primary' href="{% url 'discollect_resource' resource.id %}"><i class='icon-heart icon-white'></i> 已收藏</a>
             {% else %}
-            <a class='btn' href="{% url 'collect_resource' resource.id %}"><i class='icon-heart icon-white'></i> 收藏</a>
+            <a class='btn' href="{% url 'collect_resource' resource.id %}"><i class='icon-heart-empty icon-white'></i> 收藏</a>
             {% endif %}
             <a class='btn'>{{ collect_count }}</a>
          </div>

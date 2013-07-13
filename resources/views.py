@@ -1,7 +1,7 @@
 #-*- coding: UTF-8 -*-
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from resources.models import Resource, Node, NodeType, NodeFollow, ResourceCollect
+from resources.models import Resource, ResourceType, Node, NodeType, NodeFollow, ResourceCollect
 from users.models import User
 
 def resources(request):
@@ -70,14 +70,16 @@ def node(request, n_id):
         is_followed = False
 
     # order = request.GET['order']
-    resources = Resource.objects.filter(node=n_id).order_by('-create_time')
-    for r in resources:
-        r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-        if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
-            r.is_collected = True
-        else:
-            r.is_collected = False
-    return render(request, 'resources/node.html', {'node': node, 'resources': resources, 'is_followed': is_followed, 'follow_count': follow_count})
+    resource_types = ResourceType.objects.filter(node=n_id)
+    for rt in resource_types:
+        rt.resources = Resource.objects.filter(node=n_id, type=rt.id).order_by('-create_time')
+        for r in rt.resources:
+            r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
+            if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
+                r.is_collected = True
+            else:
+                r.is_collected = False
+    return render(request, 'resources/node.html', {'node': node, 'resource_types': resource_types, 'is_followed': is_followed, 'follow_count': follow_count})
 
 def follow_node(request, n_id):
     u = User.objects.get(name=request.session['user'])

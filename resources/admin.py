@@ -15,7 +15,7 @@ class ResourceForm(forms.ModelForm):
             type_field = self.fields['type'].widget
             type_choices = []
             
-            if types is None:
+            if types.count() == 0:
                 type_choices.append(('', '---------'))
 
             for t in types:

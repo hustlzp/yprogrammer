@@ -132,7 +132,7 @@ body{
         }
     }
 
-    .res-content{
+    .res-desc{
         margin-right: 80px;
         margin-bottom: 6px;
     }
@@ -242,26 +242,74 @@ body{
 }
 
 #page-node{
+    .node-desc{
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
     .node-image{
-        max-height: 60px;
+        height: 60px;
     }
 
     .display-mode{
         margin-bottom: 20px;
     }
 
-    .res-item{
-        padding-bottom: 5px;
-        margin-bottom: 10px;
 
-        .res-header{
-            margin-bottom: 5px;
+    .rt-item{
+        position: relative;
 
-            .res-title{
-                font-size: 16px;
-            }
+        .rt-type{
+            font-size: 14px;
+            line-height: 14px;
+            margin: 0 15px 0 0;
+            font-family: '宋体';
+            position: absolute;
+            top: 0;
+            right: 620px;
+            display: block;
+            text-align: right;
+            white-space: nowrap;
+            margin-right: 15px;
+            padding: 5px;
+            background-color: #da532c;
+            color: white;
+
+            // font-size: 16px;
+            // line-height: 16px;
+            // margin: 0 15px 0 0;
+            // font-family: '宋体';
+            // position: absolute;
+            // top: 0;
+            // right: 620px;
+            // display: block;
+            // text-align: right;
+            // white-space: nowrap;
+            // margin-right: 25px;
+            // padding: 3px 8px 3px 8px;
+            // background-color: #da532c;
+            // color: white;
+            // border-left: 3px solid #da532c;
         }
-    }
+
+        .res-item{
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+
+            .res-header{
+                margin-bottom: 5px;
+
+                .res-title{
+                    font-size: 16px;
+                }
+            }
+
+            .res-desc{
+                color: #999;
+            }
+        }        
+    }   
+
 }
 
 #page-resource{
