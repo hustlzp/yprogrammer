@@ -35,7 +35,7 @@ body #footer .container #links{float:right;margin:0;list-style-type:none;}body #
 #page-node .node-image{height:60px;}
 #page-node .display-mode{margin-bottom:22px;}
 #page-node .rt-item{position:relative;}#page-node .rt-item .rt-type{font-size:12px;line-height:12px;margin:0 15px 0 0;font-family:Telex,'宋体';position:absolute;top:0;right:620px;display:block;text-align:right;white-space:nowrap;margin-right:15px;padding:5px;background-color:#da532c;color:white;}
-#page-nav #google-doodle{display:block;width:380px;margin:30px auto 20px auto;}
+#page-nav #google-doodle-wap{text-align:center;}#page-nav #google-doodle-wap #google-doodle{width:350px;margin:30px 0 20px 0;}
 #page-nav #form-search{margin-bottom:50px;text-align:center;}#page-nav #form-search input{border-radius:0;}
 #page-nav #form-search input[type='submit']{font-family:'Telex';}
 #page-nav .nav-node-list{margin-left:60px;}#page-nav .nav-node-list .n-item{margin-bottom:10px;}#page-nav .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:120px;border-top:1px solid #D6DDDD;padding-top:15px;padding-left:15px;}#page-nav .nav-node-list .n-item .n-title a{color:#555;}

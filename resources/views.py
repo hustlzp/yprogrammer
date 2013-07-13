@@ -5,7 +5,7 @@ from resources.models import Resource, ResourceType, Node, NodeType, NodeFollow,
 from users.models import User
 
 def resources(request):
-    resources = Resource.objects.all().order_by('-create_time')
+    resources = Resource.objects.all().order_by('-create_time')[:10]
     for r in resources:
         r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
         if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
