@@ -4,17 +4,6 @@
 {% block page_title %}{{ node.Title }}{% endblock %}
 {% block body %}
 
-<script type="text/javascript">
-$(function(){
-   $('#what-is-re').popover({
-      trigger: 'hover',
-      title: '什么是资源？',
-      content: '资源是与某一节点相关的、有用的资料，可以是<b>网站</b>、<b>图书</b>、<b>文章</b>等。',
-      html: true
-   });
-});
-</script>
-
 <div class="row">
    <div class="span8">
       <div class="page-header">
@@ -59,9 +48,9 @@ $(function(){
 
             <div class='btn-group'>
                {% if r.is_collected %}
-               <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}">收藏</a>
+               <a class="btn btn-mini btn-primary" title='取消导航' href="{% url 'discollect_resource' r.id %}"><i class='icon-bookmark'></i></a>
                {% else %}
-               <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}">收藏</a>
+               <a class="btn btn-mini" title='添加到导航' href="{% url 'collect_resource' r.id %}"><i class='icon-bookmark-empty'></i></a>
                {% endif %}
                <a class='btn btn-mini'>{{ r.collect_count }}</a>
             </div>
