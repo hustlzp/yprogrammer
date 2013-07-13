@@ -197,7 +197,6 @@ body{
 #page-all-nodes{
     #all-nodes{
         .node-type-item{
-            border-bottom: 1px solid #eee;
             margin-bottom: 20px;
 
             .node-type{
@@ -208,7 +207,7 @@ body{
             }
 
             ul{
-                width: 810px;
+                width: 830px;
                 margin: 0;
                 float: left;
                 list-style-type: none;
@@ -217,23 +216,41 @@ body{
                 li{
                     display: inline-block;
                     vertical-align: top;
-                    padding: 0 15px 20px 0;
-                    margin: 0;
+                    padding: 10px 15px 10px 10px;
+                    margin: 0 15px 15px 0;
                     box-sizing: border-box;
-                    width: 270px;
+                    width: 260px;
                     font-size: 14px;
+                    position: relative;
+                    border: 1px solid #eaeaea;
 
                     .media-body{
                         margin-top: 2px;
 
                         .node-desc{
-                            margin-bottom: 8px;
+                            margin-bottom: 0;
+                            font-size: 13px;
                         }
                     }
 
                     img{
                         width: 45px;
                         height: 45px;
+                    }
+
+                    .btn-group{
+                        position: absolute;
+                        display: inline-block;
+                        font-size: 0;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        top: -1px;
+                        right: -1px;
+
+                        .btn{
+                            padding: 0 4px;
+                            border-radius: 0;
+                        }
                     }
                 }  
             }
@@ -318,7 +335,7 @@ body{
 
     .nav-node-list{
         margin-left: 60px;
-        
+
         .n-item{
             margin-bottom: 10px;
 

@@ -23,7 +23,7 @@
          <div class='res-extra-info'>
             <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
             <span class='divider'></span>
-            <a href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a> / <span title='类型：{{ r.type }}'>{{ r.type }}</span>
+            <a href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a> / <span title='类型：{{ r.type }}'>{{ r.type.type }}</span>
             <span class='divider'></span>
             <span class='res-time'>{{ r.create_time }}</span>
          </div>

@@ -18,10 +18,10 @@ $(function(){
 <div class="row">
    <div class="span8">
       <div class="page-header">
-         <h2>{{ resource.title }} <sup><span class='label label-warning'>{{ resource.type }}</span></sup></h2>
-
+         <h2>
+            {{ resource.title }} <sup><span class='label label-warning'>{{ resource.type.type }}</span></sup>
+         </h2>
          <p>{{ resource.desc }}</p>
-         
          <div>
             By <a href="{% url 'user' resource.creator.name %}">{{ resource.creator.name }}</a>
             <span class='divider'></span>

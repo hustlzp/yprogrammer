@@ -50,12 +50,6 @@ $(function(){
                <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}">收藏</a>
                {% endif %}
                <a class='btn btn-mini'>{{ r.collect_count }}</a>
-<!--                {% if r.is_collected %}
-               <a class="btn btn-mini btn-primary" href="{% url 'discollect_resource' r.id %}"><i class='icon-heart'></i></a>
-               {% else %}
-               <a class="btn btn-mini" href="{% url 'collect_resource' r.id %}"><i class='icon-heart-empty'></i></a>
-               {% endif %}
-               <a class='btn btn-mini'>{{ r.collect_count }}</a> -->
             </div>
          </div>
          {% endfor %}

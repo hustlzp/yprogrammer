@@ -59,8 +59,8 @@ $(function(){
       <ul class='res-list'>
          {% for r in n.resources %}
          <li class='r-item' data-order='{{ r.order }}'>
-            <a href='{{ r.resource.url }}' title=' {{ r.resource.type }} / {{ r.resource.title }}' target='_blank'><img class='r-favicon' src="http://g.etfv.co/{{ r.resource.url }}"></a>
-            <a href='{{ r.resource.url }}' title='{{ r.resource.type }} / {{ r.resource.title }}' target='_blank'>{{ r.resource.title|truncatechars:12 }}</a>
+            <a href='{{ r.resource.url }}' title=' {{ r.resource.type.type }} / {{ r.resource.title }}' target='_blank'><img class='r-favicon' src="http://g.etfv.co/{{ r.resource.url }}"></a>
+            <a href='{{ r.resource.url }}' title='{{ r.resource.type.type }} / {{ r.resource.title }}' target='_blank'>{{ r.resource.title|truncatechars:12 }}</a>
          </li>
          {% endfor %}
       </ul>
