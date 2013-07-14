@@ -1,6 +1,6 @@
 YProgrammer
 ===========
 
-http://www.yprogrammer.com
+http://www.yprogrammer.com (under construction)
 
-Home for the young programmers.
+Resources for the Young Programmers.
