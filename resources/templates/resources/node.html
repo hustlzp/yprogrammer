@@ -26,7 +26,7 @@
          <div class='res-item'>
             <div class="res-header">
                <img class='res-favicon' src="http://g.etfv.co/{{ r.url }}">
-               <a href="{{ r.url }}" class='res-title'>{{ r.title }}</a>
+               <a href="{{ r.url }}" class='res-title' target='_blank'>{{ r.title }}</a>
             </div>
 
             <div class="res-desc">{{ r.desc }}</div>
@@ -64,9 +64,9 @@
       <div class="btn-toolbar">
          <div class='btn-group'>
             {% if is_followed %}
-            <a class="btn btn-primary" href="{% url 'disfollow_node' node.id %}"><i class='icon-ok'></i> 已关注</a>
+            <a class="btn btn-primary" title='取消关注' href="{% url 'disfollow_node' node.id %}"><i class='icon-ok'></i> <!-- 已关注 --></a>
             {% else %}
-            <a class="btn" href="{% url 'follow_node' node.id %}"><i class='icon-ok'></i>  关注</a>
+            <a class="btn" title='关注' href="{% url 'follow_node' node.id %}"><i class='icon-ok'></i> <!-- 关注 --></a>
             {% endif %}            
             <a class='btn'>{{ follow_count }}</a>
          </div>

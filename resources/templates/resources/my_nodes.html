@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-my-nodes{% endblock %}
+{% block page_title %}Nodes{% endblock %}
+{% block body %}
+
+<div class="row">
+   <div class="span8">
+      <div class="page-header">
+         <h2>我的关注</h2>
+         <!-- <a href="{% url 'all_nodes' %}" class="btn btn-primary corner">全部节点</a> -->
+      </div>
+
+      <div class='node-list'>
+         {% for nf in node_follows %}
+         <div class='node-item media'>
+            <a href="{% url 'node' nf.node.id %}" class='pull-left'>
+               <img class='node-image media-object' src="{{ nf.node.image_url }}">
+            </a>
+
+            <div class='media-body'>
+               <h4 class='media-heading'><a href="{% url 'node' nf.node.id %}" >{{ nf.node.title }}</a></h4>
+               {% for r in nf.resources %}
+               <div class='r-item'>
+                  <a href='{{ r.url }}' class='r-title' target='_blank'>{{ r.title }}</a
+                  ><small>
+                     <span class='r-desc'>{{ r.desc }}</span>
+                     <span class='r-time'>36分钟前</span>
+                     {% if r.is_collected %}
+                     <a href="{% url 'discollect_resource' r.id %}" title='取消导航' class='r-discollect'><i class='icon-bookmark'></i></a>
+                     {% else %}
+                     <a href="{% url 'collect_resource' r.id %}" title='添加到导航' class='r-collect'><i class='icon-bookmark-empty'></i></a>
+                     {% endif %}
+                  </small>
+               </div>
+               {% endfor %}
+
+               <a class='btn-disfollow' href="{% url 'disfollow_node' nf.node.id %}">取消关注</a>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+
+   <div class="span4">
+      <a href="{% url 'all_nodes' %}" class="btn btn-primary">全部节点</a>
+
+      <div class="sidebar-header">
+         <h4></h4>
+      </div>
+   </div>
+</div>
+
+{% endblock %}

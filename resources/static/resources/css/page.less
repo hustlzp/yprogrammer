@@ -176,32 +176,24 @@ body{
     }
 }
 
-#page-nodes{
-    .page-header{
-        border-bottom: 0;
-        margin: 0;
-    }
-
-    .node-list{
-        font-size: 0px;
-    }
-
+#page-my-nodes{
     .node-item{
-        margin: 0 0 5px 0;
-        padding: 20px 4% 15px 1%;
-        border-top: 1px solid #eee;
-        width: 45%;
-        display: inline-block;
-        vertical-align: top;
-        font-size: 14px;
+        margin-bottom: 12px;
+        padding: 0 15px 12px 0;
+        border-bottom: 1px solid #eee;
+        position: relative;
 
         .media{
             margin-top: 0;
         }
 
         h4{
-            font-weight: normal;
-            margin-bottom: 8px;
+            font-size: 16px;
+            margin-bottom: 6px;
+
+            a{
+                color: #555;
+            }
         }
 
         .node-image{
@@ -212,6 +204,61 @@ body{
 
         .node-desc{
             margin-bottom: 10px;
+        }
+
+        .btn-disfollow{
+            color: #999;
+            font-size: 12px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            visibility: hidden;
+        }
+
+        &:hover{
+            .btn-disfollow{
+                visibility: visible;
+            } 
+        }
+
+        .r-item{
+            margin-bottom: 3px;
+
+            a{
+                font-size: 13px;
+                color: #0360AF;
+            }
+
+            .r-title{
+                margin-right: 5px;
+            }
+
+            small{
+                a{
+                    color: #999;
+                    font-size: 12px;
+                    text-decoration: none;
+                }
+                
+                .r-desc{
+                    margin-right: 5px;
+                }
+
+                .r-time{
+                    color: #999;
+                    margin-right: 10px;
+                }
+
+                .r-collect{
+                    visibility: hidden;
+                }
+            }
+
+            &:hover{
+                .r-collect{
+                    visibility: visible;
+                }
+            }
         }
     }
 }

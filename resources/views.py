@@ -39,15 +39,17 @@ def discollect_resource(request, r_id):
         rc.delete()
     return redirect(request.META['HTTP_REFERER'])
 
-def nodes(request):
-    nodes = Node.objects.all()
-    for n in nodes:
-        n.follow_count = NodeFollow.objects.filter(node=n.id).count()
-        if 'user_id' in request.session and NodeFollow.objects.filter(user=request.session['user_id'], node=n.id).count() > 0:
-            n.is_followed = True
-        else:
-            n.is_followed = False
-    return render(request, 'resources/nodes.html', {'nodes': nodes})
+def my_nodes(request):
+    user_id = request.session['user_id']
+    node_follows = NodeFollow.objects.filter(user=user_id)
+    for nf in node_follows:
+        nf.resources = Resource.objects.filter(node=nf.node.id).order_by('-create_time')[:3]
+        for r in nf.resources:
+            if ResourceCollect.objects.filter(user=user_id, resource=r.id).count() > 0:
+                r.is_collected = True
+            else:
+                r.is_collected = False
+    return render(request, 'resources/my_nodes.html', {'node_follows': node_follows})
 
 def all_nodes(request):
     node_types = NodeType.objects.all()

@@ -233,7 +233,8 @@ body {
 }
 
 a {
-  color: #2fa4e7;
+  /*color: #2fa4e7;*/
+  color: #0360AF;
   text-decoration: none;
 }
 

@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^resource/(?P<r_id>\d+)/discollect/$', views.discollect_resource, name='discollect_resource'),
 
     # node
-    url(r'^nodes/$', views.nodes, name='nodes'),
+    url(r'^nodes/$', views.my_nodes, name='my_nodes'),
     url(r'^node/(?P<n_id>\d+)/$', views.node, name='node'),
     url(r'^node/(?P<n_id>\d+)/follow/$', views.follow_node, name='follow_node'),
     url(r'^node/(?P<n_id>\d+)/disfollow/$', views.disfollow_node, name='disfollow_node'), 
