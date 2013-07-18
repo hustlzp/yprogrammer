@@ -4,7 +4,7 @@
 <html>
    <head>
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-      <title>{% block page_title %}西窗烛{% endblock %}</title>
+      <title>{% block page_title %}YProgrammer{% endblock %}</title>
       <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
       <link type="text/css" rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
       <link type="text/css" rel="stylesheet" href="{% static 'resources/css/page.css' %}">
@@ -14,17 +14,22 @@
    </head>
 
    <body id="{% block page_id %}{% endblock %}">
-
-      <div class="navbar">
+      <div class="navbar navbar-inverse">
          <div class="navbar-inner">
             <div class="container">
-               <a class="brand" href="{% url 'resources' %}">YProgrammer</a>
+               <a class="brand" href="{% url 'index' %}">YProgrammer</a>
 
                <ul class="nav">
-                  <li class='active'><a href="{% url 'user_nav' %}">导航</a></li>
+                  {% if request.session.user  %}
+                  <li><a href="{% url 'user_nav' %}">导航</a></li>
+                  {% endif %}
+
                   <li><a href="{% url 'resources' %}">资源</a></li>
                   <li><a href="{% url 'my_nodes' %}">节点</a></li>
+
+                  {% if request.session.user  %}
                   <li><a href="#">反馈</a></li>
+                  {% endif %}
                </ul>
 
                {% if request.session.user  %}
@@ -41,13 +46,7 @@
                         <a href="{% url 'signout' %}" title='Sign out'><i class='icon-off'></i></a>
                      </li>
                   </ul>
-               {% else %}
-                  <a href="https://github.com/login/oauth/authorize?client_id=7a68fc19935c680f8e2e&redirect_uri=http://localhost:8000/signin/github" class='btn pull-right'><i class='icon-github-alt'> GitHub 登录</i></a>
                {% endif %}
-
-               <!-- <form class="navbar-search">
-                  <input type="text" class="search-query" placeholder="Search">
-               </form> -->
             </div>
          </div>
       </div>
@@ -56,13 +55,17 @@
       {% block body %}{% endblock %}
       </div>
 
+      <div id="full-main-wap">
+      {% block full-body %}{% endblock %}
+      </div>
+
       <div id="footer">
          <div class='container'>
             <div id='copyright'>YProgrammer ©2013 by <a href="http://hustlzp.com" target="_blank">hustlzp</a></div>
             
             <ul id='links'>
-               <li><a href="#">关于</a></li>
-               <li><a target="_blank" href="https://github.com/hustlzp/yprogrammer">GitHub</a></li>
+               <!-- <li><a href="#">关于</a></li> -->
+               <!-- <li><a target="_blank" href="https://github.com/hustlzp/yprogrammer">GitHub</a></li> -->
             </ul>
          </div>
       </div>

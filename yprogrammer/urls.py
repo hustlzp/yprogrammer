@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, include, url
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
+import views
+
 urlpatterns = patterns('',
+    url(r'^$', views.index, name='index'),
+
     # resources
     url(r'^', include('resources.urls')),
 

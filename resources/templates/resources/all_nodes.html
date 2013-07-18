@@ -5,43 +5,42 @@
 {% block body %}
 
 <div class="row">
+   <div class="page-header">
+      <h3>全部节点</h3>
+   </div>
 
-      <div class="page-header">
-         <h2>全部节点</h2>
-      </div>
+   <div id='all-nodes'>
+      {% for nt in node_types %}
+         <div class='node-type-item clearfix'>
+            <div class='node-type'>{{ nt.type }}</div>
+            <ul class='nodes'>
+               {% for n in nt.nodes %}
+               <li class='media'>
+                  <a href="{% url 'node' n.id %}" class='pull-left'>
+                     <img class='node-image media-object' src="{{ n.image_url }}">
+                  </a>
 
-      <div id='all-nodes'>
-         {% for nt in node_types %}
-            <div class='node-type-item clearfix'>
-               <div class='node-type'>{{ nt.type }}</div>
-               <ul class='nodes'>
-                  {% for n in nt.nodes %}
-                  <li class='media'>
-                     <a href="{% url 'node' n.id %}" class='pull-left'>
-                        <img class='node-image media-object' src="{{ n.image_url }}">
-                     </a>
-
-                     <div class='media-body'>
-                        <h4 class='media-heading'>
-                           <a href="{% url 'node' n.id %}" >{{ n.title }}</a>
-                        </h4>
-                        <div class='node-desc'>{{ n.desc }}</div>
-                        
-                        <div class='btn-group'>
-                           {% if n.is_followed %}
-                           <a class="btn btn-mini btn-primary" title='取消关注' href="{% url 'disfollow_node' n.id %}"><i class='icon-ok'></i></a>
-                           {% else %}
-                           <a class="btn btn-mini" title='关注' href="{% url 'follow_node' n.id %}"><i class='icon-ok'></i></a>
-                           {% endif %}
-                           <!-- <a class='btn btn-mini'>{{ n.follow_count }}</a> -->
-                        </div>
+                  <div class='media-body'>
+                     <h4 class='media-heading'>
+                        <a href="{% url 'node' n.id %}" >{{ n.title }}</a>
+                     </h4>
+                     <div class='node-desc'>{{ n.desc }}</div>
+                     
+                     <div class='btn-group'>
+                        {% if n.is_followed %}
+                        <a class="btn btn-mini btn-primary" title='取消关注' href="{% url 'disfollow_node' n.id %}"><i class='icon-ok'></i></a>
+                        {% else %}
+                        <a class="btn btn-mini" title='关注' href="{% url 'follow_node' n.id %}"><i class='icon-ok'></i></a>
+                        {% endif %}
+                        <!-- <a class='btn btn-mini'>{{ n.follow_count }}</a> -->
                      </div>
-                  </li>
-                  {% endfor %}
-               </ul>
-            </div>
-         {% endfor %}
-      </div>
+                  </div>
+               </li>
+               {% endfor %}
+            </ul>
+         </div>
+      {% endfor %}
+   </div>
 </div>
 
 {% endblock %}

@@ -24,6 +24,9 @@ def resource(request, r_id):
     return render(request, 'resources/resource.html', {'resource': resource, 'is_collected': is_collected, 'collect_count': collect_count})
 
 def collect_resource(request, r_id):
+    if not 'user' in request.session:
+        return redirect('index')
+    
     u = User.objects.get(name=request.session['user'])
     r = Resource.objects.get(id=r_id)
     if ResourceCollect.objects.filter(user=u.id, resource=r.id).count() == 0:
@@ -34,12 +37,18 @@ def collect_resource(request, r_id):
     return redirect(request.META['HTTP_REFERER'])
 
 def discollect_resource(request, r_id):
+    if not 'user' in request.session:
+        return redirect('index')
+    
     rc = ResourceCollect.objects.filter(user=request.session['user_id'], resource=r_id)
     if rc.count() > 0:
         rc.delete()
     return redirect(request.META['HTTP_REFERER'])
 
 def my_nodes(request):
+    if not 'user_id' in request.session:
+        return redirect('all_nodes')
+        
     user_id = request.session['user_id']
     node_follows = NodeFollow.objects.filter(user=user_id)
     for nf in node_follows:
@@ -84,6 +93,9 @@ def node(request, n_id):
     return render(request, 'resources/node.html', {'node': node, 'resource_types': resource_types, 'is_followed': is_followed, 'follow_count': follow_count})
 
 def follow_node(request, n_id):
+    if not 'user' in request.session:
+        return redirect('index')
+
     u = User.objects.get(name=request.session['user'])
     n = Node.objects.get(id=n_id)
     if NodeFollow.objects.filter(user=u.id, node=n.id).count() == 0:
@@ -91,6 +103,9 @@ def follow_node(request, n_id):
     return redirect(request.META['HTTP_REFERER'])
 
 def disfollow_node(request, n_id):
+    if not 'user' in request.session:
+        return redirect('index')
+    
     user_id = request.session['user_id']
     nf = NodeFollow.objects.filter(user=user_id, node=n_id)
     if nf.count() > 0:

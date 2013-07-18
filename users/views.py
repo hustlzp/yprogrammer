@@ -27,21 +27,30 @@ def signin(request):
     # if new, save it
     name = user_info['login']
     if User.objects.filter(name=name).count() < 1:
-        user_id = User.objects.create(name=name, email=user_info['email'], avatar_url=user_info['avatar_url'], blog=user_info['blog'], location=user_info['location']).id
+        return render(request, 'users/new.html', {'user_info': user_info})
     else:
+        # set session
         user_id = User.objects.get(name=name).id
-
-    # set session
-    request.session['user'] = name
-    request.session['user_id'] = user_id
-    request.session['user_avatar'] = user_info['avatar_url']
-    return redirect('resources')
+        request.session['user'] = name
+        request.session['user_id'] = user_id
+        request.session['user_avatar'] = user_info['avatar_url']
+        return redirect('resources')
 
 def signout(request):
     del request.session['user']
     del request.session['user_id']
     del request.session['user_avatar']
+    return redirect('index')
+
+def new(request):
+    user_id = User.objects.create(name=request.POST['name'], email=request.POST['email'], avatar_url=request.POST['avatar_url']).id
+    request.session['user'] = name=request.POST['name']
+    request.session['user_id'] = user_id
+    request.session['user_avatar'] = request.POST['avatar_url']
     return redirect('resources')
+
+def follow_nodes(request):
+    pass
 
 def user(request, username):
     pass

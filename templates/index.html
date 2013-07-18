@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-index{% endblock %}
+{% block page_title %}YProgrammer{% endblock %}
+{% block full-body %}
+
+<div class='marketing-head'>
+   <h1 class=''>High quality resources,<br>for web programmers.</h1>
+   <a href="https://github.com/login/oauth/authorize?client_id=7a68fc19935c680f8e2e&redirect_uri=http://localhost:8000/signin/github" class='btn btn-large' href=""><i class='icon-github'></i> 使用 GitHub 帐号登录</a>
+</div>
+
+<div class="container marketing-section">
+   <h2 class='marketing-section-header'>如果你</h2>
+
+   <div class='row'>
+      <div class='span4 text-center'>
+         <h3>是Web开发者</h3>
+         <p>说简单点就是做网站的啦！</p>
+      </div>
+      <div class='span4 text-center'>
+         <h3>学习新技术</h3>
+         <p>花费大量时间寻找学习资源?</p>
+      </div>
+      <div class='span4 text-center'>
+         <h3>开发新站点</h3>
+         <p>却找不到靠谱的开源组件？</p>
+      </div>
+   </div>
+</div>
+
+<div id='message'>
+   <h2>YProgrammer is for you</h2>
+   <p>为你推荐靠谱的Web开发资源</p>
+</div>
+
+<div class="container marketing-section">
+   <div class='row'>
+      <div class='span3 text-center'>
+         <h3>全方位</h3>
+         <p>包含：编程语言、开发与部署、数据库、后端、前端、设计等。</p>
+      </div>
+
+      <div class='span3 text-center'>
+         <h3>优质资源</h3>
+         <p>根据你所关注的节点，为你推荐优质的相关资源。</p>
+      </div>
+
+      <div class='span3 text-center'>
+         <h3>分类组织</h3>
+         <p>每个节点的资源都按一定类别组织，更加一目了然。</p>
+      </div>      
+
+      <div class='span3 text-center'>
+         <h3>导航页</h3>
+         <p>提供类似百度首页的导航页，收藏的资源自动出现在导航中。</p>
+      </div>
+   </div>
+</div>
+
+<div class='text-center'>
+   <a href="https://github.com/login/oauth/authorize?client_id=7a68fc19935c680f8e2e&redirect_uri=http://localhost:8000/signin/github" class='btn btn-inverse btn-large' href=""><i class='icon-github'></i> 使用 GitHub 帐号登录</a>
+</div>
+
+{% endblock %}

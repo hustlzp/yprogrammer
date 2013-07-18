@@ -5,6 +5,6 @@ urlpatterns = patterns('',
     url(r'^signin/github/$', views.signin, name='signin'),
     url(r'^signout/$', views.signout, name='signout'),
     url(r'u/(?P<username>[\w\.@+]+)/$', views.user, name='user'),
-    url(r'^$', views.user_nav, name='user_nav')
-    # url(r'u/(?P<username>[\w\.@+]+)/nav/$', views.user_nav, name='user_nav')
+    url(r'^nav/$', views.user_nav, name='user_nav'),
+    url(r'^user/new/$', views.new, name='new_user')
 )
