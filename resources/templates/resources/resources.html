@@ -21,10 +21,7 @@ $(function(){
          url: url,
          method: 'POST',
          dataType: 'json',
-         data: {
-            'r_id': r_id,
-            'csrfmiddlewaretoken': $.cookie('csrftoken')
-         },
+         data: { 'r_id': r_id },
          success: function(result){
             if(result['result'] === 'success'){
                var collect_count = $(btn_collect).nextAll('.collect-count');

@@ -70,5 +70,23 @@
             </ul>
          </div>
       </div>
+
+      <script type="text/javascript">
+      // on each XMLHttpRequest, set a custom X-CSRFToken header to the value of the CSRF token.
+      $(function(){
+         function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+         }
+
+         $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function(xhr, settings) {
+               if (!csrfSafeMethod(settings.type)) {
+                  xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+               }
+            }
+         });         
+      });
+      </script>
    </body>
 </html>
