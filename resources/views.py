@@ -1,4 +1,5 @@
 #-*- coding: UTF-8 -*-
+import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from resources.models import Resource, ResourceType, Node, NodeType, NodeFollow, ResourceCollect
@@ -23,27 +24,36 @@ def resource(request, r_id):
         is_collected = False
     return render(request, 'resources/resource.html', {'resource': resource, 'is_collected': is_collected, 'collect_count': collect_count})
 
-def collect_resource(request, r_id):
-    if not 'user' in request.session:
-        return redirect('index')
-    
-    u = User.objects.get(name=request.session['user'])
-    r = Resource.objects.get(id=r_id)
-    if ResourceCollect.objects.filter(user=u.id, resource=r.id).count() == 0:
-        ResourceCollect.objects.create(user=u, resource=r)
-    # follow relative node
-    if NodeFollow.objects.filter(user=u.id, node=r.node.id).count() == 0:
-        NodeFollow.objects.create(user=u, node=r.node)
-    return redirect(request.META['HTTP_REFERER'])
+# ajax - collect a resource
+def collect_resource(request):
+    if request.method == 'POST':
+        if not 'user' in request.session:
+            return HttpResponse(json.dumps({'result': 'unlogin'}))
+        
+        u = User.objects.get(name=request.session['user'])
+        r_id = request.POST['r_id']
+        r = Resource.objects.get(id=r_id)
+        if ResourceCollect.objects.filter(user=u.id, resource=r.id).count() == 0:
+            ResourceCollect.objects.create(user=u, resource=r)
 
-def discollect_resource(request, r_id):
-    if not 'user' in request.session:
-        return redirect('index')
-    
-    rc = ResourceCollect.objects.filter(user=request.session['user_id'], resource=r_id)
-    if rc.count() > 0:
-        rc.delete()
-    return redirect(request.META['HTTP_REFERER'])
+        # follow relative node
+        if NodeFollow.objects.filter(user=u.id, node=r.node.id).count() == 0:
+            NodeFollow.objects.create(user=u, node=r.node)
+
+        return HttpResponse(json.dumps({'result': 'success'}))
+
+# ajax - discollect a resource
+def discollect_resource(request):
+    if request.method == 'POST':
+        if not 'user' in request.session:
+            return HttpResponse(json.dumps({'result': 'unlogin'}))
+
+        r_id = request.POST['r_id']
+        rc = ResourceCollect.objects.filter(user=request.session['user_id'], resource=r_id)
+        if rc.count() > 0:
+            rc.delete()
+        
+        return HttpResponse(json.dumps({'result': 'success'}))
 
 def my_nodes(request):
     if not 'user_id' in request.session:

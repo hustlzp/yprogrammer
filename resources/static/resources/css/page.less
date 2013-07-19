@@ -175,13 +175,29 @@ body{
         }
     }
 
-    .btn-group{
+    .collect-wap{
         position: absolute;
         right: 0;
         top: 0;
         padding-left: 5px;
         padding-right: 5px;
         padding: 0;
+
+        .btn-collect{
+            display: inline-block;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .btn-discollect{
+            display: none;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+    
+        &.on{
+            .btn-collect{ display: none; }
+            .btn-discollect{ display: inline-block; }
+        }
     }
 }
 
@@ -291,29 +307,42 @@ body{
                 margin-right: 5px;
             }
 
-            small{
-                a{
-                    color: #999;
-                    font-size: 12px;
-                    text-decoration: none;
-                }
-                
-                .r-desc{
-                    margin-right: 5px;
-                }
+            small a{
+                color: #999;
+                font-size: 12px;
+                text-decoration: none;
+            }
 
-                .r-time{
-                    color: #999;
-                    margin-right: 10px;
-                }
+            .r-desc{
+                margin-right: 5px;
+            }
 
-                .r-collect{
+            .r-time{
+                color: #999;
+                margin-right: 10px;
+            }
+            
+            .collect-wap{
+                display: inline-block;
+
+                .btn-collect{
+                    display: inline-block;
                     visibility: hidden;
+                    cursor: pointer;
+                }
+                .btn-discollect{
+                    display: none;
+                    cursor: pointer;
+                }
+
+                &.on{
+                    .btn-collect{ display: none; }
+                    .btn-discollect{ display: inline-block; }              
                 }
             }
 
             &:hover{
-                .r-collect{
+                .collect-wap .btn-collect{
                     visibility: visible;
                 }
             }

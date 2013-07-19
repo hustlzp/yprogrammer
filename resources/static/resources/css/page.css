@@ -20,7 +20,10 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 .res-item .res-meta .res-type{margin-left:3px}
 .res-item .res-meta .res-thank,.res-item .res-meta .res-share{visibility:hidden}
 .res-item:hover .res-thank,.res-item:hover .res-share{visibility:visible}
-.res-item .btn-group{position:absolute;right:0;top:0;padding-left:5px;padding-right:5px;padding:0}
+.res-item .collect-wap{position:absolute;right:0;top:0;padding-left:5px;padding-right:5px;padding:0}.res-item .collect-wap .btn-collect{display:inline-block;border-top-left-radius:4px;border-bottom-left-radius:4px}
+.res-item .collect-wap .btn-discollect{display:none;border-top-left-radius:4px;border-bottom-left-radius:4px}
+.res-item .collect-wap.on .btn-collect{display:none}
+.res-item .collect-wap.on .btn-discollect{display:inline-block}
 #page-index .navbar{margin-bottom:0}
 #page-index .marketing-head{background-color:#1165a7;text-align:center;padding:50px 0 50px 0;margin-bottom:30px}#page-index .marketing-head h1{font-size:60px;line-height:130%;margin-bottom:50px;font-weight:normal;color:#fff}
 #page-index .marketing-section{margin-bottom:30px}#page-index .marketing-section .marketing-section-header{text-align:center;color:#000}
@@ -35,10 +38,13 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-my-nodes .node-item .r-item{margin-bottom:3px}#page-my-nodes .node-item .r-item a{font-size:13px;color:#0360af}
 #page-my-nodes .node-item .r-item .r-title{margin-right:5px}
 #page-my-nodes .node-item .r-item small a{color:#999;font-size:12px;text-decoration:none}
-#page-my-nodes .node-item .r-item small .r-desc{margin-right:5px}
-#page-my-nodes .node-item .r-item small .r-time{color:#999;margin-right:10px}
-#page-my-nodes .node-item .r-item small .r-collect{visibility:hidden}
-#page-my-nodes .node-item .r-item:hover .r-collect{visibility:visible}
+#page-my-nodes .node-item .r-item .r-desc{margin-right:5px}
+#page-my-nodes .node-item .r-item .r-time{color:#999;margin-right:10px}
+#page-my-nodes .node-item .r-item .collect-wap{display:inline-block}#page-my-nodes .node-item .r-item .collect-wap .btn-collect{display:inline-block;visibility:hidden;cursor:pointer}
+#page-my-nodes .node-item .r-item .collect-wap .btn-discollect{display:none;cursor:pointer}
+#page-my-nodes .node-item .r-item .collect-wap.on .btn-collect{display:none}
+#page-my-nodes .node-item .r-item .collect-wap.on .btn-discollect{display:inline-block}
+#page-my-nodes .node-item .r-item:hover .collect-wap .btn-collect{visibility:visible}
 #page-all-nodes #all-nodes .node-type-item{margin-bottom:20px}#page-all-nodes #all-nodes .node-type-item .node-type{font-size:20px;margin-bottom:15px;width:130px;float:left}
 #page-all-nodes #all-nodes .node-type-item ul{width:830px;margin:0;float:left;list-style-type:none;font-size:0}#page-all-nodes #all-nodes .node-type-item ul li{display:inline-block;vertical-align:top;padding:10px 15px 10px 10px;margin:0 15px 15px 0;box-sizing:border-box;width:260px;font-size:14px;position:relative;border:1px solid #eaeaea}#page-all-nodes #all-nodes .node-type-item ul li .media-body{margin-top:2px}#page-all-nodes #all-nodes .node-type-item ul li .media-body .node-desc{margin-bottom:0;font-size:13px}
 #page-all-nodes #all-nodes .node-type-item ul li img{width:45px;height:45px}

@@ -4,6 +4,42 @@
 {% block page_title %}Nodes{% endblock %}
 {% block body %}
 
+<script type="text/javascript">
+$(function(){
+   $('.btn-collect, .btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      
+      if($(this).hasClass('btn-collect')){
+         var url = "{% url 'collect_resource' %}";
+      } else {
+         var url = "{% url 'discollect_resource' %}";
+      }
+
+      var btn_collect = $(this);
+
+      $.ajax({
+         url: url,
+         method: 'POST',
+         dataType: 'json',
+         data: {
+            'r_id': r_id,
+            'csrfmiddlewaretoken': $.cookie('csrftoken')
+         },
+         success: function(result){
+            if(result['result'] == 'success'){
+               if($(btn_collect).hasClass('btn-collect')){
+                  $(btn_collect).parent().addClass('on');
+               } else {
+                  $(btn_collect).parent().removeClass('on');
+               }
+            }
+         }
+      });
+   });
+
+});
+</script>
+
 <div class="row">
    <div class="span8">
       <div class="page-header">
@@ -25,11 +61,11 @@
                   ><small>
                      <span class='r-desc'>{{ r.desc }}</span>
                      <span class='r-time'>36分钟前</span>
-                     {% if r.is_collected %}
-                     <a href="{% url 'discollect_resource' r.id %}" title='取消导航' class='r-discollect'><i class='icon-bookmark'></i></a>
-                     {% else %}
-                     <a href="{% url 'collect_resource' r.id %}" title='添加到导航' class='r-collect'><i class='icon-bookmark-empty'></i></a>
-                     {% endif %}
+
+                     <div class='collect-wap {% if r.is_collected %}on{% endif %}'>
+                        <a class="btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>
+                        <a class="btn-collect" data-resource-id='{{ r.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
+                     </div>
                   </small>
                </div>
                {% endfor %}
