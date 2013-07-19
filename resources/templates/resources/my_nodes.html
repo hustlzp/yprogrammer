@@ -5,6 +5,7 @@
 {% block body %}
 
 <script type="text/javascript">
+
 $(function(){
    $('.btn-collect, .btn-discollect').click(function(){
       var r_id = $(this).data('resource-id');
@@ -20,10 +21,9 @@ $(function(){
       $.ajax({
          url: url,
          method: 'POST',
-         dataType: 'json',
          data: { 'r_id': r_id },
          success: function(result){
-            if(result['result'] == 'success'){
+            if(result === 'success'){
                if($(btn_collect).hasClass('btn-collect')){
                   $(btn_collect).parent().addClass('on');
                } else {

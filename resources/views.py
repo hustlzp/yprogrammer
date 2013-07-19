@@ -28,7 +28,7 @@ def resource(request, r_id):
 def collect_resource(request):
     if request.method == 'POST':
         if not 'user' in request.session:
-            return HttpResponse(json.dumps({'result': 'unlogin'}))
+            return HttpResponse('unlogin')
         
         u = User.objects.get(name=request.session['user'])
         r_id = request.POST['r_id']
@@ -40,20 +40,20 @@ def collect_resource(request):
         if NodeFollow.objects.filter(user=u.id, node=r.node.id).count() == 0:
             NodeFollow.objects.create(user=u, node=r.node)
 
-        return HttpResponse(json.dumps({'result': 'success'}))
+        return HttpResponse('success')
 
 # ajax - discollect a resource
 def discollect_resource(request):
     if request.method == 'POST':
         if not 'user' in request.session:
-            return HttpResponse(json.dumps({'result': 'unlogin'}))
+            return HttpResponse('unlogin')
 
         r_id = request.POST['r_id']
         rc = ResourceCollect.objects.filter(user=request.session['user_id'], resource=r_id)
         if rc.count() > 0:
             rc.delete()
         
-        return HttpResponse(json.dumps({'result': 'success'}))
+        return HttpResponse('success')
 
 def my_nodes(request):
     if not 'user_id' in request.session:
