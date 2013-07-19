@@ -2,6 +2,7 @@ html{position:relative;min-height:100%}
 body{margin:0 0 6em 0}body .navbar{margin-bottom:30px}body .navbar #user-avatar{width:20px;margin-right:8px;border-radius:2px}
 body #footer{position:absolute;left:0;bottom:0;height:2.2em;z-index:10;text-align:center;font-size:12px;font-family:'微软雅黑';width:100%;color:#666}body #footer .container #copyright{float:left}
 body #footer .container #links{float:right;margin:0;list-style-type:none}body #footer .container #links li{display:inline-block;margin-right:10px}
+.errorlist{margin:10px 0;list-style-type:square;color:#f00;list-style-position:inside}
 .span4{width:280px;margin-left:40px}
 .page-header{position:relative}.page-header .corner{position:absolute;top:0;right:0;margin:0}
 .sub-header{position:relative}.sub-header h4{margin:25px 0 20px 0}

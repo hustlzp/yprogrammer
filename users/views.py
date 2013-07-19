@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from users.models import User
 from resources.models import Node, NodeFollow, Resource, ResourceCollect
+from forms import UserForm
 
 # sign by github oauth2
 def signin(request):
@@ -27,7 +28,12 @@ def signin(request):
     # if new, save it
     name = user_info['login']
     if User.objects.filter(name=name).count() < 1:
-        return render(request, 'users/new.html', {'user_info': user_info})
+        form = UserForm(initial={
+            'name': name,
+            'avatar_url': user_info['avatar_url'],
+            'email': user_info['email'] if 'email' in user_info else ''
+        })
+        return render(request, 'users/new.html', {'form': form})
     else:
         # set session
         user_id = User.objects.get(name=name).id
@@ -43,11 +49,18 @@ def signout(request):
     return redirect('index')
 
 def new(request):
-    user_id = User.objects.create(name=request.POST['name'], email=request.POST['email'], avatar_url=request.POST['avatar_url']).id
-    request.session['user'] = name=request.POST['name']
-    request.session['user_id'] = user_id
-    request.session['user_avatar'] = request.POST['avatar_url']
-    return redirect('resources')
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            avatar_url = form.cleaned_data['avatar_url']
+            user_id = User.objects.create(name=name, email=email, avatar_url=avatar_url).id
+            request.session['user'] = name
+            request.session['user_id'] = user_id
+            request.session['user_avatar'] = avatar_url
+            return redirect('resources')
+    return render(request, 'users/new.html', {'form': form})
 
 def follow_nodes(request):
     pass
@@ -61,4 +74,3 @@ def user_nav(request):
     for n in nodes:
         n.resources = ResourceCollect.objects.filter(user=user_id, resource__node__id=n.node.id).order_by('order')
     return render(request, 'users/nav.html', {'nodes': nodes})
-

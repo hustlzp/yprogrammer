@@ -4,29 +4,36 @@
 {% block page_title %}新用户{% endblock %}
 {% block body %}
 
+
 <form class="form-horizontal" method='post' action="{% url 'new_user' %}">
-   <legend>欢迎你</legend>
+   {% load widget_tweaks %}
    {% csrf_token %}
+   
+   <legend>欢迎 {{ form.name.value }}</legend>
 
    <div class="control-group">
       <label class="control-label">用户名</label>
       <div class="controls">
-         <input type="text" name='name' value='{{ user_info.login }}' uneditable-input />
+         <span class="input-xlarge uneditable-input">{{ form.name.value }}</span>
+         {{ form.name|attr:'type:hidden' }}
+         {{ form.name.errors }}
       </div>
    </div>
 
    <div class="control-group">
       <label class="control-label">头像</label>
       <div class="controls">
-         <img src="{{ user_info.avatar_url }}" />
-         <input type='hidden' name='avatar_url' value="{{ user_info.avatar_url }}" />
+         {{ form.avatar_url|attr:'type:hidden' }}
+         <img src="{{ form.avatar_url.value }}" />
+         {{ form.avatar_url.errors }}
       </div>
    </div>
 
    <div class="control-group">
-      <label class="control-label" for="inputEmail">邮箱</label>
+      <label class="control-label" for="id_email">Email</label>
       <div class="controls">
-         <input type="text" id="inputEmail" class='input-xlarge' name='email' placeholder="Email" value="{{ user_info.email }}" />
+         {{ form.email|attr:'class:input-xlarge' }}
+         {{ form.email.errors }}
       </div>
    </div>
 
