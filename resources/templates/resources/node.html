@@ -121,8 +121,8 @@ $(function(){
             </div>
 
             <div class='btn-group collect-wap {% if r.is_collected %}on{% endif %}'>
-               <a class="btn btn-mini btn-collect" data-resource-id='{{ r.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
                <a class="btn btn-mini btn-primary btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>
+               <a class="btn btn-mini btn-collect" data-resource-id='{{ r.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
                <a class='btn btn-mini collect-count'>{{ r.collect_count }}</a>
             </div>
          </div>

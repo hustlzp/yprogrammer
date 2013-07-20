@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block page_id %}page-all-nodes{% endblock %}
+{% block page_id %}page-init-nodes{% endblock %}
 {% block page_title %}All Nodes{% endblock %}
 {% block body %}
 
@@ -45,6 +45,8 @@ $(function(){
    </div>
 
    {% include "nodes.tpl" with node_types=node_types %}
+
+   <a href="{% url 'resources' %}" class='btn btn-inverse pull-right'><i class='icon-ok'></i> 完成</a>
 </div>
 
 {% endblock %}

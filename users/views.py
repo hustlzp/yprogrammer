@@ -3,7 +3,7 @@ import requests
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from users.models import User
-from resources.models import Node, NodeFollow, Resource, ResourceCollect
+from resources.models import Node, NodeFollow, NodeType, Resource, ResourceCollect
 from forms import UserForm
 
 # sign by github oauth2
@@ -59,11 +59,16 @@ def new(request):
             request.session['user'] = name
             request.session['user_id'] = user_id
             request.session['user_avatar'] = avatar_url
-            return redirect('resources')
+            return redirect('init_follow_nodes')
     return render(request, 'users/new.html', {'form': form})
 
-def follow_nodes(request):
-    pass
+def init_follow_nodes(request):
+    node_types = NodeType.objects.all()
+    for nt in node_types:
+        nt.nodes = Node.objects.filter(type=nt.id)
+        for n in nt.nodes:
+            n.is_followed = False
+    return render(request, 'users/init_follow_nodes.html', {'node_types': node_types})    
 
 def user(request, username):
     pass

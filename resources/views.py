@@ -75,7 +75,6 @@ def all_nodes(request):
     for nt in node_types:
         nt.nodes = Node.objects.filter(type=nt.id)
         for n in nt.nodes:
-            n.follow_count = NodeFollow.objects.filter(node=n.id).count()
             if 'user_id' in request.session and NodeFollow.objects.filter(user=request.session['user_id'], node=n.id).count() > 0:
                 n.is_followed = True
             else:
@@ -90,7 +89,6 @@ def node(request, n_id):
     else:
         is_followed = False
 
-    # order = request.GET['order']
     resource_types = ResourceType.objects.filter(node=n_id)
     for rt in resource_types:
         rt.resources = Resource.objects.filter(node=n_id, type=rt.id).order_by('-create_time')

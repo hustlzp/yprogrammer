@@ -183,16 +183,8 @@ body{
         padding-right: 5px;
         padding: 0;
 
-        .btn-collect{
-            display: inline-block;
-            // border-top-left-radius: 4px;
-            // border-bottom-left-radius: 4px;
-        }
-        .btn-discollect{
-            display: none;
-            // border-top-left-radius: 4px;
-            // border-bottom-left-radius: 4px;
-        }
+        .btn-collect{ display: inline-block; }
+        .btn-discollect{ display: none; }
     
         &.on{
             .btn-collect{ display: none; }
@@ -351,84 +343,80 @@ body{
     }
 }
 
-#page-all-nodes{
-    #all-nodes{
-        .node-type-item{
-            margin-bottom: 20px;
+.node-type-item{
+    margin-bottom: 20px;
 
-            .node-type{
-                font-size: 20px;
-                margin-bottom: 15px;
-                width: 130px;
-                float: left;
+    .node-type{
+        font-size: 20px;
+        margin-bottom: 15px;
+        width: 130px;
+        float: left;
+    }
+
+    ul{
+        width: 830px;
+        margin: 0;
+        float: left;
+        list-style-type: none;
+        font-size: 0px;
+
+        li{
+            display: inline-block;
+            vertical-align: top;
+            padding: 10px 15px 10px 10px;
+            margin: 0 15px 15px 0;
+            box-sizing: border-box;
+            width: 260px;
+            font-size: 14px;
+            position: relative;
+            border: 1px solid #eaeaea;
+
+            .media-body{
+                margin-top: 2px;
+
+                .node-desc{
+                    margin-bottom: 0;
+                    font-size: 13px;
+                }
             }
 
-            ul{
-                width: 830px;
-                margin: 0;
-                float: left;
-                list-style-type: none;
-                font-size: 0px;
+            img{
+                width: 45px;
+                height: 45px;
+            }
 
-                li{
+            .follow-container{
+                position: absolute;
+                display: inline-block;
+                font-size: 0;
+                white-space: nowrap;
+                vertical-align: middle;
+                top: -1px;
+                right: -1px;
+
+                .btn{
+                    padding: 0 4px;
+                    border-radius: 0;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .btn-follow{
                     display: inline-block;
-                    vertical-align: top;
-                    padding: 10px 15px 10px 10px;
-                    margin: 0 15px 15px 0;
-                    box-sizing: border-box;
-                    width: 260px;
-                    font-size: 14px;
-                    position: relative;
-                    border: 1px solid #eaeaea;
+                }
+                .btn-disfollow{
+                    display: none;
+                }
 
-                    .media-body{
-                        margin-top: 2px;
-
-                        .node-desc{
-                            margin-bottom: 0;
-                            font-size: 13px;
-                        }
+                &.on{
+                    .btn-follow{
+                        display: none;
                     }
-
-                    img{
-                        width: 45px;
-                        height: 45px;
-                    }
-
-                    .follow-container{
-                        position: absolute;
+                    .btn-disfollow{
                         display: inline-block;
-                        font-size: 0;
-                        white-space: nowrap;
-                        vertical-align: middle;
-                        top: -1px;
-                        right: -1px;
-
-                        .btn{
-                            padding: 0 4px;
-                            border-radius: 0;
-                            border-bottom-left-radius: 4px;
-                        }
-
-                        .btn-follow{
-                            display: inline-block;
-                        }
-                        .btn-disfollow{
-                            display: none;
-                        }
-
-                        &.on{
-                            .btn-follow{
-                                display: none;
-                            }
-                            .btn-disfollow{
-                                display: inline-block;
-                            }
-                        }
                     }
-                }  
+                }
             }
-        }
+        }  
     }
 }
 
