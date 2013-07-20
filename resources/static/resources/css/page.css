@@ -62,6 +62,10 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-node .follow-container .btn-disfollow{display:none}
 #page-node .follow-container.on .btn-follow{display:none}
 #page-node .follow-container.on .btn-disfollow{display:inline-block}
+#page-resource .collect-container .btn-collect{display:inline-block}
+#page-resource .collect-container .btn-discollect{display:none}
+#page-resource .collect-container.on .btn-collect{display:none}
+#page-resource .collect-container.on .btn-discollect{display:inline-block}
 #page-nav #google-doodle-wap{text-align:center}#page-nav #google-doodle-wap #google-doodle{width:350px;margin:30px 0 20px 0}
 #page-nav #form-search{margin-bottom:50px;text-align:center}#page-nav #form-search input{border-radius:0}
 #page-nav #form-search input[type='submit']{font-family:'Telex'}

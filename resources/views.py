@@ -6,13 +6,19 @@ from resources.models import Resource, ResourceType, Node, NodeType, NodeFollow,
 from users.models import User
 
 def resources(request):
-    resources = Resource.objects.all().order_by('-create_time')[:10]
-    for r in resources:
-        r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-        if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
-            r.is_collected = True
-        else:
+    if not 'user' in request.session:
+        resources = Resource.objects.all().order_by('-create_time')[:10]
+        for r in resources:
+            r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
             r.is_collected = False
+    else:
+        resources = Resource.objects.all().order_by('-create_time')[:10]
+        for r in resources:
+            r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
+            if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
+                r.is_collected = True
+            else:
+                r.is_collected = False
     return render(request, 'resources/resources.html', {'resources': resources})
 
 def resource(request, r_id):

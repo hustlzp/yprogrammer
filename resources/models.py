@@ -56,3 +56,13 @@ class ResourceCollect(models.Model):
 
     def __unicode__(self):
         return '%s collect %s' % (self.user, self.resource)
+
+# a user comment on a resource
+class ResourceComment(models.Model):
+    user = models.ForeignKey(User)
+    resource = models.ForeignKey(Resource)
+    comment = models.TextField()
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.comment

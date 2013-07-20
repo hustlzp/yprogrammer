@@ -4,46 +4,76 @@
 {% block page_title %}{{ resource.title }}{% endblock %}
 {% block body %}
 
+<script type="text/javascript">
+$(function(){
+   $('.btn-collect, .btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      
+      if($(this).hasClass('btn-collect')){
+         var url = "{% url 'collect_resource' %}";
+      } else {
+         var url = "{% url 'discollect_resource' %}";
+      }
+
+      var btn_collect = $(this);
+
+      $.ajax({
+         url: url,
+         method: 'POST',
+         data: { 'r_id': r_id },
+         success: function(result){
+            if(result === 'success'){
+               var collect_count = $(btn_collect).nextAll('.collect-count');
+
+               if($(btn_collect).hasClass('btn-collect')){
+                  $(btn_collect).parent().addClass('on');
+                  collect_count.text(parseInt(collect_count.text()) + 1);
+               } else {
+                  $(btn_collect).parent().removeClass('on');
+                  collect_count.text(parseInt(collect_count.text()) - 1);
+               }
+            }
+            else if(result === 'unlogin'){
+               window.location = "{% url 'index' %}";
+            }
+         }
+      });
+   });
+
+});
+</script>
+
 <div class="row">
    <div class="span8">
       <div class="page-header">
          <h2>
-            {{ resource.title }} <sup><span class='label label-warning'>{{ resource.type.type }}</span></sup>
+            {{ resource.title }} <!-- <sup><span class='label label-warning'>{{ resource.type.type }}</span></sup> -->
          </h2>
          <p>{{ resource.desc }}</p>
-         <div>
-            By <a href="{% url 'user' resource.creator.name %}">{{ resource.creator.name }}</a>
-            <span class='divider'></span>
+         <p class='r-meta'>
             节点：<a href="{% url 'node' resource.node.id %}">{{ resource.node.title }}</a>
             <span class='divider'></span>
-            地址：<a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
+            类别：<a href="#">{{ resource.type.type }}</a>
             <span class='divider'></span>
-         </div>
+            <i class='icon-user'></i> <a href="{% url 'user' resource.creator.name %}">{{ resource.creator.name }}</a>
+            <span class='divider'></span>
+            <i class='icon-external-link-sign'></i> <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
+            <span class='divider'></span>
+         </p>
       </div>
 
       <div class='sub-header'>
-         <h4>经验 / 3 <small id='what-is-ex'>什么是经验？</small></h4>
-         <div class="btn-toolbar corner">
-            <div class='btn-group' data-toggle="buttons-radio">
-               <a class='btn btn-small active' href="#">最新</a>
-               <a class='btn btn-small' href="#">最热</a>
-            </div>
-         </div>
+         <h4>评论 / 4</h4>
       </div>      
    </div>
 
    <div class="span4">
-      <div class='btn-toolbar'>         
-         <div class='btn-group'>
-            {% if is_collected %}
-            <a class='btn btn-primary' href="{% url 'discollect_resource' resource.id %}"><i class='icon-heart icon-white'></i> 已收藏</a>
-            {% else %}
-            <a class='btn' href="{% url 'collect_resource' resource.id %}"><i class='icon-heart-empty icon-white'></i> 收藏</a>
-            {% endif %}
-            <a class='btn'>{{ collect_count }}</a>
+      <div class='btn-toolbar'>
+         <div class='btn-group collect-container {% if resource.is_collected %}on{% endif %}'>
+            <a class='btn btn-primary btn-discollect' data-resource-id={{ resource.id }} title='取消导航'><i class='icon-bookmark'></i></a>
+            <a class='btn btn-collect' data-resource-id={{ resource.id }} title='添加到导航'><i class='icon-bookmark-empty icon-white'></i></a>
+            <a class='btn collect-count'>{{ collect_count }}</a>
          </div>
-
-         <a class="btn btn-primary" href="#"><i class='icon-plus icon-white'></i> 分享经验</a>
       </div>
 
       <div class="sidebar-header">

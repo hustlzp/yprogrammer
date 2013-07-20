@@ -470,6 +470,18 @@ body{
     }
 }
 
+#page-resource{
+    .collect-container{
+        .btn-collect{ display: inline-block; }
+        .btn-discollect{ display: none; }
+
+        &.on{
+            .btn-collect{ display: none; }
+            .btn-discollect{ display: inline-block; }
+        }
+    }
+}
+
 #page-nav{
     #google-doodle-wap{
         text-align: center;

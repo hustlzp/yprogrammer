@@ -66,7 +66,7 @@ $(function(){
                <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
             </span>
             <span class='meta-item'>
-               <i class='icon-comment-alt'></i> <a href='#'>8评论</a>
+               <i class='icon-comment-alt'></i> <a href="{% url 'resource' r.id %}">8评论</a>
             </span>
             <span class='meta-item'>36分钟前</span>
             <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span>
