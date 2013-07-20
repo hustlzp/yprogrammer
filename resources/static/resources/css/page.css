@@ -33,7 +33,7 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-my-nodes .node-item h4{font-size:16px;margin-bottom:6px}#page-my-nodes .node-item h4 a{color:#555}
 #page-my-nodes .node-item .node-image{width:50px;height:50px;margin-right:2px}
 #page-my-nodes .node-item .node-desc{margin-bottom:10px}
-#page-my-nodes .node-item .btn-disfollow{color:#999;font-size:12px;position:absolute;top:0;right:0;visibility:hidden}
+#page-my-nodes .node-item .btn-disfollow{color:#999;font-size:12px;position:absolute;top:0;right:0;visibility:hidden;cursor:pointer}
 #page-my-nodes .node-item:hover .btn-disfollow{visibility:visible}
 #page-my-nodes .node-item .r-item{margin-bottom:3px}#page-my-nodes .node-item .r-item a{font-size:13px;color:#0360af}
 #page-my-nodes .node-item .r-item .r-title{margin-right:5px}
@@ -48,7 +48,11 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-all-nodes #all-nodes .node-type-item{margin-bottom:20px}#page-all-nodes #all-nodes .node-type-item .node-type{font-size:20px;margin-bottom:15px;width:130px;float:left}
 #page-all-nodes #all-nodes .node-type-item ul{width:830px;margin:0;float:left;list-style-type:none;font-size:0}#page-all-nodes #all-nodes .node-type-item ul li{display:inline-block;vertical-align:top;padding:10px 15px 10px 10px;margin:0 15px 15px 0;box-sizing:border-box;width:260px;font-size:14px;position:relative;border:1px solid #eaeaea}#page-all-nodes #all-nodes .node-type-item ul li .media-body{margin-top:2px}#page-all-nodes #all-nodes .node-type-item ul li .media-body .node-desc{margin-bottom:0;font-size:13px}
 #page-all-nodes #all-nodes .node-type-item ul li img{width:45px;height:45px}
-#page-all-nodes #all-nodes .node-type-item ul li .btn-group{position:absolute;display:inline-block;font-size:0;white-space:nowrap;vertical-align:middle;top:-1px;right:-1px}#page-all-nodes #all-nodes .node-type-item ul li .btn-group .btn{padding:0 4px;border-radius:0;border-bottom-left-radius:4px}
+#page-all-nodes #all-nodes .node-type-item ul li .follow-container{position:absolute;display:inline-block;font-size:0;white-space:nowrap;vertical-align:middle;top:-1px;right:-1px}#page-all-nodes #all-nodes .node-type-item ul li .follow-container .btn{padding:0 4px;border-radius:0;border-bottom-left-radius:4px}
+#page-all-nodes #all-nodes .node-type-item ul li .follow-container .btn-follow{display:inline-block}
+#page-all-nodes #all-nodes .node-type-item ul li .follow-container .btn-disfollow{display:none}
+#page-all-nodes #all-nodes .node-type-item ul li .follow-container.on .btn-follow{display:none}
+#page-all-nodes #all-nodes .node-type-item ul li .follow-container.on .btn-disfollow{display:inline-block}
 #page-node h3{margin-bottom:5px}
 #page-node .node-desc{font-size:16px;margin-bottom:15px}
 #page-node .node-image{height:60px}

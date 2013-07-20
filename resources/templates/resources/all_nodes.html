@@ -4,6 +4,41 @@
 {% block page_title %}All Nodes{% endblock %}
 {% block body %}
 
+<script type="text/javascript">
+$(function(){
+   $('.btn-follow, .btn-disfollow').click(function(){
+      var n_id = $(this).data('node-id');
+      
+      if($(this).hasClass('btn-follow')){
+         var url = "{% url 'follow_node' %}";
+      } else {
+         var url = "{% url 'disfollow_node' %}";
+      }
+
+      var btn_follow = $(this);
+
+      $.ajax({
+         url: url,
+         method: 'POST',
+         data: { 'n_id': n_id },
+         success: function(result){
+            if(result === 'success'){
+               if($(btn_follow).hasClass('btn-follow')){
+                  $(btn_follow).parent().addClass('on');
+               } else {
+                  $(btn_follow).parent().removeClass('on');
+               }               
+            }
+            else if(result === 'unlogin'){
+               window.location = "{% url 'index' %}";
+            }
+         }
+      });
+   });
+
+});
+</script>
+
 <div class="row">
    <div class="page-header">
       <h3>全部节点</h3>
@@ -24,15 +59,12 @@
                      <h4 class='media-heading'>
                         <a href="{% url 'node' n.id %}" >{{ n.title }}</a>
                      </h4>
+
                      <div class='node-desc'>{{ n.desc }}</div>
                      
-                     <div class='btn-group'>
-                        {% if n.is_followed %}
-                        <a class="btn btn-mini btn-primary" title='取消关注' href="{% url 'disfollow_node' n.id %}"><i class='icon-ok'></i></a>
-                        {% else %}
-                        <a class="btn btn-mini" title='关注' href="{% url 'follow_node' n.id %}"><i class='icon-ok'></i></a>
-                        {% endif %}
-                        <!-- <a class='btn btn-mini'>{{ n.follow_count }}</a> -->
+                     <div class='follow-container {% if n.is_followed %}on{% endif %}'>
+                        <a class="btn btn-mini btn-follow" data-node-id={{ n.id }} title='关注'><i class='icon-ok'></i></a>
+                        <a class="btn btn-mini btn-primary btn-disfollow" data-node-id={{ n.id }} title='取消关注'><i class='icon-ok'></i></a>
                      </div>
                   </div>
                </li>

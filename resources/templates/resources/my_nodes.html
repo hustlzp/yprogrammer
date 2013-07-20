@@ -34,7 +34,30 @@ $(function(){
       });
    });
 
+   // disfollow node
+   $('.btn-disfollow').click(function(){
+      var n_id = $(this).data('node-id');
+      var url = "{% url 'disfollow_node' %}";
+      var btn_follow = $(this);
+
+      $.ajax({
+         url: url,
+         method: 'POST',
+         data: { 'n_id': n_id },
+         success: function(result){
+            if(result === 'success'){
+               $(btn_follow).parents('.node-item').hide('fast', function(){
+                  $(this).detach()
+               });
+            }
+            else if(result === 'unlogin'){
+               window.location = "{% url 'index' %}";
+            }
+         }
+      });
+   });
 });
+
 </script>
 
 <div class="row">
@@ -67,7 +90,7 @@ $(function(){
                </div>
                {% endfor %}
 
-               <a class='btn-disfollow' href="{% url 'disfollow_node' nf.node.id %}">取消关注</a>
+               <a class='btn-disfollow' data-node-id={{ nf.node.id }}>取消关注</a>
             </div>
          </div>
          {% endfor %}

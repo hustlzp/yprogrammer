@@ -34,19 +34,23 @@
                </ul>
 
                {% if request.session.user  %}
-                  <ul class="nav pull-right">
-                     <li>
-                        <a href="{% url 'user' request.session.user %}">
-                           <img id='user-avatar' src="{{ request.session.user_avatar }}">{{ request.session.user }}
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" title='Account settings'><i class='icon-cog'></i></a>
-                     </li>
-                     <li>
-                        <a href="{% url 'signout' %}" title='Sign out'><i class='icon-off'></i></a>
-                     </li>
-                  </ul>
+               <ul class="nav pull-right">
+                  <li>
+                     <a href="{% url 'user' request.session.user %}">
+                        <img id='user-avatar' src="{{ request.session.user_avatar }}">{{ request.session.user }}
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" title='Account settings'><i class='icon-cog'></i></a>
+                  </li>
+                  <li>
+                     <a href="{% url 'signout' %}" title='Sign out'><i class='icon-off'></i></a>
+                  </li>
+               </ul>
+
+               {% else %}
+
+               <a href="https://github.com/login/oauth/authorize?client_id=7a68fc19935c680f8e2e&redirect_uri=http://localhost:8000/signin/github" class='btn pull-right' href=""><i class='icon-github'></i> GitHub 登录</a>
                {% endif %}
             </div>
          </div>

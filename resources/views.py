@@ -102,22 +102,26 @@ def node(request, n_id):
                 r.is_collected = False
     return render(request, 'resources/node.html', {'node': node, 'resource_types': resource_types, 'is_followed': is_followed, 'follow_count': follow_count})
 
-def follow_node(request, n_id):
+# ajax - follow a node
+def follow_node(request):
     if not 'user' in request.session:
-        return redirect('index')
+        return HttpResponse('unlogin')
 
     u = User.objects.get(name=request.session['user'])
+    n_id = request.POST['n_id']
     n = Node.objects.get(id=n_id)
     if NodeFollow.objects.filter(user=u.id, node=n.id).count() == 0:
         NodeFollow.objects.create(user=u, node=n)
-    return redirect(request.META['HTTP_REFERER'])
+    return HttpResponse('success')
 
-def disfollow_node(request, n_id):
+# ajax - disfollow a node
+def disfollow_node(request):
     if not 'user' in request.session:
-        return redirect('index')
+        return HttpResponse('unlogin')
     
     user_id = request.session['user_id']
+    n_id = request.POST['n_id']
     nf = NodeFollow.objects.filter(user=user_id, node=n_id)
     if nf.count() > 0:
         nf.delete()
-    return redirect(request.META['HTTP_REFERER'])
+    return HttpResponse('success')

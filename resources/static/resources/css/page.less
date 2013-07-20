@@ -287,6 +287,7 @@ body{
             top: 0;
             right: 0;
             visibility: hidden;
+            cursor: pointer;
         }
 
         &:hover{
@@ -394,7 +395,7 @@ body{
                         height: 45px;
                     }
 
-                    .btn-group{
+                    .follow-container{
                         position: absolute;
                         display: inline-block;
                         font-size: 0;
@@ -407,6 +408,22 @@ body{
                             padding: 0 4px;
                             border-radius: 0;
                             border-bottom-left-radius: 4px;
+                        }
+
+                        .btn-follow{
+                            display: inline-block;
+                        }
+                        .btn-disfollow{
+                            display: none;
+                        }
+
+                        &.on{
+                            .btn-follow{
+                                display: none;
+                            }
+                            .btn-disfollow{
+                                display: inline-block;
+                            }
                         }
                     }
                 }  
