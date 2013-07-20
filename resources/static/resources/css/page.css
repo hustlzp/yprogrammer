@@ -20,8 +20,8 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 .res-item .res-meta .res-type{margin-left:3px}
 .res-item .res-meta .res-thank,.res-item .res-meta .res-share{visibility:hidden}
 .res-item:hover .res-thank,.res-item:hover .res-share{visibility:visible}
-.res-item .collect-wap{position:absolute;right:0;top:0;padding-left:5px;padding-right:5px;padding:0}.res-item .collect-wap .btn-collect{display:inline-block;border-top-left-radius:4px;border-bottom-left-radius:4px}
-.res-item .collect-wap .btn-discollect{display:none;border-top-left-radius:4px;border-bottom-left-radius:4px}
+.res-item .collect-wap{position:absolute;right:0;top:0;padding-left:5px;padding-right:5px;padding:0}.res-item .collect-wap .btn-collect{display:inline-block}
+.res-item .collect-wap .btn-discollect{display:none}
 .res-item .collect-wap.on .btn-collect{display:none}
 .res-item .collect-wap.on .btn-discollect{display:inline-block}
 #page-index .navbar{margin-bottom:0}
@@ -58,6 +58,10 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-node .node-image{height:60px}
 #page-node .display-mode{margin-bottom:22px}
 #page-node .rt-item{position:relative}#page-node .rt-item .rt-type{font-size:12px;line-height:12px;margin:0 15px 0 0;font-family:Telex,'宋体';position:absolute;top:0;right:620px;display:block;text-align:right;white-space:nowrap;margin-right:15px;padding:5px;background-color:#da532c;color:#fff}
+#page-node .follow-container .btn-follow{display:inline-block}
+#page-node .follow-container .btn-disfollow{display:none}
+#page-node .follow-container.on .btn-follow{display:none}
+#page-node .follow-container.on .btn-disfollow{display:inline-block}
 #page-nav #google-doodle-wap{text-align:center}#page-nav #google-doodle-wap #google-doodle{width:350px;margin:30px 0 20px 0}
 #page-nav #form-search{margin-bottom:50px;text-align:center}#page-nav #form-search input{border-radius:0}
 #page-nav #form-search input[type='submit']{font-family:'Telex'}

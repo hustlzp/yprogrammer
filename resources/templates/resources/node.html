@@ -39,6 +39,41 @@ $(function(){
          }
       });
    });
+   
+   // follow & disfollow a node
+   $('.btn-follow, .btn-disfollow').click(function(){
+      var n_id = $(this).data('node-id');
+      
+      if($(this).hasClass('btn-follow')){
+         var url = "{% url 'follow_node' %}";
+      } else {
+         var url = "{% url 'disfollow_node' %}";
+      }
+
+      var btn_follow = $(this);
+
+      $.ajax({
+         url: url,
+         method: 'POST',
+         data: { 'n_id': n_id },
+         success: function(result){
+            if(result === 'success'){
+               var follow_count = $(btn_follow).nextAll('.follow-count')
+
+               if($(btn_follow).hasClass('btn-follow')){
+                  $(btn_follow).parent().addClass('on');
+                  $(follow_count).text(parseInt($(follow_count).text()) + 1)
+               } else {
+                  $(btn_follow).parent().removeClass('on');
+                  $(follow_count).text(parseInt($(follow_count).text()) - 1)
+               }               
+            }
+            else if(result === 'unlogin'){
+               window.location = "{% url 'index' %}";
+            }
+         }
+      });
+   });
 
 });
 </script>
@@ -86,8 +121,8 @@ $(function(){
             </div>
 
             <div class='btn-group collect-wap {% if r.is_collected %}on{% endif %}'>
-               <a class="btn btn-mini btn-primary btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>
                <a class="btn btn-mini btn-collect" data-resource-id='{{ r.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
+               <a class="btn btn-mini btn-primary btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>
                <a class='btn btn-mini collect-count'>{{ r.collect_count }}</a>
             </div>
          </div>
@@ -98,13 +133,10 @@ $(function(){
 
    <div class="span4">
       <div class="btn-toolbar">
-         <div class='btn-group'>
-            {% if is_followed %}
-            <a class="btn btn-primary" title='取消关注' href="{% url 'disfollow_node' node.id %}"><i class='icon-ok'></i> <!-- 已关注 --></a>
-            {% else %}
-            <a class="btn" title='关注' href="{% url 'follow_node' node.id %}"><i class='icon-ok'></i> <!-- 关注 --></a>
-            {% endif %}            
-            <a class='btn'>{{ follow_count }}</a>
+         <div class='btn-group follow-container {% if is_followed %}on{% endif %}'>
+            <a class="btn btn-follow" data-node-id='{{ node.id }}' title='关注'><i class='icon-ok'></i></a>a
+            <a class="btn btn-primary btn-disfollow" data-node-id='{{ node.id }}' title='取消关注'><i class='icon-ok'></i></a>
+            <a class='btn follow-count'>{{ follow_count }}</a>
          </div>
 
          <a class="btn btn-primary" href="#"><i class='icon-plus'></i> 添加资源</a>

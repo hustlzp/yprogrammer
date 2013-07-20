@@ -185,13 +185,13 @@ body{
 
         .btn-collect{
             display: inline-block;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
+            // border-top-left-radius: 4px;
+            // border-bottom-left-radius: 4px;
         }
         .btn-discollect{
             display: none;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
+            // border-top-left-radius: 4px;
+            // border-bottom-left-radius: 4px;
         }
     
         &.on{
@@ -469,8 +469,17 @@ body{
             background-color: #da532c;
             color: white;
         }
-    }   
+    }
 
+    .follow-container{
+        .btn-follow{ display: inline-block; }
+        .btn-disfollow{ display: none }
+
+        &.on{
+            .btn-follow{ display: none; }
+            .btn-disfollow{ display: inline-block; }
+        }
+    }
 }
 
 #page-nav{
