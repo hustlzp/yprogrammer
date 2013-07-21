@@ -4,6 +4,9 @@
 {% block page_title %}{{ node.Title }}{% endblock %}
 {% block body %}
 
+{% load is_followed from resource_tags %}
+{% load is_collected from resource_tags %}
+
 <script type="text/javascript">
 $(function(){
    $('.btn-collect, .btn-discollect').click(function(){
@@ -92,7 +95,7 @@ $(function(){
          <a class='btn btn-small' href="#">类别</a>
       </div>
 
-      {% for rt in resource_types %}
+      <!-- {% for rt in resource_types %}
       <div class='rt-item'>
          <div class='rt-type'>{{ rt.type }}</div>
 
@@ -104,19 +107,13 @@ $(function(){
                <small class="res-desc">{{ r.desc }}</small>
             </div>
 
-
-
             <div class='res-meta'>
-               <!-- <span class='meta-item'>
-                  <span title='类型：{{ r.type }}'>{{ r.type.type }}</span>
-               </span> -->
                <span class='meta-item'>
                   <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
                </span>
                <span class='meta-item'>
                   <i class='icon-comment-alt'></i> <a href="{% url 'resource' r.id %}">8评论</a>
                </span>
-               <!-- <span class='meta-item'>36分钟前</span> -->
                <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span>
                <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
             </div>
@@ -129,12 +126,13 @@ $(function(){
          </div>
          {% endfor %}
       </div>
-      {% endfor %}
+      {% endfor %} -->
+      {% include 'resources.tpl' with resources=resources %}
    </div>
 
    <div class="span4">
       <div class="btn-toolbar">
-         <div class='btn-group follow-container {% if is_followed %}on{% endif %}'>
+         <div class='btn-group follow-container {% if node|is_followed:request.session.user_id %}on{% endif %}'>
             <a class="btn btn-follow" data-node-id='{{ node.id }}' title='关注'><i class='icon-ok'></i></a>a
             <a class="btn btn-primary btn-disfollow" data-node-id='{{ node.id }}' title='取消关注'><i class='icon-ok'></i></a>
             <a class='btn follow-count'>{{ follow_count }}</a>

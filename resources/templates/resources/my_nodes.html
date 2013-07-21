@@ -4,6 +4,8 @@
 {% block page_title %}Nodes{% endblock %}
 {% block body %}
 
+{% load is_collected from resource_tags %}
+
 <script type="text/javascript">
 
 $(function(){
@@ -82,7 +84,7 @@ $(function(){
                      <span class='r-desc'>{{ r.desc }}</span>
                      <span class='r-time'>36分钟前</span>
 
-                     <div class='collect-wap {% if r.is_collected %}on{% endif %}'>
+                     <div class='collect-wap {% if r|is_collected:request.session.user_id %}on{% endif %}'>
                         <a class="btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>
                         <a class="btn-collect" data-resource-id='{{ r.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
                      </div>

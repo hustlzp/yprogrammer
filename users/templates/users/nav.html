@@ -5,6 +5,7 @@
 {% block body %}
 
 {% load staticfiles %}
+
 <style type="text/css">
 /* node sortable style */
 .n-item.ui-sortable-helper{
@@ -25,6 +26,7 @@
    background-color: #F0F8FF;
 }
 </style>
+
 <script type="text/javascript" src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
 <script type="text/javascript">
 $(function(){
@@ -56,7 +58,6 @@ $(function(){
 
 <div class='nav-node-list'>
    {% for n in nodes %}
-   {% if n.resources|length != 0 %}
    <div class='n-item clearfix' data-order='{{ n.order }}'>
       <div class='n-title'>
          <a href="{% url 'node' n.node.id %}">{{ n.node.title }}</a>
@@ -70,7 +71,6 @@ $(function(){
          {% endfor %}
       </ul>
    </div>
-   {% endif %}
    {% endfor %}
 </div>
 

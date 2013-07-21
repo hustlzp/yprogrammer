@@ -9,9 +9,9 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 .sub-header .corner{position:absolute;top:0;right:0;margin:0}
 .sidebar-header h4:not(:first-child){margin:20px 0 15px 0}
 .divider{display:inline-block;width:5px}
-.res-item{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #eee;position:relative}.res-item .res-header{margin-bottom:3px}.res-item .res-header .res-favicon{vertical-align:-2px;width:16px;height:16px;margin-right:2px}
+.res-item{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #eee;position:relative}.res-item .res-header{margin-bottom:3px;padding-right:75px}.res-item .res-header .res-favicon{vertical-align:-2px;width:16px;height:16px;margin-right:2px}
 .res-item .res-header .res-title{color:#0360af;font-size:16px;line-height:16px}
-.res-item .res-header .res-desc{font-size:13px;margin-left:5px;color:#666}
+.res-item .res-header .res-desc{font-size:13px;margin-left:5px}
 .res-item .res-meta{font-size:12px;color:#999}.res-item .res-meta a{font-size:12px;color:#999}
 .res-item .res-meta .meta-item{margin-right:10px}
 .res-item .res-meta .res-node{margin-right:3px}
@@ -67,6 +67,6 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-nav #google-doodle-wap{text-align:center}#page-nav #google-doodle-wap #google-doodle{width:350px;margin:30px 0 20px 0}
 #page-nav #form-search{margin-bottom:50px;text-align:center}#page-nav #form-search input{border-radius:0}
 #page-nav #form-search input[type='submit']{font-family:'Telex'}
-#page-nav .nav-node-list{margin-left:60px}#page-nav .nav-node-list .n-item{margin-bottom:10px}#page-nav .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:120px;border-top:1px solid #d6dddd;padding-top:15px;padding-left:15px}#page-nav .nav-node-list .n-item .n-title a{color:#555}
+#page-nav .nav-node-list{margin-left:60px}#page-nav .nav-node-list .n-item{margin-bottom:10px}#page-nav .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:120px;border-top:1px solid #d6dddd;padding-top:12px;padding-left:15px}#page-nav .nav-node-list .n-item .n-title a{color:#555}
 #page-nav .nav-node-list .n-item ul{float:left;box-sizing:border-box;width:700px;padding-top:10px;padding-left:15px;border-top:1px solid #f5f5f5;list-style-type:none;margin:0}#page-nav .nav-node-list .n-item ul li{float:left;width:160px;box-sizing:border-box;padding:3px 5px}#page-nav .nav-node-list .n-item ul li a{color:#0360af}
 #page-nav .nav-node-list .n-item ul li .r-favicon{max-width:16px;vertical-align:text-top;margin-right:1px}

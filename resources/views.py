@@ -8,27 +8,17 @@ from users.models import User
 def resources(request):
     if not 'user' in request.session:
         resources = Resource.objects.all().order_by('-create_time')[:10]
-        for r in resources:
-            r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-            r.is_collected = False
     else:
         resources = Resource.objects.all().order_by('-create_time')[:10]
         for r in resources:
             r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-            if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
-                r.is_collected = True
-            else:
-                r.is_collected = False
+
     return render(request, 'resources/resources.html', {'resources': resources})
 
 def resource(request, r_id):
     resource = Resource.objects.get(id=r_id)
     collect_count = ResourceCollect.objects.filter(resource=r_id).count()
-    if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r_id).count() > 0:
-        is_collected = True
-    else:
-        is_collected = False
-    return render(request, 'resources/resource.html', {'resource': resource, 'is_collected': is_collected, 'collect_count': collect_count})
+    return render(request, 'resources/resource.html', {'resource': resource, 'collect_count': collect_count})
 
 # ajax - collect a resource
 def collect_resource(request):
@@ -69,42 +59,28 @@ def my_nodes(request):
     node_follows = NodeFollow.objects.filter(user=user_id)
     for nf in node_follows:
         nf.resources = Resource.objects.filter(node=nf.node.id).order_by('-create_time')[:3]
-        for r in nf.resources:
-            if ResourceCollect.objects.filter(user=user_id, resource=r.id).count() > 0:
-                r.is_collected = True
-            else:
-                r.is_collected = False
+
     return render(request, 'resources/my_nodes.html', {'node_follows': node_follows})
 
 def all_nodes(request):
     node_types = NodeType.objects.all()
-    for nt in node_types:
-        nt.nodes = Node.objects.filter(type=nt.id)
-        for n in nt.nodes:
-            if 'user_id' in request.session and NodeFollow.objects.filter(user=request.session['user_id'], node=n.id).count() > 0:
-                n.is_followed = True
-            else:
-                n.is_followed = False
     return render(request, 'resources/all_nodes.html', {'node_types': node_types})
 
 def node(request, n_id):
     node = Node.objects.get(id=n_id)
     follow_count = NodeFollow.objects.filter(node=n_id).count()
-    if 'user_id' in request.session and NodeFollow.objects.filter(user=request.session['user_id'], node=n_id).count() > 0:
-        is_followed = True
-    else:
-        is_followed = False
 
     resource_types = ResourceType.objects.filter(node=n_id)
     for rt in resource_types:
         rt.resources = Resource.objects.filter(node=n_id, type=rt.id).order_by('-create_time')
         for r in rt.resources:
             r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-            if 'user_id' in request.session and ResourceCollect.objects.filter(user=request.session['user_id'], resource=r.id).count() > 0:
-                r.is_collected = True
-            else:
-                r.is_collected = False
-    return render(request, 'resources/node.html', {'node': node, 'resource_types': resource_types, 'is_followed': is_followed, 'follow_count': follow_count})
+
+    resources = Resource.objects.filter(node=n_id).order_by('-create_time')[:10]
+    for r in resources:
+        r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
+
+    return render(request, 'resources/node.html', {'node': node, 'resources': resources, 'resource_types': resource_types, 'follow_count': follow_count})
 
 # ajax - follow a node
 def follow_node(request):
