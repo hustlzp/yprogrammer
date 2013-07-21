@@ -9,12 +9,10 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 .sub-header .corner{position:absolute;top:0;right:0;margin:0}
 .sidebar-header h4:not(:first-child){margin:20px 0 15px 0}
 .divider{display:inline-block;width:5px}
-.res-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #eee;position:relative}.res-item .res-header{margin-bottom:5px}.res-item .res-header .res-favicon{vertical-align:-2px;width:16px;height:16px;margin-right:2px}
+.res-item{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #eee;position:relative}.res-item .res-header{margin-bottom:3px}.res-item .res-header .res-favicon{vertical-align:-2px;width:16px;height:16px;margin-right:2px}
 .res-item .res-header .res-title{color:#0360af;font-size:16px;line-height:16px}
-.res-item .res-header .res-url{color:#555;text-decoration:none}.res-item .res-header .res-url:hover{color:#000}
-.res-item .res-header .res-url .icon-external-link{margin-left:3px;cursor:pointer}
-.res-item .res-desc{margin-right:80px;margin-bottom:3px}
-.res-item .res-meta{font-size:13px;color:#999}.res-item .res-meta a{font-size:13px;color:#999}
+.res-item .res-header .res-desc{font-size:13px;margin-left:5px;color:#666}
+.res-item .res-meta{font-size:12px;color:#999}.res-item .res-meta a{font-size:12px;color:#999}
 .res-item .res-meta .meta-item{margin-right:10px}
 .res-item .res-meta .res-node{margin-right:3px}
 .res-item .res-meta .res-type{margin-left:3px}
@@ -57,7 +55,7 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-node .node-desc{font-size:16px;margin-bottom:15px}
 #page-node .node-image{height:60px}
 #page-node .display-mode{margin-bottom:22px}
-#page-node .rt-item{position:relative}#page-node .rt-item .rt-type{font-size:12px;line-height:12px;margin:0 15px 0 0;font-family:Telex,'宋体';position:absolute;top:0;right:620px;display:block;text-align:right;white-space:nowrap;margin-right:15px;padding:5px;background-color:#da532c;color:#fff}
+#page-node .rt-item{position:relative}#page-node .rt-item .rt-type{font-size:12px;line-height:12px;margin:0 15px 0 0;font-family:Telex,'宋体';position:absolute;top:0;right:620px;display:block;text-align:right;white-space:nowrap;margin-right:15px;padding:3px 5px;background-color:#da532c;color:#fff}
 #page-node .follow-container .btn-follow{display:inline-block}
 #page-node .follow-container .btn-disfollow{display:none}
 #page-node .follow-container.on .btn-follow{display:none}
