@@ -43,9 +43,7 @@ $(function(){
          <h2>{{ resource.title }}</h2>
          <p>{{ resource.desc }}</p>
          <p class='r-meta'>
-            节点：<a href="{% url 'node' resource.node.id %}">{{ resource.node.title }}</a>
-            <span class='divider'></span>
-            类别：<a href="#">{{ resource.type.type }}</a>
+            <a href="{% url 'node' resource.node.id %}">{{ resource.node.title }}</a> / {{ resource.type.type }}
             <span class='divider'></span>
             <i class='icon-user'></i> <a href="{% url 'user' resource.creator.name %}">{{ resource.creator.name }}</a>
             <span class='divider'></span>
@@ -63,7 +61,7 @@ $(function(){
          <div class='btn-group collect-container {% if resource|is_collected:request.session.user_id %}on{% endif %}'>
             <a class='btn btn-collect' data-resource-id={{ resource.id }} title='添加到导航'><i class='icon-bookmark-empty icon-white'></i></a>
             <a class='btn btn-primary btn-discollect' data-resource-id={{ resource.id }} title='取消导航'><i class='icon-bookmark'></i></a>
-            <a class='btn collect-count'>{{ collect_count }}</a>
+            <a class='btn collect-count'>{{ resource.collect_count }}</a>
          </div>
       </div>
 

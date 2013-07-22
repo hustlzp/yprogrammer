@@ -4,6 +4,36 @@
 {% block page_title %}Resources{% endblock %}
 {% block body %}
 
+<script type="text/javascript">
+$(function(){
+   // collect resource by Ajax
+   $('.btn-collect').one('click', function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'collect_resource' %}";
+      var btn_collect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_collect).nextAll('.collect-count');
+         $(btn_collect).parent().addClass('on');
+         collect_count.text(parseInt(collect_count.text()) + 1);
+      });
+   });
+
+   // discollect resource by Ajax
+   $('.btn-discollect').one('click', function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'discollect_resource' %}";
+      var btn_discollect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_discollect).nextAll('.collect-count');
+         $(btn_discollect).parent().removeClass('on');
+         collect_count.text(parseInt(collect_count.text()) - 1);
+      });
+   });
+});
+</script>
+
 <div class="row">
    <div class="span8">
       <div class="page-header">

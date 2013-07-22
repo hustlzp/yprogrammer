@@ -40,7 +40,7 @@ class Resource(models.Model):
 # a user follow a node
 class NodeFollow(models.Model):
     user = models.ForeignKey(User)
-    node = models.ForeignKey(Node)
+    node = models.ForeignKey(Node, related_name='follows')
     order = models.IntegerField(blank=True, default=0)
     create_time = models.DateTimeField(auto_now_add=True)
 
@@ -50,7 +50,7 @@ class NodeFollow(models.Model):
 # a user collect a resource
 class ResourceCollect(models.Model):
     user = models.ForeignKey(User)
-    resource = models.ForeignKey(Resource)
+    resource = models.ForeignKey(Resource, related_name='collects')
     order = models.IntegerField(blank=True, default=0)
     create_time = models.DateTimeField(auto_now_add=True)
 

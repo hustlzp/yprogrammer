@@ -2,24 +2,22 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.db.models import Count
 from resources.models import Resource, ResourceType, Node, NodeType, NodeFollow, ResourceCollect
 from users.models import User
 
 def resources(request):
     if not 'user' in request.session:
-        resources = Resource.objects.all().order_by('-create_time')[:10]
+        resources = Resource.objects.annotate(collect_count=Count('collects')).all().order_by('-create_time')[:10]
     else:
         followed_nodes = NodeFollow.objects.filter(user=request.session['user_id']).values('node')
-        resources = Resource.objects.filter(node__in=followed_nodes).order_by('-create_time')[:10]
-        for r in resources:
-            r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
+        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node__in=followed_nodes).order_by('-create_time')[:10]
 
     return render(request, 'resources/resources.html', {'resources': resources})
 
 def resource(request, r_id):
-    resource = Resource.objects.get(id=r_id)
-    collect_count = ResourceCollect.objects.filter(resource=r_id).count()
-    return render(request, 'resources/resource.html', {'resource': resource, 'collect_count': collect_count})
+    resource = Resource.objects.annotate(collect_count=Count('collects')).get(id=r_id)
+    return render(request, 'resources/resource.html', {'resource': resource})
 
 # ajax - collect a resource
 def collect_resource(request):
@@ -66,20 +64,21 @@ def all_nodes(request):
     return render(request, 'resources/all_nodes.html', {'node_types': node_types})
 
 def node(request, n_id):
-    node = Node.objects.get(id=n_id)
-    follow_count = NodeFollow.objects.filter(node=n_id).count()
+    node = Node.objects.annotate(follow_count=Count('follows')).get(id=n_id)
+    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['type', 'time', 'popular'] else 'time'
 
-    resource_types = ResourceType.objects.filter(node=n_id)
-    for rt in resource_types:
-        rt.resources = Resource.objects.filter(node=n_id, type=rt.id).order_by('-create_time')
-        for r in rt.resources:
-            r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-
-    resources = Resource.objects.filter(node=n_id).order_by('-create_time')[:10]
-    for r in resources:
-        r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
-
-    return render(request, 'resources/node.html', {'node': node, 'resources': resources, 'resource_types': resource_types, 'follow_count': follow_count})
+    if mode == 'type':
+        resource_types = ResourceType.objects.filter(node=n_id)
+        for rt in resource_types:
+            rt.resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id, type=rt.id).order_by('-collect_count')[:10]
+        return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resource_types': resource_types})
+    elif mode in ['time', 'popular']:
+        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id)
+        if mode == 'time':
+            resources = resources.order_by('-create_time')[:10]
+        else:
+            resources = resources.order_by('-collect_count')[:10]
+        return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resources': resources})
 
 # ajax - follow a node
 def follow_node(request):
