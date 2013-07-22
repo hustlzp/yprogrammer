@@ -36,6 +36,7 @@
 
                {% if request.session.user  %}
                <ul class="nav pull-right">
+                  <!-- <li><a class='btn-add-resource' href="#"><i class='icon-plus'></i> 添加资源</a></li> -->
                   <li>
                      <a href="{% url 'user' request.session.user %}">
                         <img id='user-avatar' src="{{ request.session.user_avatar }}">{{ request.session.user }}
@@ -48,6 +49,8 @@
                      <a href="{% url 'signout' %}" title='Sign out'><i class='icon-off'></i></a>
                   </li>
                </ul>
+
+               <a class='btn btn-small pull-right btn-add-resource' href="#"><i class='icon-plus'></i> 添加资源</a>
                {% else %}
                <a href="https://github.com/login/oauth/authorize?client_id=7a68fc19935c680f8e2e&redirect_uri=http://localhost:8000/signin/github" class='btn pull-right' href=""><i class='icon-github'></i> GitHub 登录</a>
                {% endif %}
