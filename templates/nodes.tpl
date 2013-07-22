@@ -1,5 +1,39 @@
 {% load is_followed from resource_tags %}
 
+<script type="text/javascript">
+$(function(){
+   $('.btn-follow, .btn-disfollow').click(function(){
+      var n_id = $(this).data('node-id');
+      
+      if($(this).hasClass('btn-follow')){
+         var url = "{% url 'follow_node' %}";
+      } else {
+         var url = "{% url 'disfollow_node' %}";
+      }
+
+      var btn_follow = $(this);
+
+      $.ajax({
+         url: url,
+         method: 'POST',
+         data: { 'n_id': n_id },
+         success: function(result){
+            if(result === 'success'){
+               if($(btn_follow).hasClass('btn-follow')){
+                  $(btn_follow).parent().addClass('on');
+               } else {
+                  $(btn_follow).parent().removeClass('on');
+               }               
+            }
+            else if(result === 'unlogin'){
+               window.location = "{% url 'index' %}";
+            }
+         }
+      });
+   });
+});
+</script>
+
 {% for nt in node_types %}
 <div class='node-type-item clearfix'>
    <div class='node-type'>{{ nt.type }}</div>

@@ -9,72 +9,55 @@
 
 <script type="text/javascript">
 $(function(){
-   $('.btn-collect, .btn-discollect').click(function(){
+   // collect resource by Ajax
+   $('.btn-collect').click(function(){
       var r_id = $(this).data('resource-id');
-      
-      if($(this).hasClass('btn-collect')){
-         var url = "{% url 'collect_resource' %}";
-      } else {
-         var url = "{% url 'discollect_resource' %}";
-      }
-
+      var url = "{% url 'collect_resource' %}";
       var btn_collect = $(this);
 
-      $.ajax({
-         url: url,
-         method: 'POST',
-         data: { 'r_id': r_id },
-         success: function(result){
-            if(result === 'success'){
-               var collect_count = $(btn_collect).nextAll('.collect-count');
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_collect).nextAll('.collect-count');
+         $(btn_collect).parent().addClass('on');
+         collect_count.text(parseInt(collect_count.text()) + 1);
+      });
+   });
 
-               if($(btn_collect).hasClass('btn-collect')){
-                  $(btn_collect).parent().addClass('on');
-                  collect_count.text(parseInt(collect_count.text()) + 1);
-               } else {
-                  $(btn_collect).parent().removeClass('on');
-                  collect_count.text(parseInt(collect_count.text()) - 1);
-               }               
-            }
-            else if(result === 'unlogin'){
-               window.location = "{% url 'index' %}";
-            }
-         }
+   // discollect resource by Ajax
+   $('.btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'discollect_resource' %}";
+      var btn_discollect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_discollect).nextAll('.collect-count');
+         $(btn_discollect).parent().removeClass('on');
+         collect_count.text(parseInt(collect_count.text()) - 1);
       });
    });
    
-   // follow & disfollow a node
-   $('.btn-follow, .btn-disfollow').click(function(){
+   // follow node by Ajax
+   $('.btn-follow').click(function(){
       var n_id = $(this).data('node-id');
-      
-      if($(this).hasClass('btn-follow')){
-         var url = "{% url 'follow_node' %}";
-      } else {
-         var url = "{% url 'disfollow_node' %}";
-      }
-
+      var url = "{% url 'follow_node' %}";
       var btn_follow = $(this);
 
-      $.ajax({
-         url: url,
-         method: 'POST',
-         data: { 'n_id': n_id },
-         success: function(result){
-            if(result === 'success'){
-               var follow_count = $(btn_follow).nextAll('.follow-count')
+      ajax_follow_node(url, n_id, function(){
+         var follow_count = $(btn_follow).nextAll('.follow-count');
+         $(btn_follow).parent().addClass('on');
+         $(follow_count).text(parseInt($(follow_count).text()) + 1);
+      });
+   });
 
-               if($(btn_follow).hasClass('btn-follow')){
-                  $(btn_follow).parent().addClass('on');
-                  $(follow_count).text(parseInt($(follow_count).text()) + 1)
-               } else {
-                  $(btn_follow).parent().removeClass('on');
-                  $(follow_count).text(parseInt($(follow_count).text()) - 1)
-               }               
-            }
-            else if(result === 'unlogin'){
-               window.location = "{% url 'index' %}";
-            }
-         }
+   // disfollow node by Ajax
+   $('.btn-disfollow').click(function(){
+      var n_id = $(this).data('node-id');
+      var url = "{% url 'disfollow_node' %}";
+      var btn_disfollow = $(this);
+
+      ajax_follow_node(url, n_id, function(){
+         var follow_count = $(btn_disfollow).nextAll('.follow-count');
+         $(btn_disfollow).parent().removeClass('on');
+         $(follow_count).text(parseInt($(follow_count).text()) - 1);
       });
    });
 
@@ -95,7 +78,7 @@ $(function(){
          <a class='btn btn-small' href="#">类别</a>
       </div>
 
-      <!-- {% for rt in resource_types %}
+      {% for rt in resource_types %}
       <div class='rt-item'>
          <div class='rt-type'>{{ rt.type }}</div>
 
@@ -118,7 +101,7 @@ $(function(){
                <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
             </div>
 
-            <div class='btn-group collect-wap {% if r.is_collected %}on{% endif %}'>
+            <div class='btn-group collect-wap {% if r|is_collected:request.session.user_id %}on{% endif %}'>
                <a class="btn btn-mini btn-primary btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>
                <a class="btn btn-mini btn-collect" data-resource-id='{{ r.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
                <a class='btn btn-mini collect-count'>{{ r.collect_count }}</a>
@@ -126,8 +109,9 @@ $(function(){
          </div>
          {% endfor %}
       </div>
-      {% endfor %} -->
-      {% include 'resources.tpl' with resources=resources %}
+      {% endfor %}
+
+      <!-- {% include 'resources.tpl' with resources=resources %} -->
    </div>
 
    <div class="span4">
@@ -141,9 +125,14 @@ $(function(){
          <a class="btn btn-primary" href="#"><i class='icon-plus'></i> 添加资源</a>
       </div>
       
-      <div class="sidebar-header">
-         <h4></h4>
-      </div>
+<!--       <div class="sidebar-header">
+         <h4>类别</h4>
+         <ul class='resource-type-list'>
+            {% for rt in resource_types %}
+            <li><a href='#'>{{ rt.type }} {{ rt.resources|length }}</a></li>
+            {% endfor %}
+         </ul>
+      </div> -->
    </div>
 </div>
 

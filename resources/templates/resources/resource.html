@@ -8,37 +8,29 @@
 
 <script type="text/javascript">
 $(function(){
-   $('.btn-collect, .btn-discollect').click(function(){
+   // collect resource by Ajax
+   $('.btn-collect').click(function(){
       var r_id = $(this).data('resource-id');
-      
-      if($(this).hasClass('btn-collect')){
-         var url = "{% url 'collect_resource' %}";
-      } else {
-         var url = "{% url 'discollect_resource' %}";
-      }
-
+      var url = "{% url 'collect_resource' %}";
       var btn_collect = $(this);
 
-      $.ajax({
-         url: url,
-         method: 'POST',
-         data: { 'r_id': r_id },
-         success: function(result){
-            if(result === 'success'){
-               var collect_count = $(btn_collect).nextAll('.collect-count');
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_collect).nextAll('.collect-count');
+         $(btn_collect).parent().addClass('on');
+         collect_count.text(parseInt(collect_count.text()) + 1);
+      });
+   });
 
-               if($(btn_collect).hasClass('btn-collect')){
-                  $(btn_collect).parent().addClass('on');
-                  collect_count.text(parseInt(collect_count.text()) + 1);
-               } else {
-                  $(btn_collect).parent().removeClass('on');
-                  collect_count.text(parseInt(collect_count.text()) - 1);
-               }
-            }
-            else if(result === 'unlogin'){
-               window.location = "{% url 'index' %}";
-            }
-         }
+   // discollect resource by Ajax
+   $('.btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'discollect_resource' %}";
+      var btn_discollect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_discollect).nextAll('.collect-count');
+         $(btn_discollect).parent().removeClass('on');
+         collect_count.text(parseInt(collect_count.text()) - 1);
       });
    });
 
@@ -58,7 +50,6 @@ $(function(){
             <i class='icon-user'></i> <a href="{% url 'user' resource.creator.name %}">{{ resource.creator.name }}</a>
             <span class='divider'></span>
             <i class='icon-external-link-sign'></i> <a href="{{ resource.url }}" target="_blank">{{ resource.url }}</a>
-            <span class='divider'></span>
          </p>
       </div>
 

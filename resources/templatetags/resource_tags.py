@@ -3,6 +3,7 @@ from resources.models import NodeFollow, ResourceCollect
 
 register = template.Library()
 
+# check if a node is followed by the current user
 @register.filter
 def is_followed(node, user):
     """Check if a node is followed by a user."""
@@ -12,6 +13,7 @@ def is_followed(node, user):
     except NodeFollow.DoesNotExist:
         return False
 
+# check if a resource is collected by the current user
 @register.filter
 def is_collected(resource, user):
     """Check if a resource is collected by a user."""

@@ -7,59 +7,42 @@
 {% load is_collected from resource_tags %}
 
 <script type="text/javascript">
-
 $(function(){
-   $('.btn-collect, .btn-discollect').click(function(){
+   // collect resource by Ajax
+   $('.btn-collect').click(function(){
       var r_id = $(this).data('resource-id');
-      
-      if($(this).hasClass('btn-collect')){
-         var url = "{% url 'collect_resource' %}";
-      } else {
-         var url = "{% url 'discollect_resource' %}";
-      }
-
+      var url = "{% url 'collect_resource' %}";
       var btn_collect = $(this);
 
-      $.ajax({
-         url: url,
-         method: 'POST',
-         data: { 'r_id': r_id },
-         success: function(result){
-            if(result === 'success'){
-               if($(btn_collect).hasClass('btn-collect')){
-                  $(btn_collect).parent().addClass('on');
-               } else {
-                  $(btn_collect).parent().removeClass('on');
-               }
-            }
-         }
+      ajax_collect_resource(url, r_id, function(){
+         $(btn_collect).parent().addClass('on');
       });
    });
 
-   // disfollow node
+   // discollect resource by Ajax
+   $('.btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'discollect_resource' %}";
+      var btn_discollect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         $(btn_discollect).parent().removeClass('on');
+      });
+   });
+
+   // disfollow node by Ajax
    $('.btn-disfollow').click(function(){
       var n_id = $(this).data('node-id');
       var url = "{% url 'disfollow_node' %}";
-      var btn_follow = $(this);
+      var btn_disfollow = $(this);
 
-      $.ajax({
-         url: url,
-         method: 'POST',
-         data: { 'n_id': n_id },
-         success: function(result){
-            if(result === 'success'){
-               $(btn_follow).parents('.node-item').hide('fast', function(){
-                  $(this).detach()
-               });
-            }
-            else if(result === 'unlogin'){
-               window.location = "{% url 'index' %}";
-            }
-         }
+      ajax_follow_node(url, n_id, function(){
+         $(btn_disfollow).parents('.node-item').hide('fast', function(){
+            $(this).detach()
+         });
       });
    });
 });
-
 </script>
 
 <div class="row">

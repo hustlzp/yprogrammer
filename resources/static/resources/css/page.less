@@ -445,13 +445,43 @@ body{
         }
     }
 
-    .follow-container{
-        .btn-follow{ display: inline-block; }
-        .btn-disfollow{ display: none }
+    .btn-toolbar{
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #eee;
 
-        &.on{
-            .btn-follow{ display: none; }
-            .btn-disfollow{ display: inline-block; }
+        .follow-container{
+            .btn-follow{ display: inline-block; }
+            .btn-disfollow{ display: none }
+
+            &.on{
+                .btn-follow{ display: none; }
+                .btn-disfollow{ display: inline-block; }
+            }
+        }
+    }
+
+    .resource-type-list{
+        list-style-type: none;
+        margin: 15px 0;
+
+        li{
+            display: inline-block;
+            margin: 0 5px 10px 0;
+
+            a{
+                display: inline-block;
+                padding: 2px 10px;
+
+                background-color: #ddd;
+                color: #555;
+                font-size: 12px;
+                text-decoration: none;
+
+                &:hover{
+                    background-color: #ccc;
+                }
+            }
         }
     }
 }

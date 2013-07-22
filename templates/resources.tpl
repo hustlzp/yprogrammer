@@ -1,5 +1,35 @@
 {% load is_collected from resource_tags %}
 
+<script type="text/javascript">
+$(function(){
+   // collect resource by Ajax
+   $('.btn-collect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'collect_resource' %}";
+      var btn_collect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_collect).nextAll('.collect-count');
+         $(btn_collect).parent().addClass('on');
+         collect_count.text(parseInt(collect_count.text()) + 1);
+      });
+   });
+
+   // discollect resource by Ajax
+   $('.btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'discollect_resource' %}";
+      var btn_discollect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_discollect).nextAll('.collect-count');
+         $(btn_discollect).parent().removeClass('on');
+         collect_count.text(parseInt(collect_count.text()) - 1);
+      });
+   });
+});
+</script>
+
 {% for r in resources %}
 <div class='res-item'>
    <div class="res-header">

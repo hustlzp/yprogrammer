@@ -4,45 +4,6 @@
 {% block page_title %}Resources{% endblock %}
 {% block body %}
 
-<script type="text/javascript">
-$(function(){
-   $('.btn-collect, .btn-discollect').click(function(){
-      var r_id = $(this).data('resource-id');
-      
-      if($(this).hasClass('btn-collect')){
-         var url = "{% url 'collect_resource' %}";
-      } else {
-         var url = "{% url 'discollect_resource' %}";
-      }
-
-      var btn_collect = $(this);
-
-      $.ajax({
-         url: url,
-         method: 'POST',
-         data: { 'r_id': r_id },
-         success: function(result){
-            if(result === 'success'){
-               var collect_count = $(btn_collect).nextAll('.collect-count');
-
-               if($(btn_collect).hasClass('btn-collect')){
-                  $(btn_collect).parent().addClass('on');
-                  collect_count.text(parseInt(collect_count.text()) + 1);
-               } else {
-                  $(btn_collect).parent().removeClass('on');
-                  collect_count.text(parseInt(collect_count.text()) - 1);
-               }
-            }
-            else if(result === 'unlogin'){
-               window.location = "{% url 'index' %}";
-            }
-         }
-      });
-   });
-
-});
-</script>
-
 <div class="row">
    <div class="span8">
       <div class="page-header">

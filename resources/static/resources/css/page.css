@@ -56,10 +56,11 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-node .node-image{height:60px}
 #page-node .display-mode{margin-bottom:22px}
 #page-node .rt-item{position:relative}#page-node .rt-item .rt-type{font-size:12px;line-height:12px;margin:0 15px 0 0;font-family:Telex,'宋体';position:absolute;top:0;right:620px;display:block;text-align:right;white-space:nowrap;margin-right:15px;padding:3px 5px;background-color:#da532c;color:#fff}
-#page-node .follow-container .btn-follow{display:inline-block}
-#page-node .follow-container .btn-disfollow{display:none}
-#page-node .follow-container.on .btn-follow{display:none}
-#page-node .follow-container.on .btn-disfollow{display:inline-block}
+#page-node .btn-toolbar{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #eee}#page-node .btn-toolbar .follow-container .btn-follow{display:inline-block}
+#page-node .btn-toolbar .follow-container .btn-disfollow{display:none}
+#page-node .btn-toolbar .follow-container.on .btn-follow{display:none}
+#page-node .btn-toolbar .follow-container.on .btn-disfollow{display:inline-block}
+#page-node .resource-type-list{list-style-type:none;margin:15px 0}#page-node .resource-type-list li{display:inline-block;margin:0 5px 10px 0}#page-node .resource-type-list li a{display:inline-block;padding:2px 10px;background-color:#ddd;color:#555;font-size:12px;text-decoration:none}#page-node .resource-type-list li a:hover{background-color:#ccc}
 #page-resource .collect-container .btn-collect{display:inline-block}
 #page-resource .collect-container .btn-discollect{display:none}
 #page-resource .collect-container.on .btn-collect{display:none}

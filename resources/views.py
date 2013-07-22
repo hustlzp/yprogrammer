@@ -9,7 +9,8 @@ def resources(request):
     if not 'user' in request.session:
         resources = Resource.objects.all().order_by('-create_time')[:10]
     else:
-        resources = Resource.objects.all().order_by('-create_time')[:10]
+        followed_nodes = NodeFollow.objects.filter(user=request.session['user_id']).values('node')
+        resources = Resource.objects.filter(node__in=followed_nodes).order_by('-create_time')[:10]
         for r in resources:
             r.collect_count = ResourceCollect.objects.filter(resource=r.id).count()
 
@@ -44,8 +45,7 @@ def discollect_resource(request):
         if not 'user' in request.session:
             return HttpResponse('unlogin')
 
-        r_id = request.POST['r_id']
-        rc = ResourceCollect.objects.filter(user=request.session['user_id'], resource=r_id)
+        rc = ResourceCollect.objects.filter(user=request.session['user_id'], resource=request.POST['r_id'])
         if rc.count() > 0:
             rc.delete()
         
@@ -55,8 +55,7 @@ def my_nodes(request):
     if not 'user_id' in request.session:
         return redirect('all_nodes')
         
-    user_id = request.session['user_id']
-    node_follows = NodeFollow.objects.filter(user=user_id)
+    node_follows = NodeFollow.objects.filter(user=request.session['user_id'])
     for nf in node_follows:
         nf.resources = Resource.objects.filter(node=nf.node.id).order_by('-create_time')[:3]
 
