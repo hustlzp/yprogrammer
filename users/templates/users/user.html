@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block page_id %}page-user{% endblock %}
+{% block page_title %}{{ user.name }}{% endblock %}
+{% block body %}
+
+{% load is_collected from resource_tags %}
+
+<script type="text/javascript">
+$(function(){
+   // collect resource by Ajax
+   $('.btn-collect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'collect_resource' %}";
+      var btn_collect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_collect).nextAll('.collect-count');
+         $(btn_collect).parent().addClass('on');
+         collect_count.text(parseInt(collect_count.text()) + 1);
+      });
+   });
+
+   // discollect resource by Ajax
+   $('.btn-discollect').click(function(){
+      var r_id = $(this).data('resource-id');
+      var url = "{% url 'discollect_resource' %}";
+      var btn_discollect = $(this);
+
+      ajax_collect_resource(url, r_id, function(){
+         var collect_count = $(btn_discollect).nextAll('.collect-count');
+         $(btn_discollect).parent().removeClass('on');
+         collect_count.text(parseInt(collect_count.text()) - 1);
+      });
+   });
+
+});
+</script>
+
+<div class="row">
+    <div class='span8'>
+        <div class="media">
+          <a class="pull-left" href="#">
+            <img class="media-object user-avatar" src="{{ user.avatar_url }}">
+          </a>
+          
+          <div class="media-body">
+            <h4 class="media-heading user-name">{{ user.name }}</h4>
+
+            <div>
+                <span class='meta-item' title='GitHub'><i class='icon-github-sign'></i> <a href='https://github.com/{{ user.name }}' target='_blank'>{{ user.name }}</a></span>
+                <span class='meta-item' title='Blog'><i class='icon-bold'></i> <a href="{{ user.blog }}" target='_blank'>{{ user.blog }}</a></span>
+                <span class='meta-item'>共收到 <b>23</b> 次感谢</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav nav-tabs">
+            <li class="{% if mode == 'share' %}active{% endif %}"><a href="{% url 'user' user.name %}?mode=share">分享</a></li>
+            <li class="{% if mode == 'collect' %}active{% endif %}"><a href="{% url 'user' user.name %}?mode=collect">收藏</a></li>
+        </ul>
+
+        {% include 'resources.tpl' with resources=resources %}
+
+    </div>
+
+</div>
+
+{% endblock %}

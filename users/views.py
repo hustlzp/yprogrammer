@@ -2,6 +2,7 @@
 import requests
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.db.models import Count
 from users.models import User
 from resources.models import Node, NodeFollow, NodeType, Resource, ResourceCollect
 from forms import UserForm
@@ -71,7 +72,15 @@ def init_follow_nodes(request):
     return render(request, 'users/init_follow_nodes.html', {'node_types': node_types})    
 
 def user(request, username):
-    pass
+    user = User.objects.get(name=username)
+    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['share', 'collect'] else 'share'
+
+    if mode == 'share':
+        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(creator=user.id).order_by('-create_time')[:10]
+    else:
+        collect_list = ResourceCollect.objects.filter(user=user.id).values('resource')
+        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(id__in=collect_list).order_by('-create_time')[:10]
+    return render(request, 'users/user.html', {'user': user, 'mode': mode, 'resources': resources})
 
 def user_nav(request):
     user_id = request.session['user_id']
