@@ -71,6 +71,8 @@ def init_follow_nodes(request):
             n.is_followed = False
     return render(request, 'users/init_follow_nodes.html', {'node_types': node_types})    
 
+# page user profile
+#-----------------------------------------------#
 def user(request, username):
     user = User.objects.get(name=username)
     mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['share', 'collect'] else 'share'

@@ -58,10 +58,11 @@ $(function(){
 
 <div class='nav-node-list'>
    {% for n in nodes %}
-   <div class='n-item clearfix' data-order='{{ n.order }}'>
+   <div class='n-item clearfix' data-order='{{ n.node.order }}'>
       <div class='n-title'>
          <a href="{% url 'node' n.node.id %}">{{ n.node.title }}</a>
       </div>
+
       <ul class='res-list'>
          {% for r in n.resources %}
          <li class='r-item' data-order='{{ r.order }}'>
@@ -70,8 +71,75 @@ $(function(){
          </li>
          {% endfor %}
       </ul>
+
+      <a class='btn btn-mini btn-add-resource' data-node-id="{{ n.node.id }}" data-node="{{ n.node.title }}" href="#"><i class='icon-plus'></i></a>
    </div>
    {% endfor %}
 </div>
+
+<div id="modal-add-resource" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">添加资源</h3>
+   </div>
+   <form method='post' action="{% url 'add_resource' %}">
+      {% csrf_token %}
+      <div class="modal-body">
+         <input type='text' name='url' placeholder='URL' />
+         <input type='text' name='title' placeholder='标题' />
+         <input type='text' name='desc' placeholder='描述' />
+
+         <div>
+            <span class='uneditable-input-node'></span>
+            <input type='hidden' name='node' />
+            <span class='select-divider'>/</span> 
+            <select name='type'></select>
+            <a href="#">添加类别</a>
+         </div>
+
+      </div>
+      <div class="modal-footer">
+         <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+         <button class="btn btn-primary" type='submit'>添加</button>
+      </div>
+   </form>
+</div>
+
+<script type="text/javascript">
+$(function(){
+   var nodes = [];
+
+   // get resource types of followed nodes
+   $.ajax({
+      url: "{% url 'get_resource_types_by_followed_nodes'%}",
+      type: 'POST',
+      dataType: 'json',
+      success: function(result){
+         nodes = result;
+      }
+   });
+
+   // add types to select tag
+   $('.btn-add-resource').click(function(){
+      var node_id = $(this).data('node-id');
+      var node = $(this).data('node');
+
+      $("#modal-add-resource input[name='node']").val(node_id);
+      $('#modal-add-resource .uneditable-input-node').text(node);
+
+      $.each(nodes, function(index, node){
+         if(node.id == node_id){
+            var select_types = $("#modal-add-resource select[name='type']");
+            $(select_types).empty();
+            $.each(node.types, function(index, type){
+               $(select_types).append("<option value=" + type.id + ">" + type.type + "</option>");
+            });
+         }
+      });
+
+      $('#modal-add-resource').modal();
+   });
+})
+</script>
 
 {% endblock %}

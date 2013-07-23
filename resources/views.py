@@ -103,3 +103,34 @@ def disfollow_node(request):
     if nf.count() > 0:
         nf.delete()
     return HttpResponse('success')
+
+def add_resource(request):
+    u_id = request.session['user_id']
+    user = User.objects.get(id=u_id)
+    node = Node.objects.get(id=request.POST['node'])
+    res_type = ResourceType.objects.get(id=request.POST['type'])
+    res = Resource.objects.create(node=node, creator=user, title=request.POST['title'], type=res_type, url=request.POST['url'], desc=request.POST['desc'])
+
+    # collect it
+    if ResourceCollect.objects.filter(user=u_id, resource=res.id).count() == 0:
+        ResourceCollect.objects.create(user=user, resource=res)
+
+    # follow relative node
+    if NodeFollow.objects.filter(user=u_id, node=node.id).count() == 0:
+        NodeFollow.objects.create(user=user, node=node)
+
+    return redirect(request.META['HTTP_REFERER'])
+
+# ajax - get resource types by node
+def get_resource_types_by_node(request):
+    n_id = request.POST['n_id']
+    types = ResourceType.objects.filter(node=n_id).values('id', 'type')
+    return HttpResponse(json.dumps(list(types)))
+
+# ajax - get resource types by followed nodes
+def get_resource_types_by_followed_nodes(request):
+    follow_list = NodeFollow.objects.filter(user=request.session['user_id']).values('node')
+    nodes = Node.objects.filter(id__in=follow_list).values('id').order_by('type')
+    for n in nodes:
+        n['types'] = list(ResourceType.objects.filter(node=n['id']).values('id', 'type'))
+    return HttpResponse(json.dumps(list(nodes)))

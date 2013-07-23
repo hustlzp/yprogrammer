@@ -16,6 +16,22 @@
    </head>
 
    <body id="{% block page_id %}{% endblock %}">
+      <script type="text/javascript">
+      function csrfSafeMethod(method) {
+         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+      
+      // on each XMLHttpRequest, set a custom X-CSRFToken header to the value of the CSRF token.
+      $.ajaxSetup({
+         crossDomain: false, // obviates need for sameOrigin test
+         beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+               xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+            }
+         }
+      });
+      </script>
+
       <div class="navbar navbar-inverse">
          <div class="navbar-inner">
             <div class="container">
@@ -50,7 +66,77 @@
                   </li>
                </ul>
 
-               <a class='btn btn-small pull-right btn-add-resource' href="#"><i class='icon-plus'></i> 添加资源</a>
+<!--                <a class='btn btn-small pull-right btn-add-resource' href="#"><i class='icon-plus'></i> 添加资源</a>
+               <div id="modal-add-resource" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                     <h3 id="myModalLabel">添加资源</h3>
+                  </div>
+                  <form method='post' action="{% url 'add_resource' %}">
+                     {% csrf_token %}
+                     <div class="modal-body">
+                        <input type='text' name='url' placeholder='URL' />
+                        <input type='text' name='title' placeholder='标题' />
+                        <input type='text' name='desc' placeholder='描述' />
+
+                        <div>
+                           <select name='node'></select>
+                           <span class='select-divider'>/</span> 
+                           <select name='type'></select>
+                           <a href="#">添加类别</a>
+                        </div>
+
+                     </div>
+                     <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                        <button class="btn btn-primary" type='submit'>添加</button>
+                     </div>
+                  </form>
+               </div> -->
+               <script type="text/javascript">
+               // $(function(){
+               //    var nodes = [];
+               //    var select_nodes = $("#modal-add-resource select[name='node']");
+               //    var select_types = $("#modal-add-resource select[name='type']");
+
+               //    $('.btn-add-resource').click(function(){
+               //       $.ajax({
+               //          url: "",
+               //          type: 'POST',
+               //          dataType: 'json',
+               //          success: function(result){
+               //             nodes = result;
+               //             $(select_nodes).empty();
+               //             $.each(nodes, function(index, node){
+               //                $(select_nodes).append("<option value=" + node.id + ">" + node.title + "</option>");
+
+               //                if(index == 0){
+               //                   $(select_types).empty();
+               //                   $.each(node.types, function(index, type){
+               //                      $(select_types).append("<option value=" + type.id + ">" + type.type + "</option>");
+               //                   });
+               //                }
+               //             });
+               //          }
+               //       });
+                     
+               //       $(select_nodes).change(function(){
+               //          var node_id = $(this)[0].options[$(this)[0].selectedIndex].value;
+
+               //          $.each(nodes, function(index, node){
+               //             if(node.id == node_id){
+               //                $(select_types).empty();
+               //                $.each(node.types, function(index, type){
+               //                   $(select_types).append("<option value=" + type.id + ">" + type.type + "</option>");
+               //                });
+               //             }
+               //          });
+               //       });
+                     
+               //       $('#modal-add-resource').modal();
+               //    });
+               // })
+               </script>
                {% else %}
                <a href="https://github.com/login/oauth/authorize?client_id=7a68fc19935c680f8e2e&redirect_uri=http://localhost:8000/signin/github" class='btn pull-right' href=""><i class='icon-github'></i> GitHub 登录</a>
                {% endif %}
@@ -76,23 +162,5 @@
             </ul>
          </div>
       </div>
-
-      <script type="text/javascript">
-      // on each XMLHttpRequest, set a custom X-CSRFToken header to the value of the CSRF token.
-      $(function(){
-         function csrfSafeMethod(method) {
-            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-         }
-
-         $.ajaxSetup({
-            crossDomain: false, // obviates need for sameOrigin test
-            beforeSend: function(xhr, settings) {
-               if (!csrfSafeMethod(settings.type)) {
-                  xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
-               }
-            }
-         });         
-      });
-      </script>
    </body>
 </html>
