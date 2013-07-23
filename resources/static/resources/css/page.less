@@ -61,7 +61,6 @@ body{
     }
 
     input[type='text']{
-        clear: both;
         width: 100%;
         box-sizing: border-box;
         height: 32px;
@@ -78,12 +77,13 @@ body{
 #modal-add-resource{
     select{
         width: 150px;
+        box-sizing: border-box;
         margin-right: 10px;
     }
 
     .select-divider{
         margin-right: 10px;
-        font-size: 20px;
+        font-size: 24px;
         color: #999;
     }
 
@@ -91,11 +91,34 @@ body{
         display: inline-block;
         height: 20px;
         margin-bottom: 10px;
-        margin-right: 8px;
+        margin-right: 6px;
         font-size: 14px;
         line-height: 20px;
         color: #555555;
         vertical-align: middle;
+    }
+
+    .add-type-wap{
+        display: none;
+    }
+
+    input.input-new-type{
+        width: 150px;
+        margin-bottom: 10px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .btn-show-add,
+    .btn-add-type,
+    .btn-cancel-add{
+        margin-bottom: 10px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .btn-add-type{
+        margin-right: 5px;
     }
 }
 

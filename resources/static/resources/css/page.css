@@ -4,11 +4,15 @@ body .navbar .btn-add-resource{margin-right:10px;margin-top:12px}
 body #footer{position:absolute;left:0;bottom:0;height:2.2em;z-index:10;text-align:center;font-size:12px;font-family:'微软雅黑';width:100%;color:#666}body #footer .container #copyright{float:left}
 body #footer .container #links{float:right;margin:0;list-style-type:none}body #footer .container #links li{display:inline-block;margin-right:10px}
 .modal form{margin:0}
-.modal input[type='text']{clear:both;width:100%;box-sizing:border-box;height:32px;margin-bottom:15px;box-shadow:none}
+.modal input[type='text']{width:100%;box-sizing:border-box;height:32px;margin-bottom:15px;box-shadow:none}
 .modal .close{color:#fff;opacity:.6}
-#modal-add-resource select{width:150px;margin-right:10px}
-#modal-add-resource .select-divider{margin-right:10px;font-size:20px;color:#999}
-#modal-add-resource span.uneditable-input-node{display:inline-block;height:20px;margin-bottom:10px;margin-right:8px;font-size:14px;line-height:20px;color:#555;vertical-align:middle}
+#modal-add-resource select{width:150px;box-sizing:border-box;margin-right:10px}
+#modal-add-resource .select-divider{margin-right:10px;font-size:24px;color:#999}
+#modal-add-resource span.uneditable-input-node{display:inline-block;height:20px;margin-bottom:10px;margin-right:6px;font-size:14px;line-height:20px;color:#555;vertical-align:middle}
+#modal-add-resource .add-type-wap{display:none}
+#modal-add-resource input.input-new-type{width:150px;margin-bottom:10px;height:30px;margin-right:10px}
+#modal-add-resource .btn-show-add,#modal-add-resource .btn-add-type,#modal-add-resource .btn-cancel-add{margin-bottom:10px;display:inline-block;vertical-align:middle}
+#modal-add-resource .btn-add-type{margin-right:5px}
 .errorlist{margin:10px 0;list-style-type:square;color:#f00;list-style-position:inside}
 .span4{width:280px;margin-left:40px}
 .page-header{position:relative}.page-header .corner{position:absolute;top:0;right:0;margin:0}

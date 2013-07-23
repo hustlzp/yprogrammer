@@ -82,24 +82,34 @@ $(function(){
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">添加资源</h3>
    </div>
+
    <form method='post' action="{% url 'add_resource' %}">
       {% csrf_token %}
       <div class="modal-body">
-         <input type='text' name='url' placeholder='URL' />
-         <input type='text' name='title' placeholder='标题' />
-         <input type='text' name='desc' placeholder='描述' />
+         <input type='text' name='url' placeholder='url' />
+         <input type='text' name='title' placeholder='title' />
+         <input type='text' name='desc' placeholder='descrition' />
 
          <div>
             <span class='uneditable-input-node'></span>
             <input type='hidden' name='node' />
-            <span class='select-divider'>/</span> 
-            <select name='type'></select>
-            <a href="#">添加类别</a>
-         </div>
+            <span class='select-divider'>/</span>
 
+            <span class='select-type-wap'>
+               <select name='type'></select>
+               <a href="#" class='btn-show-add'><i class='icon-plus'></i> 添加分类</a>
+            </span>
+
+            <span class='add-type-wap'>
+               <input class='input-new-type' type='text' placeholder='输入分类名称' />
+               <a href="#" class='btn-add-type'>添加</a>
+               <a href="#" class='btn-cancel-add'>取消</a>
+            </span>
+         </div>
       </div>
+
       <div class="modal-footer">
-         <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+         <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button> -->
          <button class="btn btn-primary" type='submit'>添加</button>
       </div>
    </form>
@@ -138,6 +148,17 @@ $(function(){
       });
 
       $('#modal-add-resource').modal();
+      $("#modal-add-resource input[name='url']").focus();
+   });
+
+   $('.btn-show-add').click(function(){
+      $('.select-type-wap').hide();
+      $('.add-type-wap').show();
+   });
+
+   $('.btn-cancel-add').click(function(){
+      $('.select-type-wap').show();
+      $('.add-type-wap').hide();
    });
 })
 </script>
