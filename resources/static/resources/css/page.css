@@ -11,8 +11,8 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #modal-add-resource span.uneditable-input-node{display:inline-block;height:20px;margin-bottom:10px;margin-right:6px;font-size:14px;line-height:20px;color:#555;vertical-align:middle}
 #modal-add-resource .add-type-wap{display:none}
 #modal-add-resource input.input-new-type{width:150px;margin-bottom:10px;height:30px;margin-right:10px}
-#modal-add-resource .btn-show-add,#modal-add-resource .btn-add-type,#modal-add-resource .btn-cancel-add{margin-bottom:10px;display:inline-block;vertical-align:middle}
-#modal-add-resource .btn-add-type{margin-right:5px}
+#modal-add-resource .btn-show-add,#modal-add-resource .btn-submit-type,#modal-add-resource .btn-cancel-add{margin-bottom:10px;display:inline-block;vertical-align:middle}
+#modal-add-resource .btn-submit-type{margin-right:5px}
 .errorlist{margin:10px 0;list-style-type:square;color:#f00;list-style-position:inside}
 .span4{width:280px;margin-left:40px}
 .page-header{position:relative}.page-header .corner{position:absolute;top:0;right:0;margin:0}
@@ -54,7 +54,7 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-my-nodes .node-item .r-item .collect-wap.on .btn-collect{display:none}
 #page-my-nodes .node-item .r-item .collect-wap.on .btn-discollect{display:inline-block}
 #page-my-nodes .node-item .r-item:hover .collect-wap .btn-collect{visibility:visible}
-.node-type-item{margin-bottom:20px}.node-type-item .node-type{font-size:20px;margin-bottom:15px;width:130px;float:left}
+.node-type-item{margin-bottom:20px}.node-type-item .node-type{font-size:18px;margin-bottom:15px;width:130px;float:left;padding-top:5px}
 .node-type-item ul{width:830px;margin:0;float:left;list-style-type:none;font-size:0}.node-type-item ul li{display:inline-block;vertical-align:top;padding:10px 15px 10px 10px;margin:0 15px 15px 0;box-sizing:border-box;width:260px;font-size:14px;position:relative;border:1px solid #eaeaea}.node-type-item ul li .media-body{margin-top:2px}.node-type-item ul li .media-body h4{font-size:16px}
 .node-type-item ul li .media-body .node-desc{margin-bottom:0;font-size:13px}
 .node-type-item ul li img{width:45px;height:45px}

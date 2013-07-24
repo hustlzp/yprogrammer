@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     # resource types
     url(r'^resource/get_types_by_followed_nodes', views.get_resource_types_by_followed_nodes, name='get_resource_types_by_followed_nodes'),
     url(r'^resource/get_types_by_node/$', views.get_resource_types_by_node, name='get_resource_types_by_node'),
+    url(r'^resource/add_type/$', views.add_resource_type, name='add_resource_type'),
 
     # node
     url(r'^nodes/$', views.my_nodes, name='my_nodes'),

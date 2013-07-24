@@ -119,7 +119,12 @@ def add_resource(request):
     if NodeFollow.objects.filter(user=u_id, node=node.id).count() == 0:
         NodeFollow.objects.create(user=user, node=node)
 
-    return redirect(request.META['HTTP_REFERER'])
+    return HttpResponse('success')
+
+def add_resource_type(request):
+    node = Node.objects.get(id=request.POST['n_id'])
+    type_id = ResourceType.objects.create(node=node, type=request.POST['type']).id
+    return HttpResponse(type_id)
 
 # ajax - get resource types by node
 def get_resource_types_by_node(request):

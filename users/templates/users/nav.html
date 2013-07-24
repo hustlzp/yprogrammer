@@ -29,20 +29,20 @@
 
 <script type="text/javascript" src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
 <script type="text/javascript">
-$(function(){
-   $(".nav-node-list").sortable({
-      placeholder: "node-placeholder",
-      forcePlaceholderSize: true,
-      scroll: false
-   });
-   $(".nav-node-list").disableSelection();
+// $(function(){
+//    $(".nav-node-list").sortable({
+//       placeholder: "node-placeholder",
+//       forcePlaceholderSize: true,
+//       scroll: false
+//    });
+//    $(".nav-node-list").disableSelection();
 
-   $(".res-list").sortable({
-      placeholder: "res-placeholder",
-      forcePlaceholderSize: true
-   });
-   $(".res-list").disableSelection();
-});
+//    $(".res-list").sortable({
+//       placeholder: "res-placeholder",
+//       forcePlaceholderSize: true
+//    });
+//    $(".res-list").disableSelection();
+// });
 </script>
 
 <div id='google-doodle-wap'>
@@ -83,9 +83,9 @@ $(function(){
       <h3 id="myModalLabel">添加资源</h3>
    </div>
 
-   <form method='post' action="{% url 'add_resource' %}">
-      {% csrf_token %}
+   <form>
       <div class="modal-body">
+         <!-- <p>你所分享的资源，将会推送给所有关注此节点的用户</p> -->
          <input type='text' name='url' placeholder='url' />
          <input type='text' name='title' placeholder='title' />
          <input type='text' name='desc' placeholder='descrition' />
@@ -102,15 +102,14 @@ $(function(){
 
             <span class='add-type-wap'>
                <input class='input-new-type' type='text' placeholder='输入分类名称' />
-               <a href="#" class='btn-add-type'>添加</a>
+               <a href="#" class='btn-submit-type'>添加</a>
                <a href="#" class='btn-cancel-add'>取消</a>
             </span>
          </div>
       </div>
 
       <div class="modal-footer">
-         <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button> -->
-         <button class="btn btn-primary" type='submit'>添加</button>
+         <button class="btn btn-primary btn-submit-resource">添加</button>
       </div>
    </form>
 </div>
@@ -118,6 +117,7 @@ $(function(){
 <script type="text/javascript">
 $(function(){
    var nodes = [];
+   var res_list = null;
 
    // get resource types of followed nodes
    $.ajax({
@@ -134,8 +134,10 @@ $(function(){
       var node_id = $(this).data('node-id');
       var node = $(this).data('node');
 
-      $("#modal-add-resource input[name='node']").val(node_id);
-      $('#modal-add-resource .uneditable-input-node').text(node);
+      res_list = $(this).parent().find('.res-list').first();
+
+      $("input[name='node']").val(node_id);
+      $('span.uneditable-input-node').text(node);
 
       $.each(nodes, function(index, node){
          if(node.id == node_id){
@@ -151,9 +153,64 @@ $(function(){
       $("#modal-add-resource input[name='url']").focus();
    });
 
+   $('.btn-submit-resource').click(function(){
+      var url = $("#modal-add-resource input[name='url']").val();
+      var title = $("#modal-add-resource input[name='title']").val();
+      var desc = $("#modal-add-resource input[name='desc']").val();
+      var node = $("#modal-add-resource input[name='node']").val();
+      var type = $("#modal-add-resource select[name='type']").val();
+
+      $.ajax({
+         url: "{% url 'add_resource' %}",
+         type: 'POST',
+         data: {
+            'url': url,
+            'title': title,
+            'desc': desc,
+            'node': node,
+            'type': type
+         },
+         success: function(result){
+            if(result === 'success'){
+               $('#modal-add-resource input').val('');
+               $('#modal-add-resource').modal('hide');
+
+               $(res_list).append(
+                  "<li class='r-item'>"
+                  + "<img class='r-favicon' src='http://g.etfv.co/" + url + "'> "
+                  + "<a href='" + url + "' title='" + type + " / " + title + "' target='_blank'>" + title + "</a></li>");
+            }
+         }
+      });
+
+      return false;
+   });
+
    $('.btn-show-add').click(function(){
       $('.select-type-wap').hide();
       $('.add-type-wap').show();
+   });
+
+   $('.btn-submit-type').click(function(){
+      var n_id = $("input[name='node']").val();
+      var type = $("input.input-new-type").val();
+
+      $.ajax({
+         url: "{% url 'add_resource_type' %}",
+         type: 'POST',
+         data: {
+            'n_id': n_id,
+            'type': type
+         },
+         success: function(result){
+            var type_id = result;
+
+            $("input[name='input-new-type']").val('');
+            $('.select-type-wap').show();
+            $('.add-type-wap').hide();
+            $("select[name='type']").prepend("<option value=" + type_id + ">" + type + "</option>");
+         }
+      });
    });
 
    $('.btn-cancel-add').click(function(){
