@@ -4,7 +4,7 @@
 {% block page_title %}Nodes{% endblock %}
 {% block body %}
 
-{% load is_collected from resource_tags %}
+{% load resource_tags %}
 
 <script type="text/javascript">
 $(function(){
@@ -65,7 +65,7 @@ $(function(){
                   <a href='{{ r.url }}' class='r-title' target='_blank'>{{ r.title }}</a
                   ><small>
                      <span class='r-desc'>{{ r.desc }}</span>
-                     <span class='r-time'>36分钟前</span>
+                     <span class='r-time'>{{ r.create_time|ago }}前</span>
 
                      <div class='collect-wap {% if r|is_collected:request.session.user_id %}on{% endif %}'>
                         <a class="btn-discollect" data-resource-id='{{ r.id }}' title='取消导航'><i class='icon-bookmark'></i></a>

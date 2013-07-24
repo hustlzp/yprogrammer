@@ -193,7 +193,13 @@ $(function(){
 
    $('.btn-submit-type').click(function(){
       var n_id = $("input[name='node']").val();
-      var type = $("input.input-new-type").val();
+      var type = $.trim($("input.input-new-type").val());
+
+      if(type === ''){
+         $('.select-type-wap').show();
+         $('.add-type-wap').hide();
+          return;
+      }
 
       $.ajax({
          url: "{% url 'add_resource_type' %}",

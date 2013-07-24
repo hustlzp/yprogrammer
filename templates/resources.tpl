@@ -1,4 +1,4 @@
-{% load is_collected from resource_tags %}
+{% load resource_tags %}
 
 {% for r in resources %}
 <div class='res-item'>
@@ -15,10 +15,10 @@
       <span class='meta-item'>
          <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
       </span>
-      <span class='meta-item'>
+<!--       <span class='meta-item'>
          <i class='icon-comment-alt'></i> <a href="{% url 'resource' r.id %}">8评论</a>
-      </span>
-      <span class='meta-item'>36分钟前</span>
+      </span> -->
+      <span class='meta-item'>{{ r.create_time|ago }}前</span>
       <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span>
       <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
    </div>

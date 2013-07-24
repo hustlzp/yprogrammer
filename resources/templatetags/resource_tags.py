@@ -1,5 +1,7 @@
+#-*- coding: UTF-8 -*-
 from django import template
 from resources.models import NodeFollow, ResourceCollect
+from django.utils.timesince import timesince
 
 register = template.Library()
 
@@ -16,3 +18,8 @@ def is_collected(resource, user):
     """Check if a resource is collected by a user."""
     collect_count = ResourceCollect.objects.filter(resource=resource, user=user).count()
     return True if collect_count >= 1 else False
+
+@register.filter
+def ago(date):
+    ago = timesince(date)
+    return ago.split(",")[0].replace(' ', '')
