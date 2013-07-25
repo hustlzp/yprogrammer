@@ -19,7 +19,7 @@
          <i class='icon-comment-alt'></i> <a href="{% url 'resource' r.id %}">8评论</a>
       </span> -->
       <span class='meta-item'>{{ r.create_time|ago }}前</span>
-      <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span>
+      <!-- <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span> -->
       <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
    </div>
 

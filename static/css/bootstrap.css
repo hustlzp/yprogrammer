@@ -5212,13 +5212,7 @@ input[type="submit"].btn.btn-mini {
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.3);
   *border: 1px solid #999;
-/*  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;*/
   outline: none;
-/*  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);*/
   box-shadow: 0 0 0 10px rgba(34,34,34,.3);
   -webkit-background-clip: padding-box;
      -moz-background-clip: padding-box;
@@ -5244,7 +5238,6 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal-header .close {
-  /*margin-top: 2px;*/
 }
 
 .modal-header h3 {
@@ -5257,10 +5250,10 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal-body {
+  overflow: visible;
   position: relative;
   max-height: 400px;
   padding: 20px 15px 15px 15px;
-  overflow-y: auto;
 }
 
 .modal-form {

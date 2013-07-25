@@ -49,7 +49,7 @@
    <a href="http://www.google.com/doodles/childrens-day-2013" target='_blank'><img title="Childrens Day" id='google-doodle' src="http://lh4.ggpht.com/cfUXf9q9tWU3szuxwywHkHWqXVhN_fh3TUziLYiVhTb4I9DqEzkM9sYEF2y31_QYrgfPaNddJPraEnZHO-GDimgW6WZxvD0sLbIkZQX2"></a>
 </div>
 
-<form id='form-search' action='http://www.google.com.hk/search' target="_blank">
+<form id='form-search' action='https://www.google.com.hk/search' target="_blank">
    <div class="input-append">
       <input type='text' name='q' class='input-xxlarge'>
       <button type='submit' class='btn'><i class='icon-search'></i></button>
@@ -72,7 +72,7 @@
          {% endfor %}
       </ul>
 
-      <a class='btn btn-mini btn-add-resource' data-node-id="{{ n.node.id }}" data-node="{{ n.node.title }}" href="#"><i class='icon-plus'></i></a>
+      <a class='btn btn-mini btn-add-resource' data-node-id="{{ n.node.id }}" data-node="{{ n.node.title }}"><i class='icon-plus'></i></a>
    </div>
    {% endfor %}
 </div>
@@ -85,10 +85,9 @@
 
    <form>
       <div class="modal-body">
-         <!-- <p>你所分享的资源，将会推送给所有关注此节点的用户</p> -->
-         <input type='text' name='url' placeholder='url' />
-         <input type='text' name='title' placeholder='title' />
-         <input type='text' name='desc' placeholder='descrition' />
+         <input type='text' name='url' placeholder='url' autocomplete='off' />
+         <input type='text' name='title' placeholder='title' autocomplete='off' />
+         <input type='text' name='desc' placeholder='descrition' autocomplete='off' />
 
          <div>
             <span class='uneditable-input-node'></span>
@@ -97,24 +96,69 @@
 
             <span class='select-type-wap'>
                <select name='type'></select>
-               <a href="#" class='btn-show-add'><i class='icon-plus'></i> 添加分类</a>
+               <a class='btn-show-add'><i class='icon-plus'></i> 添加分类</a>
             </span>
 
             <span class='add-type-wap'>
                <input class='input-new-type' type='text' placeholder='输入分类名称' />
-               <a href="#" class='btn-submit-type'>添加</a>
-               <a href="#" class='btn-cancel-add'>取消</a>
+               <a class='btn-submit-type'>添加</a>
+               <a class='btn-cancel-add'>取消</a>
             </span>
          </div>
       </div>
 
       <div class="modal-footer">
-         <button class="btn btn-primary btn-submit-resource">添加</button>
+         <a class="btn btn-primary btn-submit-resource">添加</a>
       </div>
    </form>
 </div>
 
 <script type="text/javascript">
+
+// validate resource url
+function validate_url(){
+   if($("input[name='url']").val() === ''){
+      $("input[name='url']").popover({
+         content: 'url不能为空',
+         trigger: 'manual'
+      }).popover('show');
+
+      return false;
+   } else {
+      $("input[name='url']").popover('destroy');
+      return true;
+   }
+}
+
+// validata resource title
+function validate_title(){
+   if($("input[name='title']").val() === ''){
+      $("input[name='title']").popover({
+         content: 'title不能为空',
+         trigger: 'manual'
+      }).popover('show');
+
+      return false;
+   } else {
+      $("input[name='title']").popover('destroy');
+      return true;
+   }
+}
+
+// show add type input
+function show_add_type(){
+   $('.select-type-wap').hide();
+   $('.add-type-wap').show();
+   $("input.input-new-type").val('').focus();
+}
+
+// hide add type input
+function hide_add_type(){
+   $('.select-type-wap').show();
+   $('.add-type-wap').hide();
+   $("input.input-new-type").val('');
+}
+
 $(function(){
    var nodes = [];
    var res_list = null;
@@ -129,7 +173,7 @@ $(function(){
       }
    });
 
-   // add types to select tag
+   // pop up modal
    $('.btn-add-resource').click(function(){
       var node_id = $(this).data('node-id');
       var node = $(this).data('node');
@@ -153,16 +197,34 @@ $(function(){
       $("#modal-add-resource input[name='url']").focus();
    });
 
+   // when modal hidden, back it to init state
+   $('#modal-add-resource').on('hidden', function(e){
+      if(e.target.id === 'modal-add-resource'){
+         $('#modal-add-resource input').val('');
+         $('.popover').hide();
+         hide_add_type();
+      }
+   });
+
+   // add resource
    $('.btn-submit-resource').click(function(){
-      var url = $("#modal-add-resource input[name='url']").val();
-      var title = $("#modal-add-resource input[name='title']").val();
-      var desc = $("#modal-add-resource input[name='desc']").val();
-      var node = $("#modal-add-resource input[name='node']").val();
-      var type = $("#modal-add-resource select[name='type']").val();
+      var url = $.trim($("input[name='url']").val());
+      var title = $.trim($("input[name='title']").val());
+      var desc = $.trim($("input[name='desc']").val());
+      var node = $("input[name='node']").val();
+      var type = $("select[name='type']").val();
+
+      $('.popover').hide();
+
+      // validate
+      if(!validate_url() || !validate_title()){
+         return false;
+      }
 
       $.ajax({
          url: "{% url 'add_resource' %}",
          type: 'POST',
+         dataType: 'json',
          data: {
             'url': url,
             'title': title,
@@ -170,58 +232,76 @@ $(function(){
             'node': node,
             'type': type
          },
-         success: function(result){
-            if(result === 'success'){
-               $('#modal-add-resource input').val('');
+         success: function(data){
+            if(data.result == 'success'){
                $('#modal-add-resource').modal('hide');
 
-               $(res_list).append(
-                  "<li class='r-item'>"
+               $("<li class='r-item'>"
                   + "<img class='r-favicon' src='http://g.etfv.co/" + url + "'> "
-                  + "<a href='" + url + "' title='" + type + " / " + title + "' target='_blank'>" + title + "</a></li>");
+                  + "<a href='" + url + "' title='" + type + " / " + title + "' target='_blank'>" + title + "</a>"
+                  + "</li>").appendTo(res_list);
+            }
+            else if(data.result === 'exist'){
+               $('#modal-add-resource').modal('hide');
+
+               $("<li class='r-item'>"
+                  + "<img class='r-favicon' src='http://g.etfv.co/" + url + "'> "
+                  + "<a href='" + url + "' title='" + data.type + " / " + data.title + "' target='_blank'>" + data.title + "</a>"
+                  + "</li>").appendTo(res_list);
+            }
+            else if(data.result === 'followed'){
+               $("input[name='url']").popover('destroy').popover({
+                  content: '链接已存在',
+                  trigger: 'manual'
+               }).popover('show');
             }
          }
       });
-
-      return false;
    });
 
    $('.btn-show-add').click(function(){
-      $('.select-type-wap').hide();
-      $('.add-type-wap').show();
+      show_add_type();
    });
 
+   // add resource type
    $('.btn-submit-type').click(function(){
       var n_id = $("input[name='node']").val();
       var type = $.trim($("input.input-new-type").val());
 
       if(type === ''){
-         $('.select-type-wap').show();
-         $('.add-type-wap').hide();
-          return;
+         hide_add_type();
+         return;
       }
+
+      // if exist, select it
+      $("select[name='type'] option").each(function(index, option){
+         if(type === $(option).text()){
+            $(option).attr('selected', 'selected');
+            hide_add_type();
+            return;
+         }
+      });
 
       $.ajax({
          url: "{% url 'add_resource_type' %}",
          type: 'POST',
+         dataType: 'json',
          data: {
             'n_id': n_id,
             'type': type
          },
-         success: function(result){
-            var type_id = result;
-
-            $("input[name='input-new-type']").val('');
-            $('.select-type-wap').show();
-            $('.add-type-wap').hide();
-            $("select[name='type']").prepend("<option value=" + type_id + ">" + type + "</option>");
+         success: function(res){
+            if(res.result === 'success'){
+               var type_id = res['type_id'];
+               hide_add_type();
+               $("select[name='type']").prepend("<option value=" + type_id + ">" + type + "</option>").val(type_id);
+            }
          }
       });
    });
 
    $('.btn-cancel-add').click(function(){
-      $('.select-type-wap').show();
-      $('.add-type-wap').hide();
+      hide_add_type();
    });
 })
 </script>

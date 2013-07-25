@@ -65,7 +65,7 @@ def all_nodes(request):
 
 def node(request, n_id):
     node = Node.objects.annotate(follow_count=Count('follows')).get(id=n_id)
-    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['type', 'time', 'popular'] else 'time'
+    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['type', 'time', 'popular'] else 'type'
 
     if mode == 'type':
         resource_types = ResourceType.objects.filter(node=n_id)
@@ -105,6 +105,23 @@ def disfollow_node(request):
     return HttpResponse('success')
 
 def add_resource(request):
+    # check if followed
+    res = ResourceCollect.objects.filter(user=request.session['user_id'], resource__node=request.POST['node'], resource__url=request.POST['url'])
+    if res.count() > 0:
+        return HttpResponse(json.dumps({
+            'result': 'followed'}))
+
+    # check if exist
+    res = Resource.objects.filter(node=request.POST['node'], url=request.POST['url'])
+    if res.count() > 0:
+        # collect it
+        user = User.objects.get(id=request.session['user_id'])
+        ResourceCollect.objects.create(user=user, resource=res[0])
+        return HttpResponse(json.dumps({
+            'result': 'exist', 
+            'type': res[0].type.type,
+            'title': res[0].title}))
+
     u_id = request.session['user_id']
     user = User.objects.get(id=u_id)
     node = Node.objects.get(id=request.POST['node'])
@@ -119,12 +136,15 @@ def add_resource(request):
     if NodeFollow.objects.filter(user=u_id, node=node.id).count() == 0:
         NodeFollow.objects.create(user=user, node=node)
 
-    return HttpResponse('success')
+    return HttpResponse(json.dumps({'result': 'success'}))
 
+# ajax - add resource type
 def add_resource_type(request):
     node = Node.objects.get(id=request.POST['n_id'])
     type_id = ResourceType.objects.create(node=node, type=request.POST['type']).id
-    return HttpResponse(type_id)
+    return HttpResponse(json.dumps({
+        'result': 'success',
+        'type_id': type_id}))
 
 # ajax - get resource types by node
 def get_resource_types_by_node(request):
