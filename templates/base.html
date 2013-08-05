@@ -38,12 +38,12 @@
                <a class="brand" href="{% url 'index' %}">YProgrammer</a>
 
                <ul class="nav">
-                  {% if request.session.user  %}
-                  <li><a href="{% url 'user_nav' %}">导航</a></li>
-                  {% endif %}
-
                   <li><a href="{% url 'resources' %}">资源</a></li>
                   <li><a href="{% url 'my_nodes' %}">节点</a></li>
+                  
+                  {% if request.session.user  %}
+                  <li><a href="{% url 'user' request.session.user %}">收藏</a></li>
+                  {% endif %}
 
                   {% if request.session.user  %}
                   <li><a href="#">反馈</a></li>

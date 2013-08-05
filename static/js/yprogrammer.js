@@ -15,7 +15,7 @@ function ajax_follow_node(url, n_id, success){
             success();
          }
          else if(result === 'unlogin'){
-            window.location = "{% url 'index' %}";
+            window.location = "/";
          }
       }
    });
@@ -38,7 +38,7 @@ function ajax_collect_resource(url, r_id, success){
             success();
          }
          else if(result === 'unlogin'){
-            window.location = "{% url 'index' %}";
+            window.location = "/";
          }
       }
    });

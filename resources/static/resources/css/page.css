@@ -87,8 +87,11 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-nav .nav-node-list .n-item ul li .r-favicon{max-width:16px;vertical-align:text-top;margin-right:1px}
 #page-nav .nav-node-list .n-item .btn-add-resource{position:absolute;top:12px;right:70px;visibility:hidden;color:#999}#page-nav .nav-node-list .n-item .btn-add-resource:hover{color:#555}
 #page-nav .nav-node-list .n-item:hover .btn-add-resource{visibility:visible}
-#page-user .pull-left{margin-right:15px}
-#page-user .user-avatar{width:50px}
-#page-user .user-name{color:#555;font-size:25px;margin-bottom:10px}
-#page-user .meta-item{margin-right:10px}
-#page-user .nav-tabs{margin:25px 0 20px 0}#page-user .nav-tabs>li>a{border-radius:0}
+#page-user .pull-left{margin-right:20px}
+#page-user .user-info-wap{margin-bottom:20px}#page-user .user-info-wap .user-avatar{width:50px}
+#page-user .user-info-wap .user-name{color:#555;font-size:25px;margin-bottom:12px}
+#page-user .user-info-wap .meta-item{margin-right:10px}
+#page-user .nav-node-list .n-item{padding-bottom:10px;position:relative}#page-user .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:110px;border-top:1px solid #dfdfdf;padding-top:13px;padding-left:5px}#page-user .nav-node-list .n-item .n-title a{color:#555}
+#page-user .nav-node-list .n-item ul.res-list{float:left;box-sizing:border-box;width:700px;padding-top:10px;padding-left:15px;border-top:1px solid #f2f2f2;list-style-type:none;margin:0}#page-user .nav-node-list .n-item ul.res-list:first-child{border-top:1px solid #dfdfdf}
+#page-user .nav-node-list .n-item ul.res-list li{float:left;width:160px;box-sizing:border-box;padding:4px 5px}#page-user .nav-node-list .n-item ul.res-list li a{color:#0360af}
+#page-user .nav-node-list .n-item ul.res-list li .r-favicon{max-width:16px;vertical-align:text-top;margin-right:1px}

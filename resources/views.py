@@ -65,20 +65,15 @@ def all_nodes(request):
 
 def node(request, n_id):
     node = Node.objects.annotate(follow_count=Count('follows')).get(id=n_id)
-    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['type', 'time', 'popular'] else 'type'
+    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['time', 'popular'] else 'time'
+    resource_types = ResourceType.objects.annotate(resource_count=Count('resources')).filter(node=n_id)
+    resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id)
 
-    if mode == 'type':
-        resource_types = ResourceType.objects.filter(node=n_id)
-        for rt in resource_types:
-            rt.resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id, type=rt.id).order_by('-collect_count')[:10]
-        return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resource_types': resource_types})
-    elif mode in ['time', 'popular']:
-        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id)
-        if mode == 'time':
-            resources = resources.order_by('-create_time')[:10]
-        else:
-            resources = resources.order_by('-collect_count')[:10]
-        return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resources': resources})
+    if mode == 'time':
+        resources = resources.order_by('-create_time')[:10]
+    else:
+        resources = resources.order_by('-collect_count')[:10]
+    return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resources': resources, 'resource_types': resource_types})
 
 # ajax - follow a node
 def follow_node(request):

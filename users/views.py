@@ -75,14 +75,14 @@ def init_follow_nodes(request):
 #-----------------------------------------------#
 def user(request, username):
     user = User.objects.get(name=username)
-    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['share', 'collect'] else 'share'
+    # nodes = NodeFollow.objects.filter(user=user.id).order_by('order')
+    nodes = NodeFollow.objects.filter(user=user.id).order_by('order')
+    for n in nodes:
+        n.resources = ResourceCollect.objects.filter(user=user.id, resource__node__id=n.node.id).order_by('order')
 
-    if mode == 'share':
-        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(creator=user.id).order_by('-create_time')[:10]
-    else:
-        collect_list = ResourceCollect.objects.filter(user=user.id).values('resource')
-        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(id__in=collect_list).order_by('-create_time')[:10]
-    return render(request, 'users/user.html', {'user': user, 'mode': mode, 'resources': resources})
+    collect_list = ResourceCollect.objects.filter(user=user.id).values('resource')
+    resources = Resource.objects.annotate(collect_count=Count('collects')).filter(id__in=collect_list).order_by('-create_time')[:10]
+    return render(request, 'users/user.html', {'user': user, 'resources': resources, 'nodes': nodes})
 
 def user_nav(request):
     user_id = request.session['user_id']
