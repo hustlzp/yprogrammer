@@ -76,15 +76,26 @@ def all_nodes(request):
 
 def node(request, n_id):
     node = Node.objects.annotate(follow_count=Count('follows')).get(id=n_id)
-    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['time', 'popular'] else 'time'
     resource_types = ResourceType.objects.annotate(resource_count=Count('resources')).filter(node=n_id)
-
     resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id)
+    resources_count = Resource.objects.filter(node=n_id).count()
+
+    # filter by type
+    res_type_id = int(request.GET['type']) if 'type' in request.GET else 0
+    if res_type_id != 0:
+        res_type = ResourceType.objects.get(id=res_type_id).type
+        resources = resources.filter(type=res_type_id)
+    else:
+        res_type = '全部'
+
+    # filter by mode
+    mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['time', 'popular'] else 'time'
     if mode == 'time':
         resources = resources.order_by('-create_time')
     else:
         resources = resources.order_by('-collect_count')
 
+    # panination
     paginator = Paginator(resources, 10)
     page = request.GET['page'] if 'page' in request.GET else 1
 
@@ -95,7 +106,7 @@ def node(request, n_id):
     except EmptyPage:
         resources = paginator.page(paginator.num_pages)
 
-    return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resources': resources, 'resource_types': resource_types})
+    return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resources': resources, 'resource_types': resource_types, 'type': res_type, 'type_id': res_type_id, 'resources_count': resources_count})
 
 # ajax - follow a node
 def follow_node(request):
