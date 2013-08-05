@@ -7,10 +7,24 @@
 <div class="row">
    <div class="span8">
       <div class="page-header">
-         <h3>资源 <small>新鲜不断出炉</small></h3>
+         <h3>资源</h3>
       </div>
 
       {% include 'resources.tpl' with resources=resources %}
+
+      <div class="pagination">
+         <ul>
+            {% if resources.has_previous %}
+            <li><a href="?page={{ resources.previous_page_number }}"><i class='icon-angle-left'></i></a></li>
+            {% endif %}
+
+            <li><a>{{ resources.number }} / {{ resources.paginator.num_pages }}</a></li>
+
+            {% if resources.has_next %}
+            <li><a href="?page={{ resources.next_page_number }}"><i class='icon-angle-right'></i></a></li>
+            {% endif %}
+         </ul>
+      </div>
    </div>
 
    <div class="span4">

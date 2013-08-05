@@ -5,7 +5,23 @@
 		[
 			[
 				"mar",
-				"margin-right"
+				"margin-left"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"bor",
+				"border-bottom"
 			],
 			[
 				"lis",
@@ -18,14 +34,6 @@
 			[
 				"tex",
 				"text-decoration"
-			],
-			[
-				"bor",
-				"border-top"
-			],
-			[
-				"pa",
-				"padding-top"
 			],
 			[
 				"bo",
@@ -340,10 +348,6 @@
 				"para"
 			],
 			[
-				"padd",
-				"padding-left"
-			],
-			[
 				"geci",
 				"geci_padding_left"
 			],
@@ -510,20 +514,40 @@
 			[
 				"reviews",
 				"reviews_num"
-			],
-			[
-				"con",
-				"conn"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": ".gitignore",
+			"file": "resources/static/resources/css/page.less",
 			"settings":
 			{
-				"buffer_size": 11,
+				"buffer_size": 15024,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "users/views.py",
+			"settings":
+			{
+				"buffer_size": 3676,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views.py",
+			"settings":
+			{
+				"buffer_size": 6471,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/templates/resources/resources.html",
+			"settings":
+			{
+				"buffer_size": 445,
 				"line_ending": "Unix"
 			}
 		}
@@ -568,6 +592,17 @@
 	},
 	"file_history":
 	[
+		"/var/www/yprogrammer/resources/templates/resources/node.html",
+		"/var/www/yprogrammer/resources/models.py",
+		"/var/www/yprogrammer/users/templates/users/user.html",
+		"/var/www/yprogrammer/users/templates/users/nav.html",
+		"/var/www/yprogrammer/templates/resources.tpl",
+		"/var/www/yprogrammer/templates/index.html",
+		"/var/www/yprogrammer/templates/base.html",
+		"/var/www/yprogrammer/resources/templates/resources/resource.html",
+		"/var/www/yprogrammer/resources/templates/resources/resources.html",
+		"/var/www/yprogrammer/static/js/yprogrammer.js",
+		"/var/www/yprogrammer/.gitignore",
 		"/var/www/xichuangzhu/xichuangzhu/utils.py",
 		"/var/www/xichuangzhu/xichuangzhu/log.py",
 		"/var/www/xichuangzhu/xichuangzhu/__init__.py",
@@ -684,18 +719,7 @@
 		"/var/www/xichuangzhu/xichuangzhu/templates/edit_review.html",
 		"/var/www/xichuangzhu/xichuangzhu/templates/add_review.html",
 		"/var/www/xichuangzhu/xichuangzhu/templates/works.html",
-		"/var/www/xichuangzhu/build/pip-delete-this-directory.txt",
-		"/var/www/xichuangzhu/xichuangzhu/templates/shop.html",
-		"/var/www/xichuangzhu/xichuangzhu/static/js/jquery.imagesloaded.js",
-		"/var/www/xichuangzhu/gunicorn.conf",
-		"/var/www/xichuangzhu/xichuangzhu/templates/single_product.html",
-		"/var/www/xichuangzhu/xichuangzhu/controllers/home.py",
-		"/var/www/xichuangzhu/xichuangzhu/templates/single_dynasty.html",
-		"/var/www/xichuangzhu/xichuangzhu/templates/reviews.widget",
-		"/var/www/xichuangzhu/xichuangzhu/templates/edit_quote.html",
-		"/var/www/xichuangzhu/xichuangzhu/templates/ad.html",
-		"/var/www/xichuangzhu/xichuangzhu/templates/single_author.html",
-		"/var/www/xichuangzhu/xichuangzhu/models/widget_model.py"
+		"/var/www/xichuangzhu/build/pip-delete-this-directory.txt"
 	],
 	"find":
 	{
@@ -858,28 +882,114 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": ".gitignore",
+					"file": "resources/static/resources/css/page.less",
 					"settings":
 					{
-						"buffer_size": 11,
+						"buffer_size": 15024,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								13897,
+								13897
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 11308.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "users/views.py",
+					"settings":
+					{
+						"buffer_size": 3676,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2819,
+								2819
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "resources/views.py",
+					"settings":
+					{
+						"buffer_size": 6471,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1013,
+								1013
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "resources/templates/resources/resources.html",
+					"settings":
+					{
+						"buffer_size": 445,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -932,16 +1042,40 @@
 		"selected_items":
 		[
 			[
+				"res",
+				"resources/templates/resources/resources.html"
+			],
+			[
+				"node",
+				"resources/templates/resources/node.html"
+			],
+			[
+				"inde",
+				"templates/index.html"
+			],
+			[
+				"ba",
+				"templates/base.html"
+			],
+			[
+				"nav",
+				"users/templates/users/nav.html"
+			],
+			[
+				"page",
+				"resources/static/resources/css/page.less"
+			],
+			[
+				"view",
+				"users/views.py"
+			],
+			[
 				"index",
 				"xichuangzhu/templates/macro/index_works.widget"
 			],
 			[
 				"sign",
 				"xichuangzhu/controllers/sign.py"
-			],
-			[
-				"page",
-				"xichuangzhu/static/style/page.less"
 			],
 			[
 				"com",
@@ -1022,10 +1156,6 @@
 			[
 				"work",
 				"xichuangzhu/controllers/work.py"
-			],
-			[
-				"inde",
-				"xichuangzhu/templates/site/index.html"
 			],
 			[
 				"user",
@@ -1236,10 +1366,6 @@
 				"xichuangzhu/static/style/component.less"
 			],
 			[
-				"node",
-				"xichuangzhu/templates/node.html"
-			],
-			[
 				"compo",
 				"xichuangzhu/static/style/component.less"
 			],
@@ -1426,22 +1552,6 @@
 			[
 				"code",
 				"system/core/CodeIgniter.php"
-			],
-			[
-				"de",
-				"application/views/goal/details.php"
-			],
-			[
-				"goal",
-				"application/controllers/goal.php"
-			],
-			[
-				"info",
-				"application/views/account/info.php"
-			],
-			[
-				"sm",
-				"application/config/smtp.php"
 			]
 		],
 		"width": 0.0

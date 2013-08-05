@@ -52,6 +52,20 @@ $(function(){
       </div>
 
       {% include 'resources.tpl' with resources=resources %}
+
+      <div class="pagination">
+         <ul>
+            {% if resources.has_previous %}
+            <li><a href="?page={{ resources.previous_page_number }}&mode={{ mode }}"><i class='icon-angle-left'></i></a></li>
+            {% endif %}
+
+            <li><a>{{ resources.number }} / {{ resources.paginator.num_pages }}</a></li>
+
+            {% if resources.has_next %}
+            <li><a href="?page={{ resources.next_page_number }}&mode={{ mode }}"><i class='icon-angle-right'></i></a></li>
+            {% endif %}
+         </ul>
+      </div>
    </div>
 
    <div class="span4">
@@ -68,6 +82,7 @@ $(function(){
       <div class="sidebar-header">
          <h4>类别</h4>
          <ul class='resource-type-list'>
+            <li class='active'><a href="#">全部 {{ resources.paginator.count }}</a></li>
             {% for rt in resource_types %}
             <li><a href='#'>{{ rt.type }} {{ rt.resource_count }}</a></li>
             {% endfor %}

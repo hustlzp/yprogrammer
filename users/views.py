@@ -75,7 +75,6 @@ def init_follow_nodes(request):
 #-----------------------------------------------#
 def user(request, username):
     user = User.objects.get(name=username)
-    # nodes = NodeFollow.objects.filter(user=user.id).order_by('order')
     nodes = NodeFollow.objects.filter(user=user.id).order_by('order')
     for n in nodes:
         n.resources = ResourceCollect.objects.filter(user=user.id, resource__node__id=n.node.id).order_by('order')

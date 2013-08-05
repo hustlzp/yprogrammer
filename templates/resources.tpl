@@ -52,7 +52,7 @@ $(function(){
       </span> -->
       <span class='meta-item'>{{ r.create_time|ago }}前</span>
       <!-- <span class='meta-item res-thank'><i class='icon-heart-empty'></i> <a href='#'>感谢</a></span> -->
-      <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span>
+      <!-- <span class='meta-item res-thank'><i class='icon-share'></i> <a href='#'>分享</a></span> -->
    </div>
 
    <div class='btn-group collect-wap {% if r|is_collected:request.session.user_id %}on{% endif %}'>

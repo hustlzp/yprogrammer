@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 import json
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.db.models import Count
@@ -8,10 +9,20 @@ from users.models import User
 
 def resources(request):
     if not 'user' in request.session:
-        resources = Resource.objects.annotate(collect_count=Count('collects')).all().order_by('-create_time')[:10]
+        resources = Resource.objects.annotate(collect_count=Count('collects')).all().order_by('-create_time')
     else:
         followed_nodes = NodeFollow.objects.filter(user=request.session['user_id']).values('node')
-        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node__in=followed_nodes).order_by('-create_time')[:10]
+        resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node__in=followed_nodes).order_by('-create_time')
+
+    paginator = Paginator(resources, 10)
+    page = request.GET['page'] if 'page' in request.GET else 1
+
+    try:
+        resources = paginator.page(page)
+    except PageNotAnInteger:
+        resources = paginator.page(1)
+    except EmptyPage:
+        resources = paginator.page(paginator.num_pages)
 
     return render(request, 'resources/resources.html', {'resources': resources})
 
@@ -67,12 +78,23 @@ def node(request, n_id):
     node = Node.objects.annotate(follow_count=Count('follows')).get(id=n_id)
     mode = request.GET['mode'] if 'mode' in request.GET and request.GET['mode'] in ['time', 'popular'] else 'time'
     resource_types = ResourceType.objects.annotate(resource_count=Count('resources')).filter(node=n_id)
-    resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id)
 
+    resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node=n_id)
     if mode == 'time':
-        resources = resources.order_by('-create_time')[:10]
+        resources = resources.order_by('-create_time')
     else:
-        resources = resources.order_by('-collect_count')[:10]
+        resources = resources.order_by('-collect_count')
+
+    paginator = Paginator(resources, 10)
+    page = request.GET['page'] if 'page' in request.GET else 1
+
+    try:
+        resources = paginator.page(page)
+    except PageNotAnInteger:
+        resources = paginator.page(1)
+    except EmptyPage:
+        resources = paginator.page(paginator.num_pages)
+
     return render(request, 'resources/node.html', {'node': node, 'mode': mode, 'resources': resources, 'resource_types': resource_types})
 
 # ajax - follow a node
