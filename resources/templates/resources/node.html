@@ -41,7 +41,7 @@ $(function(){
 <div class="row">
    <div class="span8">
       <div class="page-header">
-         <h3>{{ node.title }}<span id='res-type'>{% if type_id != 0 %}&nbsp;/&nbsp;{{ type }}{% endif %}</span></h3>
+         <h3><a href="{% url 'node' node.id %}">{{ node.title }}</a><span id='res-type'>{% if type_id != 0 %} / {{ type }}{% endif %}</span></h3>
          <div class='node-desc'>{{ node.desc }}</div>
          <img class='node-image corner' src="{{ node.image_url }}">
       </div>
@@ -76,19 +76,236 @@ $(function(){
             <a class='btn follow-count'>{{ node.follow_count }}</a>
          </div>
 
-         <a class="btn btn-primary" href="#"><i class='icon-plus'></i> 添加资源</a>
+         <a class="btn btn-primary btn-add-resource" href="#"><i class='icon-plus'></i> 添加资源</a>
       </div>
       
       <div class="sidebar-header">
          <h4>类别</h4>
          <ul class='resource-type-list'>
-            <li class="{% if type_id == 0 %}active{% endif %}"><a href="?type=0">&nbsp;<i class="icon-angle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;全部 {{ resources_count }}</a></li>
+            <li class="{% if type_id == 0 %}active{% endif %}"><a href="?type=0">&nbsp;<i class="icon-angle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;全部&nbsp;&nbsp;/&nbsp;&nbsp;{{ resources_count }}</a></li>
             {% for rt in resource_types %}
-            <li class="{% if type_id == rt.id %}active{% endif %}"><a href="?type={{ rt.id }}&mode=popular">&nbsp;<i class="icon-angle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ rt.type }} {{ rt.resource_count }}</a></li>
+            <li class="{% if type_id == rt.id %}active{% endif %}"><a href="?type={{ rt.id }}&mode=popular">&nbsp;<i class="icon-angle-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{ rt.type }}&nbsp;&nbsp;/&nbsp;&nbsp;{{ rt.resource_count }}</a></li>
             {% endfor %}
          </ul>
       </div>
    </div>
 </div>
+
+<div id="modal-add-resource" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">添加资源</h3>
+   </div>
+
+   <form>
+      <div class="modal-body">
+         <input type='text' name='url' placeholder='url' autocomplete='off' />
+         <input type='text' name='title' placeholder='title' autocomplete='off' />
+         <input type='text' name='desc' placeholder='descrition' autocomplete='off' />
+
+         <div>
+            <span class='uneditable-input-node'>{{ node.title }}</span>
+            <input type='hidden' name='node' value={{ node.id }} />
+            <span class='select-divider'>/</span>
+
+            <span class='select-type-wap'>
+               <select name='type'>
+                  {% for rt in resource_types %}
+                  <option value='{{ rt.id }}'>{{ rt.type }}</option>
+                  {% endfor %}
+               </select>
+               <a class='btn-show-add'><i class='icon-plus'></i> 添加分类</a>
+            </span>
+
+            <span class='add-type-wap'>
+               <input class='input-new-type' type='text' placeholder='输入分类名称' />
+               <a class='btn-submit-type'>添加</a>
+               <a class='btn-cancel-add'>取消</a>
+            </span>
+         </div>
+      </div>
+
+      <div class="modal-footer">
+         <a class="btn btn-primary btn-submit-resource">添加</a>
+      </div>
+   </form>
+</div>
+
+<script type="text/javascript">
+
+$(function(){
+   var types = [];
+
+   // get resource types of followed nodes
+   $.ajax({
+      url: "{% url 'get_resource_types_by_node'%}",
+      type: 'POST',
+      dataType: 'json',
+      data: {
+         'n_id': {{ node.id }}
+      },
+      success: function(result){
+         types = result;
+      }
+   });
+
+   // pop up modal
+   $('.btn-add-resource').click(function(){
+      $('#modal-add-resource').modal();
+      $("#modal-add-resource input[name='url']").focus();
+   });
+
+   // when modal hidden, back it to init state
+   $('#modal-add-resource').on('hidden', function(e){
+      if(e.target.id === 'modal-add-resource'){
+         $('#modal-add-resource input').val('');
+         $('.popover').hide();
+         hide_add_type();
+      }
+   });
+
+   // add resource
+   $('.btn-submit-resource').click(function(){
+      var url = $.trim($("input[name='url']").val());
+      var title = $.trim($("input[name='title']").val());
+      var desc = $.trim($("input[name='desc']").val());
+      var node = $("input[name='node']").val();
+      var type = $("select[name='type']").val();
+
+      $('.popover').hide();
+
+      // validate
+      if(!validate_url() || !validate_title()){
+         return false;
+      }
+
+      $.ajax({
+         url: "{% url 'add_resource' %}",
+         type: 'POST',
+         dataType: 'json',
+         data: {
+            'url': url,
+            'title': title,
+            'desc': desc,
+            'node': node,
+            'type': type
+         },
+         success: function(data){
+            if(data.result == 'success'){
+               $('#modal-add-resource').modal('hide');
+
+               $("<li class='r-item'>"
+                  + "<img class='r-favicon' src='http://g.etfv.co/" + url + "'> "
+                  + "<a href='" + url + "' title='" + type + " / " + title + "' target='_blank'>" + title + "</a>"
+                  + "</li>").appendTo(res_list);
+            }
+            else if(data.result === 'exist'){
+               $('#modal-add-resource').modal('hide');
+
+               $("<li class='r-item'>"
+                  + "<img class='r-favicon' src='http://g.etfv.co/" + url + "'> "
+                  + "<a href='" + url + "' title='" + data.type + " / " + data.title + "' target='_blank'>" + data.title + "</a>"
+                  + "</li>").appendTo(res_list);
+            }
+            else if(data.result === 'followed'){
+               $("input[name='url']").popover('destroy').popover({
+                  content: '链接已存在',
+                  trigger: 'manual'
+               }).popover('show');
+            }
+         }
+      });
+   });
+
+   $('.btn-show-add').click(function(){
+      show_add_type();
+   });
+
+   // add resource type
+   $('.btn-submit-type').click(function(){
+      var n_id = $("input[name='node']").val();
+      var type = $.trim($("input.input-new-type").val());
+
+      if(type === ''){
+         hide_add_type();
+         return;
+      }
+
+      // if exist, select it
+      $("select[name='type'] option").each(function(index, option){
+         if(type === $(option).text()){
+            $(option).attr('selected', 'selected');
+            hide_add_type();
+            return;
+         }
+      });
+
+      $.ajax({
+         url: "{% url 'add_resource_type' %}",
+         type: 'POST',
+         dataType: 'json',
+         data: {
+            'n_id': n_id,
+            'type': type
+         },
+         success: function(res){
+            if(res.result === 'success'){
+               var type_id = res['type_id'];
+               hide_add_type();
+               $("select[name='type']").prepend("<option value=" + type_id + ">" + type + "</option>").val(type_id);
+            }
+         }
+      });
+   });
+
+   $('.btn-cancel-add').click(function(){
+      hide_add_type();
+   });
+});
+
+// validate resource url
+function validate_url(){
+   if($("input[name='url']").val() === ''){
+      $("input[name='url']").popover({
+         content: 'url不能为空',
+         trigger: 'manual'
+      }).popover('show');
+
+      return false;
+   } else {
+      $("input[name='url']").popover('destroy');
+      return true;
+   }
+}
+
+// validata resource title
+function validate_title(){
+   if($("input[name='title']").val() === ''){
+      $("input[name='title']").popover({
+         content: 'title不能为空',
+         trigger: 'manual'
+      }).popover('show');
+
+      return false;
+   } else {
+      $("input[name='title']").popover('destroy');
+      return true;
+   }
+}
+
+// show add type input
+function show_add_type(){
+   $('.select-type-wap').hide();
+   $('.add-type-wap').show();
+   $("input.input-new-type").val('').focus();
+}
+
+// hide add type input
+function hide_add_type(){
+   $('.select-type-wap').show();
+   $('.add-type-wap').hide();
+   $("input.input-new-type").val('');
+}
+</script>
 
 {% endblock %}
