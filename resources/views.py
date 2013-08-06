@@ -15,7 +15,7 @@ def resources(request):
         followed_nodes = NodeFollow.objects.filter(user=request.session['user_id']).values('node')
         resources = Resource.objects.annotate(collect_count=Count('collects')).filter(node__in=followed_nodes).order_by('-create_time')
 
-    paginator = Paginator(resources, 10)
+    paginator = Paginator(resources, 12)
     page = request.GET['page'] if 'page' in request.GET else 1
 
     try:

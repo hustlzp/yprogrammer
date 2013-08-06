@@ -46,7 +46,7 @@
                   {% endif %}
 
                   {% if request.session.user  %}
-                  <li><a href="#">反馈</a></li>
+                  <!-- <li><a href="#">反馈</a></li> -->
                   {% endif %}
                </ul>
 
@@ -57,9 +57,9 @@
                         <img id='user-avatar' src="{{ request.session.user_avatar }}">{{ request.session.user }}
                      </a>
                   </li>
-                  <li>
+                  <!-- <li>
                      <a href="#" title='Account settings'><i class='icon-cog'></i></a>
-                  </li>
+                  </li> -->
                   <li>
                      <a href="{% url 'signout' %}" title='Sign out'><i class='icon-off'></i></a>
                   </li>
@@ -84,7 +84,7 @@
             <div id='copyright'>YProgrammer ©2013 by <a href="http://hustlzp.com" target="_blank">hustlzp</a></div>
             
             <ul id='links'>
-               <li><a href="#">关于</a></li>
+               <!-- <li><a href="#">关于</a></li> -->
                <li><a target="_blank" href="https://github.com/hustlzp/yprogrammer">GitHub</a></li>
             </ul>
          </div>

@@ -71,10 +71,21 @@ def init_follow_nodes(request):
             n.is_followed = False
     return render(request, 'users/init_follow_nodes.html', {'node_types': node_types})    
 
+# helper function, get the canonical blog url for displaying
+def canonical_blog(u):
+    if u.startswith("http://"):
+        u = u[7:]
+    if u.startswith("www."):
+        u = u[4:]
+    if u.endswith("/"):
+        u = u[:-1]
+    return u
+
 # page user profile
 #-----------------------------------------------#
 def user(request, username):
     user = User.objects.get(name=username)
+    user.c_blog = canonical_blog(user.blog)
     nodes = NodeFollow.objects.filter(user=user.id).order_by('order')
     for n in nodes:
         n.resources = ResourceCollect.objects.filter(user=user.id, resource__node__id=n.node.id).order_by('order')
