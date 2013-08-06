@@ -90,6 +90,8 @@ $(function(){
    </div>
 </div>
 
+{% if request.session.user %}
+
 <div id="modal-add-resource" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -284,5 +286,7 @@ function hide_add_type(){
    $("input.input-new-type").val('');
 }
 </script>
+
+{% endif %}
 
 {% endblock %}

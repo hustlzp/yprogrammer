@@ -41,16 +41,16 @@
                   <li><a href="{% url 'resources' %}">资源</a></li>
                   <li><a href="{% url 'my_nodes' %}">节点</a></li>
                   
-                  {% if request.session.user  %}
+                  {% if request.session.user %}
                   <li><a href="{% url 'user' request.session.user %}">收藏</a></li>
                   {% endif %}
 
-                  {% if request.session.user  %}
+                  {% if request.session.user %}
                   <!-- <li><a href="#">反馈</a></li> -->
                   {% endif %}
                </ul>
 
-               {% if request.session.user  %}
+               {% if request.session.user %}
                <ul class="nav pull-right">
                   <li>
                      <a href="{% url 'user' request.session.user %}">
