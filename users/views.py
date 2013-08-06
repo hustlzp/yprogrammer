@@ -2,6 +2,7 @@
 import requests
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.conf import settings
 from django.db.models import Count
 from users.models import User
 from resources.models import Node, NodeFollow, NodeType, Resource, ResourceCollect
@@ -13,9 +14,9 @@ def signin(request):
     access_token_url = "https://github.com/login/oauth/access_token"
     code = request.GET['code']
     params = {
-        'client_id': '7a68fc19935c680f8e2e',
-        'redirect_uri': 'http://localhost:8000/signin/github',
-        'client_secret': 'cc806b6c5c30b4eff569e86c634cb778e23d273e',
+        'client_id': settings.CLIENT_ID,
+        'redirect_uri': settings.REDIRECT_URL,
+        'client_secret': settings.CLIENT_SECRET,
         'code': code
     }
     headers = {'Accept': 'application/json'}
