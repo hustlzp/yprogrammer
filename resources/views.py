@@ -133,9 +133,19 @@ def disfollow_node(request):
         nf.delete()
     return HttpResponse('success')
 
+# helper function, get the canonical url for comparision
+def canonical_url(u):
+    if u.startswith("http://"):
+        u = u[7:]
+    if u.startswith("www."):
+        u = u[4:]
+    if u.endswith("/"):
+        u = u[:-1]
+    return u
+
 def add_resource(request):
     # check if exist
-    res = Resource.objects.filter(node=request.POST['node'], url=request.POST['url'])
+    res = Resource.objects.filter(node=request.POST['node'], c_url=canonical_url(request.POST['url']))
     if res.count() > 0:
         # collect it
         user = User.objects.get(id=request.session['user_id'])
@@ -149,11 +159,16 @@ def add_resource(request):
     user = User.objects.get(id=u_id)
     node = Node.objects.get(id=request.POST['node'])
     res_type = ResourceType.objects.get(id=request.POST['type'])
+
     # add schema if missing
     url = request.POST['url']
     if urlparse(url).scheme == '':
         url = 'http://' + url
-    res = Resource.objects.create(node=node, creator=user, title=request.POST['title'], type=res_type, url=url, desc=request.POST['desc'])
+
+    # canonical url, use for compare
+    c_url = canonical_url(url)
+
+    res = Resource.objects.create(node=node, creator=user, title=request.POST['title'], type=res_type, url=url, c_url=c_url, desc=request.POST['desc'])
 
     # collect it
     if ResourceCollect.objects.filter(user=u_id, resource=res.id).count() == 0:

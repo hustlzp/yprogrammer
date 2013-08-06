@@ -31,6 +31,7 @@ class Resource(models.Model):
     title = models.CharField(max_length=100)
     type = models.ForeignKey(ResourceType, related_name='resources')
     url = models.CharField(max_length=200)
+    c_url = models.CharField(max_length=200)
     desc = models.CharField(max_length=200, blank=True)
     create_time = models.DateTimeField(auto_now_add=True)
 
