@@ -47,7 +47,7 @@ $(function(){
 </script>
 
 <div class="media user-info-wap">
-  <a class="pull-left" href="#">
+  <a class="pull-left" href="{% url 'user' request.session.user %}">
     <img class="media-object user-avatar" src="{{ user.avatar_url }}">
   </a>
   
