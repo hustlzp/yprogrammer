@@ -133,12 +133,6 @@ def disfollow_node(request):
     return HttpResponse('success')
 
 def add_resource(request):
-    # check if followed
-    res = ResourceCollect.objects.filter(user=request.session['user_id'], resource__node=request.POST['node'], resource__url=request.POST['url'])
-    if res.count() > 0:
-        return HttpResponse(json.dumps({
-            'result': 'followed'}))
-
     # check if exist
     res = Resource.objects.filter(node=request.POST['node'], url=request.POST['url'])
     if res.count() > 0:

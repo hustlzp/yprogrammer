@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"node",
+				"node"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"res",
+				"res_type"
+			],
+			[
+				"res_ty",
+				"res_type_id"
+			],
+			[
+				"Res",
+				"ResourceType"
+			],
+			[
+				"re",
+				"resource"
+			],
+			[
 				"mar",
 				"margin-left"
 			],
@@ -132,10 +156,6 @@
 				"single_topic"
 			],
 			[
-				"node",
-				"node_id"
-			],
-			[
 				"fn",
 				"font-weight"
 			],
@@ -182,10 +202,6 @@
 			[
 				"fo",
 				"font-family"
-			],
-			[
-				"padding",
-				"padding-bottom"
 			],
 			[
 				"border",
@@ -498,22 +514,6 @@
 			[
 				"SE",
 				"SELECT"
-			],
-			[
-				"intro",
-				"introduction"
-			],
-			[
-				"for",
-				"form"
-			],
-			[
-				"C",
-				"Content"
-			],
-			[
-				"reviews",
-				"reviews_num"
 			]
 		]
 	},
@@ -523,15 +523,7 @@
 			"file": "resources/static/resources/css/page.less",
 			"settings":
 			{
-				"buffer_size": 15024,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/views.py",
-			"settings":
-			{
-				"buffer_size": 3676,
+				"buffer_size": 15282,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,7 +531,7 @@
 			"file": "resources/views.py",
 			"settings":
 			{
-				"buffer_size": 6471,
+				"buffer_size": 7584,
 				"line_ending": "Unix"
 			}
 		},
@@ -547,7 +539,23 @@
 			"file": "resources/templates/resources/resources.html",
 			"settings":
 			{
-				"buffer_size": 445,
+				"buffer_size": 959,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/templates/resources/node.html",
+			"settings":
+			{
+				"buffer_size": 10132,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "users/templates/users/nav.html",
+			"settings":
+			{
+				"buffer_size": 9191,
 				"line_ending": "Unix"
 			}
 		}
@@ -592,17 +600,19 @@
 	},
 	"file_history":
 	[
+		"/var/www/yprogrammer/templates/resources.tpl",
+		"/var/www/yprogrammer/static/css/bootstrap.css",
+		"/var/www/yprogrammer/.gitignore",
+		"/var/www/yprogrammer/users/views.py",
 		"/var/www/yprogrammer/resources/templates/resources/node.html",
 		"/var/www/yprogrammer/resources/models.py",
 		"/var/www/yprogrammer/users/templates/users/user.html",
 		"/var/www/yprogrammer/users/templates/users/nav.html",
-		"/var/www/yprogrammer/templates/resources.tpl",
 		"/var/www/yprogrammer/templates/index.html",
 		"/var/www/yprogrammer/templates/base.html",
 		"/var/www/yprogrammer/resources/templates/resources/resource.html",
 		"/var/www/yprogrammer/resources/templates/resources/resources.html",
 		"/var/www/yprogrammer/static/js/yprogrammer.js",
-		"/var/www/yprogrammer/.gitignore",
 		"/var/www/xichuangzhu/xichuangzhu/utils.py",
 		"/var/www/xichuangzhu/xichuangzhu/log.py",
 		"/var/www/xichuangzhu/xichuangzhu/__init__.py",
@@ -717,9 +727,7 @@
 		"/var/www/xichuangzhu/xichuangzhu/templates/add_topic.html",
 		"/var/www/xichuangzhu/xichuangzhu/templates/topics.widget",
 		"/var/www/xichuangzhu/xichuangzhu/templates/edit_review.html",
-		"/var/www/xichuangzhu/xichuangzhu/templates/add_review.html",
-		"/var/www/xichuangzhu/xichuangzhu/templates/works.html",
-		"/var/www/xichuangzhu/build/pip-delete-this-directory.txt"
+		"/var/www/xichuangzhu/xichuangzhu/templates/add_review.html"
 	],
 	"find":
 	{
@@ -737,6 +745,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"contacts",
 			"888",
 			"\n    ",
 			"):\n",
@@ -863,8 +872,7 @@
 			"author",
 			"userInfo",
 			"authors",
-			"dynasty",
-			"title"
+			"dynasty"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -890,15 +898,15 @@
 					"file": "resources/static/resources/css/page.less",
 					"settings":
 					{
-						"buffer_size": 15024,
+						"buffer_size": 15282,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13897,
-								13897
+								9528,
+								9528
 							]
 						],
 						"settings":
@@ -908,25 +916,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 11308.0,
+						"translation.y": 8355.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "users/views.py",
+					"file": "resources/views.py",
 					"settings":
 					{
-						"buffer_size": 3676,
+						"buffer_size": 7584,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2819,
-								2819
+								3450,
+								3450
 							]
 						],
 						"settings":
@@ -936,53 +944,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2295.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "resources/views.py",
-					"settings":
-					{
-						"buffer_size": 6471,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1013,
-								1013
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 255.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "resources/templates/resources/resources.html",
 					"settings":
 					{
-						"buffer_size": 445,
+						"buffer_size": 959,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								227,
-								227
+								943,
+								943
 							]
 						],
 						"settings":
@@ -992,7 +972,63 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 207.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "resources/templates/resources/node.html",
+					"settings":
+					{
+						"buffer_size": 10132,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1287,
+								1287
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 119.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "users/templates/users/nav.html",
+					"settings":
+					{
+						"buffer_size": 9191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3357,
+								3357
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1496.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1042,12 +1078,20 @@
 		"selected_items":
 		[
 			[
-				"res",
-				"resources/templates/resources/resources.html"
+				"nav",
+				"users/templates/users/nav.html"
+			],
+			[
+				"tpl",
+				"templates/resources.tpl"
 			],
 			[
 				"node",
 				"resources/templates/resources/node.html"
+			],
+			[
+				"res",
+				"resources/templates/resources/resources.html"
 			],
 			[
 				"inde",
@@ -1056,10 +1100,6 @@
 			[
 				"ba",
 				"templates/base.html"
-			],
-			[
-				"nav",
-				"users/templates/users/nav.html"
 			],
 			[
 				"page",
@@ -1548,10 +1588,6 @@
 			[
 				"acc",
 				"application/controllers/account.php"
-			],
-			[
-				"code",
-				"system/core/CodeIgniter.php"
 			]
 		],
 		"width": 0.0

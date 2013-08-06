@@ -42,7 +42,7 @@ $(function(){
 
    <div class='res-meta'>
       <span class='meta-item'>
-         <a class='res-node' href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a>/<a class='res-type' href="{% url 'node' r.node.id %}?type={{ r.type.id }}" title='类型：{{ r.type }}'>{{ r.type.type }}</a>
+         <a class='res-node' href="{% url 'node' r.node.id %}" title='节点：{{ r.node.title }}'>{{ r.node.title }}</a>/<a class='res-type' href="{% url 'node' r.node.id %}?type={{ r.type.id }}&mode=popular" title='类型：{{ r.type.type }}'>{{ r.type.type }}</a>
       </span>
       <span class='meta-item'>
          <i class='icon-user'></i> <a href="{% url 'user' r.creator.name %}">{{ r.creator.name }}</a>
