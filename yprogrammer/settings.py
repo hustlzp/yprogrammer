@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 import os
+import sys
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -12,21 +13,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'yprogrammer',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'root',
-        'PASSWORD': 'xiaowangzi',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
-
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['http://www.yprogrammer.cn']
+ALLOWED_HOSTS = ['http://www.yprogrammer.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -139,10 +128,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+
     'resources',
     'users',
-    'widget_tweaks',
-    'gunicorn'
+    'widget_tweaks'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -173,3 +162,8 @@ LOGGING = {
         },
     }
 }
+
+# machine specific settings
+# sys.path.append('/var/www/django_settings/')
+# import yprogrammer
+from local_settings import *
