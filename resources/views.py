@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 import json
+from urlparse import urlparse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -148,7 +149,11 @@ def add_resource(request):
     user = User.objects.get(id=u_id)
     node = Node.objects.get(id=request.POST['node'])
     res_type = ResourceType.objects.get(id=request.POST['type'])
-    res = Resource.objects.create(node=node, creator=user, title=request.POST['title'], type=res_type, url=request.POST['url'], desc=request.POST['desc'])
+    # add schema if missing
+    url = request.POST['url']
+    if urlparse(url).scheme == '':
+        url = 'http://' + url
+    res = Resource.objects.create(node=node, creator=user, title=request.POST['title'], type=res_type, url=url, desc=request.POST['desc'])
 
     # collect it
     if ResourceCollect.objects.filter(user=u_id, resource=res.id).count() == 0:
