@@ -1,4 +1,0 @@
-django
-MySQL-python
-requests
-django-widget-tweaks

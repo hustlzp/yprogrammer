@@ -141,7 +141,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'resources',
     'users',
-    'widget_tweaks'
+    'widget_tweaks',
+    'gunicorn'
 )
 
 # A sample logging configuration. The only tangible logging
