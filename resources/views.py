@@ -1,6 +1,7 @@
 #-*- coding: UTF-8 -*-
 import json
 from urlparse import urlparse
+from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -25,7 +26,7 @@ def resources(request):
     except EmptyPage:
         resources = paginator.page(paginator.num_pages)
 
-    return render(request, 'resources/resources.html', {'resources': resources})
+    return render(request, 'resources/resources.html', {'resources': resources, 'client_id': settings.CLIENT_ID, 'redirect_url': settings.REDIRECT_URL})
 
 def resource(request, r_id):
     resource = Resource.objects.annotate(collect_count=Count('collects')).get(id=r_id)
@@ -73,7 +74,7 @@ def my_nodes(request):
 
 def all_nodes(request):
     node_types = NodeType.objects.all()
-    return render(request, 'resources/all_nodes.html', {'node_types': node_types})
+    return render(request, 'resources/all_nodes.html', {'node_types': node_types, 'client_id': settings.CLIENT_ID, 'redirect_url': settings.REDIRECT_URL})
 
 def node(request, n_id):
     node = Node.objects.annotate(follow_count=Count('follows')).get(id=n_id)
