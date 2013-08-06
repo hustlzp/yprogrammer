@@ -16,6 +16,12 @@
    </head>
 
    <body id="{% block page_id %}{% endblock %}">
+      <!-- if this tag not exist, the csrf cookie will not be sent -->
+      <!-- so ajax without a csrf cookie will fail -->
+      <!-- so I add this in every page to force django to send the csrf cookie -->
+      <!-- also see - http://stackoverflow.com/questions/5499597/ajax-csrf-problem-in-django-1-3  -->
+      {% csrf_token %}
+      
       <script type="text/javascript">
       function csrfSafeMethod(method) {
          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
