@@ -31,7 +31,7 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 .res-item .res-meta .res-type{margin-left:3px}
 .res-item .res-meta .res-thank,.res-item .res-meta .res-share{visibility:hidden}
 .res-item:hover .res-thank,.res-item:hover .res-share{visibility:visible}
-.res-item .collect-wap{position:absolute;right:0;top:0;padding-left:5px;padding-right:5px;padding:0}.res-item .collect-wap .btn-collect{display:inline-block}
+.res-item .collect-wap{position:absolute;right:0;top:0;padding-left:5px;padding-right:5px;padding:0}.res-item .collect-wap .btn-collect{display:inline-block;font-size:12.5px}
 .res-item .collect-wap .btn-discollect{display:none}
 .res-item .collect-wap.on .btn-collect{display:none}
 .res-item .collect-wap.on .btn-discollect{display:inline-block}
