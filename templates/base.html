@@ -44,11 +44,11 @@
                <a class="brand" href="{% url 'index' %}">YProgrammer</a>
 
                <ul class="nav">
-                  <li><a href="{% url 'resources' %}">资源</a></li>
-                  <li><a href="{% url 'my_nodes' %}">节点</a></li>
+                  <li class='nav-resource'><a href="{% url 'resources' %}">资源</a></li>
+                  <li class='nav-node'><a href="{% url 'all_nodes' %}">节点</a></li>
                   
                   {% if request.session.user %}
-                  <li><a href="{% url 'user' request.session.user %}">收藏</a></li>
+                  <li class='nav-user'><a href="{% url 'user' request.session.user %}">导航</a></li>
                   {% endif %}
 
                   {% if request.session.user %}

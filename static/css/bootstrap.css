@@ -4385,7 +4385,7 @@ input[type="submit"].btn.btn-mini {
   background-image: -o-linear-gradient(top, #54b4eb, #2fa4e7);
   background-image: linear-gradient(to bottom, #54b4eb, #2fa4e7);
   background-repeat: repeat-x;
-  border: 1px solid #1990d5;
+  /*border: 1px solid #1990d5;*/
 /*  -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;*/

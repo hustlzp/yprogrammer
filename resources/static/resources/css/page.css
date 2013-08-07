@@ -3,6 +3,9 @@ body{margin:0 0 6em 0}body .navbar{margin-bottom:30px}body .navbar #user-avatar{
 body .navbar .btn-add-resource{margin-right:10px;margin-top:12px}
 body #footer{position:absolute;left:0;bottom:0;height:2.2em;z-index:10;text-align:center;font-size:12px;font-family:'微软雅黑';width:100%;color:#666}body #footer .container #copyright{float:left}
 body #footer .container #links{float:right;margin:0;list-style-type:none}body #footer .container #links li{display:inline-block;margin-right:10px}
+#page-resources .nav-resource a{background-color:#0072b3}
+#page-all-nodes .nav-node a,#page-node .nav-node a{background-color:#0072b3}
+#page-user .nav-user a{background-color:#0072b3}
 .modal form{margin:0}
 .modal input[type='text']{width:100%;box-sizing:border-box;height:32px;margin-bottom:15px;box-shadow:none}
 .modal .close{color:#fff;opacity:.6}
@@ -77,6 +80,13 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-node .btn-toolbar .follow-container.on .btn-disfollow{display:inline-block}
 #page-node .resource-type-list{list-style-type:none;margin:15px 0}#page-node .resource-type-list li{margin:0 5px 1px 0}#page-node .resource-type-list li.active a{background:#034482;color:#fff}#page-node .resource-type-list li.active a:hover{background-color:#034482}
 #page-node .resource-type-list li a{padding:5px 10px;display:block;background-color:#e8e8e8;color:#555;font-size:12px;text-decoration:none}#page-node .resource-type-list li a:hover{background-color:#e0e0e0}
+#page-resources .sidebar-header{border-bottom:1px solid #eee;margin-bottom:8px}#page-resources .sidebar-header h4{margin-bottom:15px}
+#page-resources .hot-res-item{margin-bottom:8px;padding-bottom:8px;padding-left:5px;padding-right:5px;border-bottom:1px solid #eee;font-size:12px}#page-resources .hot-res-item .res-title{color:#555;font-size:12px}
+#page-resources .hot-res-item .collect-wap .btn-collect,#page-resources .hot-res-item .collect-wap .btn-discollect{color:#333;text-decoration:none;cursor:pointer;padding:0 5px}
+#page-resources .hot-res-item .collect-wap .btn-collect{display:inline-block;font-size:12.5px}
+#page-resources .hot-res-item .collect-wap .btn-discollect{display:none}
+#page-resources .hot-res-item .collect-wap.on .btn-collect{display:none}
+#page-resources .hot-res-item .collect-wap.on .btn-discollect{display:inline-block}
 #page-resource .collect-container .btn-collect{display:inline-block}
 #page-resource .collect-container .btn-discollect{display:none}
 #page-resource .collect-container.on .btn-collect{display:none}

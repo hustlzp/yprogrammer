@@ -1,5 +1,6 @@
 #-*- coding: UTF-8 -*-
 import json
+from datetime import date, timedelta
 from urlparse import urlparse
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -26,7 +27,12 @@ def resources(request):
     except EmptyPage:
         resources = paginator.page(paginator.num_pages)
 
-    return render(request, 'resources/resources.html', {'resources': resources, 'client_id': settings.CLIENT_ID, 'redirect_url': settings.REDIRECT_URL})
+    # hot resources
+    # d = date.today() - timedelta(days=7)
+    # .filter(create_time__gte=d)
+    hot_resources = Resource.objects.annotate(collect_count=Count('collects')).order_by('-collect_count', '-create_time')[:10]
+
+    return render(request, 'resources/resources.html', {'resources': resources, 'hot_resources': hot_resources, 'client_id': settings.CLIENT_ID, 'redirect_url': settings.REDIRECT_URL})
 
 def resource(request, r_id):
     resource = Resource.objects.annotate(collect_count=Count('collects')).get(id=r_id)

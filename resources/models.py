@@ -33,7 +33,7 @@ class Resource(models.Model):
     url = models.CharField(max_length=200)
     c_url = models.CharField(max_length=200)
     desc = models.CharField(max_length=200, blank=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+    create_time = models.DateTimeField()
 
     def __unicode__(self):
         return self.title

@@ -4,7 +4,7 @@
 
 $(function(){
    // collect resource by Ajax
-   $('.btn-collect').click(function(){
+   $('.res-item .btn-collect').click(function(){
       var r_id = $(this).data('resource-id');
       var url = "{% url 'collect_resource' %}";
       var btn_collect = $(this);
@@ -17,7 +17,7 @@ $(function(){
    });
 
    // discollect resource by Ajax
-   $('.btn-discollect').click(function(){
+   $('.res-item .btn-discollect').click(function(){
       var r_id = $(this).data('resource-id');
       var url = "{% url 'discollect_resource' %}";
       var btn_discollect = $(this);
