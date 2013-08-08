@@ -104,7 +104,7 @@ def node(request, n_id):
         resources = resources.order_by('-collect_count')
 
     # panination
-    paginator = Paginator(resources, 10)
+    paginator = Paginator(resources, 12)
     page = request.GET['page'] if 'page' in request.GET else 1
 
     try:

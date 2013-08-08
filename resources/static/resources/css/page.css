@@ -105,5 +105,5 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-user .user-info-wap .meta-item{margin-right:10px}
 #page-user .nav-node-list .n-item{padding-bottom:10px;position:relative}#page-user .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:110px;border-top:1px solid #dfdfdf;padding-top:13px;padding-left:5px}#page-user .nav-node-list .n-item .n-title a{color:#555}
 #page-user .nav-node-list .n-item ul.res-list{float:left;box-sizing:border-box;width:700px;padding-top:10px;padding-left:15px;border-top:1px solid #f2f2f2;list-style-type:none;margin:0}#page-user .nav-node-list .n-item ul.res-list:first-child{border-top:1px solid #dfdfdf}
-#page-user .nav-node-list .n-item ul.res-list li{float:left;width:160px;box-sizing:border-box;padding:4px 5px}#page-user .nav-node-list .n-item ul.res-list li a{color:#0360af}
+#page-user .nav-node-list .n-item ul.res-list li{float:left;width:160px;box-sizing:border-box;padding:4px 5px;height:28px;overflow:hidden}#page-user .nav-node-list .n-item ul.res-list li a{color:#0360af}
 #page-user .nav-node-list .n-item ul.res-list li .r-favicon{max-width:16px;vertical-align:text-top;margin-right:1px}

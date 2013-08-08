@@ -13,7 +13,7 @@ class Node(models.Model):
     title = models.CharField(max_length=200)
     desc = models.TextField()
     image_url = models.CharField(max_length=200)
-    create_time = models.DateTimeField('date')
+    create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.title
