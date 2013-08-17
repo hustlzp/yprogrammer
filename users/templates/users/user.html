@@ -55,7 +55,9 @@ $(function(){
     <h4 class="media-heading user-name">{{ user.name }}</h4>
     <div>
         <span class='meta-item' title='GitHub'><i class='icon-github-sign'></i> <a href='https://github.com/{{ user.name }}' target='_blank'>{{ user.name }}</a></span>
+        {% if user.c_blog != '' %}
         <span class='meta-item' title='Blog'><i class='icon-bold'></i> <a href="{{ user.blog }}" target='_blank'>{{ user.c_blog }}</a></span>
+        {% endif %}
         <!-- <span class='meta-item'>共收到 <b>23</b> 次感谢</span> -->
     </div>
   </div>
