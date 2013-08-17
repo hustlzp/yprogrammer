@@ -68,7 +68,9 @@ $(function(){
 
       {% for hr in hot_resources %}
       <div class='hot-res-item'>
-         <a href='{{ hr.url }}' class='res-title' target='_blank'>{{ hr.title|truncatechars:30 }}</a>
+         <img class='res-favicon' src="http://g.etfv.co/{{ hr.url }}" />
+
+         <a href='{{ hr.url }}' class='res-title' target='_blank'>{{ hr.title|truncatechars:28 }}</a>
 
          <div class='collect-wap pull-right {% if hr|is_collected:request.session.user_id %}on{% endif %}'>
             <a class="btn-collect" data-resource-id='{{ hr.id }}' title='添加到导航'><i class='icon-bookmark-empty'></i></a>
