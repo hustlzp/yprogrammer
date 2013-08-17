@@ -4,7 +4,7 @@ body .navbar .btn-add-resource{margin-right:10px;margin-top:12px}
 body #footer{position:absolute;left:0;bottom:0;height:2.2em;z-index:10;text-align:center;font-size:12px;font-family:'微软雅黑';width:100%;color:#666}body #footer .container #copyright{float:left}
 body #footer .container #links{float:right;margin:0;list-style-type:none}body #footer .container #links li{display:inline-block;margin-right:10px}
 #page-resources .nav-resource a{background-color:#0072b3}
-#page-all-nodes .nav-node a,#page-node .nav-node a{background-color:#0072b3}
+#page-all-nodes .nav-node a{background-color:#0072b3}
 #page-user .nav-user a{background-color:#0072b3}
 .modal form{margin:0}
 .modal input[type='text']{width:100%;box-sizing:border-box;height:32px;margin-bottom:15px;box-shadow:none}
@@ -106,5 +106,5 @@ body #footer .container #links{float:right;margin:0;list-style-type:none}body #f
 #page-user .user-info-wap .meta-item{margin-right:10px}
 #page-user .nav-node-list .n-item{padding-bottom:10px;position:relative}#page-user .nav-node-list .n-item .n-title{float:left;box-sizing:border-box;width:120px;border-top:1px solid #dfdfdf;padding-top:13px;padding-left:5px}#page-user .nav-node-list .n-item .n-title a{color:#555}
 #page-user .nav-node-list .n-item ul.res-list{float:left;box-sizing:border-box;width:700px;padding-top:10px;padding-left:15px;border-top:1px solid #f2f2f2;list-style-type:none;margin:0}#page-user .nav-node-list .n-item ul.res-list:first-child{border-top:1px solid #dfdfdf}
-#page-user .nav-node-list .n-item ul.res-list li{float:left;width:165px;box-sizing:border-box;padding-top:4px;padding-right:15px;height:26px;overflow:hidden}#page-user .nav-node-list .n-item ul.res-list li a{color:#0360af}
+#page-user .nav-node-list .n-item ul.res-list li{float:left;width:165px;box-sizing:border-box;padding-top:4px;padding-right:15px;margin-bottom:3px;height:26px;overflow:hidden}#page-user .nav-node-list .n-item ul.res-list li a{color:#0360af}
 #page-user .nav-node-list .n-item ul.res-list li .r-favicon{max-width:16px;vertical-align:text-top;margin-right:1px}
