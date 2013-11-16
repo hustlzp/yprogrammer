@@ -1,4 +1,4 @@
 *.pyc
 venv/
-local_settings.py
+yprogrammer/local_settings.py
 .idea/

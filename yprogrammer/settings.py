@@ -165,6 +165,4 @@ LOGGING = {
 }
 
 # machine specific settings
-# sys.path.append('/var/www/django_settings/')
-# import yprogrammer
-from local_settings import *
+from .local_settings import *
