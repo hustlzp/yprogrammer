@@ -18,4 +18,4 @@ Deploy:
     * `mysql -uuser -ppassword`
     * mysql> `CREATE DATABASE yprogrammer DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;`
     * `mysql -uuser -ppassword yprogrammer < yprogrammer.sql`
-5. `python manager.py runserver`
+5. `python manage.py runserver`
